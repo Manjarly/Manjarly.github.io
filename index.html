@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amit Manjarly | Machine Learning Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the "Digital Brain" theme */
+        :root {
+            --bg-color: #0d1117;
+            --primary-color: #c9d1d9;
+            --secondary-color: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-gradient: linear-gradient(90deg, #58a6ff, #a371f7, #58a6ff);
+        }
+        body {
+            /* The background is now handled by the canvas */
+            background-color: var(--bg-color); /* Fallback color */
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+        }
+        #digital-rain-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Changed to 0 */
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1; /* Ensure content is above canvas */
+        }
+        .hero-section {
+            background: radial-gradient(ellipse at center, rgba(13, 17, 23, 0) 0%, rgba(13, 17, 23, 0.8) 80%);
+        }
+        .section {
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        /* Updated keyframes for a seamless one-way loop */
+        @keyframes animate-gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            /* Updated animation for smooth one-way movement */
+            animation: animate-gradient 4s linear infinite;
+        }
+        .gradient-border-card {
+            background-color: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-border-card:before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border-card:hover:before {
+            opacity: 1;
+        }
+        .gradient-border-card-inner {
+            background-color: #0d1117;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.7rem; /* slightly smaller than parent */
+            padding: 1.5rem;
+        }
+        .skill-tag {
+            background-color: rgba(88, 166, 255, 0.1);
+            color: var(--accent-color);
+            font-family: 'Roboto Mono', monospace;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #30363d;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="digital-rain-canvas"></canvas>
+
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-xl font-bold text-white tracking-widest">MANJARLY</a>
+                    <nav class="hidden md:flex space-x-8 text-sm">
+                        <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
+                        <a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a>
+                        <a href="#experience" class="text-gray-300 hover:text-white transition">Experience</a>
+                        <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
+                        <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
+                    </nav>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-900/80">
+                <a href="#about" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About</a>
+                <a href="#skills" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Skills</a>
+                <a href="#experience" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Experience</a>
+                <a href="#projects" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Projects</a>
+                <a href="#contact" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="hero-section min-h-screen flex items-center justify-center">
+                <div class="text-center">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4">
+                        <span class="gradient-text">Amit Manjarly</span>
+                    </h1>
+                    <p class="text-lg md:text-xl font-mono text-gray-400 mb-8">Machine Learning Engineer & Data Scientist</p>
+                    <a href="#projects" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300">
+                        Explore My Work
+                    </a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section py-20 md:py-32">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                        About <span class="gradient-text">Me</span>
+                    </h2>
+                    <p class="max-w-3xl mx-auto text-center text-gray-400 text-lg leading-relaxed">
+                        Ardent Data Science graduate with hands-on experience in machine learning, Python, and data analysis. Skilled in building and optimizing predictive models and applying algorithms to solve real-world problems. With 3+ years in Quality Assurance, I bring strong attention to detail and a problem-solving mindset, aspiring to apply my skills in a full-time Machine Learning Engineer role.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section py-20 md:py-32">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                        Technical <span class="gradient-text">Skills</span>
+                    </h2>
+                    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Apache Kafka</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section py-20 md:py-32">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-20">
+                        Work <span class="gradient-text">Experience</span>
+                    </h2>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="font-mono text-sm text-blue-400 mb-1">March 2021 - July 2024</p>
+                            <h3 class="text-xl font-semibold text-white">Data Engineering Management and Governance Analyst</h3>
+                            <p class="text-md text-gray-400 mb-4">Accenture PLC - Hyderabad, India</p>
+                            <ul class="list-disc list-inside text-gray-400 space-y-2">
+                                <li>Optimized Python scripts by refining algorithms, reducing processing time by 15%.</li>
+                                <li>Validated data using SQL in Impala and Hive, ensuring 100% accuracy and integrity.</li>
+                                <li>Analyzed workflows and proposed process improvements, leading to a 25% increase in efficiency.</li>
+                                <li>Contributed to an international banking project, improving operational efficiency by 15%.</li>
+                                <li>Utilized JIRA and KANBAN boards for task tracking, enhancing team collaboration by 40%.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="font-mono text-sm text-blue-400 mb-1">Jan 2021 - Feb 2021</p>
+                            <h3 class="text-xl font-semibold text-white">Technical Intern</h3>
+                            <p class="text-md text-gray-400 mb-4">Terminal Trend - Ahmedabad, India</p>
+                            <ul class="list-disc list-inside text-gray-400 space-y-2">
+                                <li>Acquired proficiency in JavaScript for front-end development.</li>
+                                <li>Developed interactive games using HTML, CSS, and JavaScript.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section py-20 md:py-32">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                        Featured <span class="gradient-text">Projects</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="gradient-border-card">
+                            <div class="gradient-border-card-inner">
+                                <h3 class="text-xl font-bold text-white mb-2">Image Classification with CNNs & SVMs</h3>
+                                <p class="text-gray-400 flex-grow mb-4">Designed custom CNNs in PyTorch for CIFAR-10 classification, applied PCA for dimensionality reduction, and evaluated various models on the MNIST dataset.</p>
+                                <a href="https://github.com/Manjarly/StatisticalMachineLearning-FinalProject" class="font-mono text-blue-400 hover:text-blue-300 self-start">View on GitHub &rarr;</a>
+                            </div>
+                        </div>
+                        <div class="gradient-border-card">
+                            <div class="gradient-border-card-inner">
+                                <h3 class="text-xl font-bold text-white mb-2">Hybrid Movie Recommendation Engine</h3>
+                                <p class="text-gray-400 flex-grow mb-4">Developed a hybrid engine combining SVD and TF-IDF, outperforming baselines by 16x. Addressed the cold-start problem with content-based suggestions.</p>
+                                <a href="https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine" class="font-mono text-blue-400 hover:text-blue-300 self-start">View on GitHub &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section py-20 md:py-32">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        Get In <span class="gradient-text">Touch</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-xl mx-auto mb-8">I'm actively seeking new opportunities and would love to connect. Feel free to reach out!</p>
+                    <a href="mailto:amitmanjarly99@gmail.com" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 inline-block">
+                        Say Hello
+                    </a>
+                    <!-- Social Icons -->
+                    <div class="flex justify-center space-x-6 mt-12">
+                        <!-- GitHub Icon -->
+                        <a href="https://github.com/Manjarly" class="text-gray-400 hover:text-white transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <!-- LinkedIn Icon -->
+                        <a href="https://www.linkedin.com/in/manjarly/" class="text-gray-400 hover:text-white transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <!-- YouTube Icon -->
+                        <a href="https://www.youtube.com/@manjarly" class="text-gray-400 hover:text-white transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-6 section">
+            <div class="container mx-auto px-6 text-center text-gray-500">
+                <p>&copy; 2025 Amit Manjarly. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Digital Rain Animation Script
+        const canvas = document.getElementById('digital-rain-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let drops = [];
+        let fontSize = 16;
+        let columns = 0;
+        const characters = '01';
+
+        function initialize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Math.floor(canvas.width / fontSize);
+            drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+        }
+
+        function draw() {
+            // Draw a semi-transparent background to create the fading trail effect
+            ctx.fillStyle = 'rgba(13, 17, 23, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set text style for the drops
+            ctx.fillStyle = '#58a6ff'; // Accent color
+            ctx.font = fontSize + 'px Roboto Mono';
+
+            // Loop through the drops
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop to the top randomly to make the rain uneven
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+        
+        window.addEventListener('resize', initialize);
+
+        initialize();
+        // We wrap animate in another function to avoid calling it directly in setInterval
+        // as requestAnimationFrame handles the looping.
+        setInterval(draw, 45);
+
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        }
+    </script>
+</body>
+</html>
