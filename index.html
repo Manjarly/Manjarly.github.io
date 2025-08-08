@@ -18,8 +18,7 @@
             --accent-gradient: linear-gradient(90deg, #58a6ff, #a371f7, #58a6ff);
         }
         body {
-            /* The background is now handled by the canvas */
-            background-color: var(--bg-color); /* Fallback color */
+            background-color: var(--bg-color);
             color: var(--primary-color);
             font-family: 'Poppins', sans-serif;
         }
@@ -29,11 +28,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0; /* Changed to 0 */
+            z-index: 0;
         }
         .content-wrapper {
             position: relative;
-            z-index: 1; /* Ensure content is above canvas */
+            z-index: 1;
         }
         .hero-section {
             background: radial-gradient(ellipse at center, rgba(13, 17, 23, 0) 0%, rgba(13, 17, 23, 0.8) 80%);
@@ -43,7 +42,6 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
-        /* Updated keyframes for a seamless one-way loop */
         @keyframes animate-gradient {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
@@ -53,7 +51,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% 200%;
-            /* Updated animation for smooth one-way movement */
             animation: animate-gradient 4s linear infinite;
         }
         .gradient-border-card {
@@ -83,7 +80,7 @@
             background-color: #0d1117;
             width: 100%;
             height: 100%;
-            border-radius: 0.7rem; /* slightly smaller than parent */
+            border-radius: 0.7rem;
             padding: 1.5rem;
         }
         .skill-tag {
@@ -112,6 +109,23 @@
             border-radius: 50%;
             background: var(--accent-gradient);
         }
+        /* Improved Mobile Menu Styles */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 75%; /* Covers 3/4 of the screen */
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 100;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -131,20 +145,24 @@
                         <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
                         <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
                     </nav>
-                    <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none z-[110]">
+                        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-900/80">
-                <a href="#about" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About</a>
-                <a href="#skills" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Skills</a>
-                <a href="#experience" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Experience</a>
-                <a href="#projects" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Projects</a>
-                <a href="#contact" class="block text-center py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
-            </div>
         </header>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="flex flex-col items-center justify-center relative">
+            <button id="close-menu-button" class="absolute top-4 right-4 text-gray-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <a href="#about" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">About</a>
+            <a href="#skills" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Skills</a>
+            <a href="#experience" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Experience</a>
+            <a href="#projects" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Projects</a>
+            <a href="#contact" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Contact</a>
+        </div>
 
         <main>
             <!-- Hero Section -->
@@ -316,20 +334,13 @@
         }
 
         function draw() {
-            // Draw a semi-transparent background to create the fading trail effect
             ctx.fillStyle = 'rgba(13, 17, 23, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Set text style for the drops
-            ctx.fillStyle = '#58a6ff'; // Accent color
+            ctx.fillStyle = '#58a6ff';
             ctx.font = fontSize + 'px Roboto Mono';
-
-            // Loop through the drops
             for (let i = 0; i < drops.length; i++) {
                 const text = characters[Math.floor(Math.random() * characters.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                // Reset drop to the top randomly to make the rain uneven
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
@@ -337,26 +348,44 @@
             }
         }
 
-        function animate() {
-            draw();
-            requestAnimationFrame(animate);
+        // Debounce function to limit how often resize is handled
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
-        
-        window.addEventListener('resize', initialize);
 
-        initialize();
-        // We wrap animate in another function to avoid calling it directly in setInterval
-        // as requestAnimationFrame handles the looping.
+        const debouncedInitialize = debounce(initialize, 250);
+        window.addEventListener('resize', debouncedInitialize);
+
         setInterval(draw, 45);
-
+        initialize();
 
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
         for (let link of mobileMenuLinks) {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
         }
     </script>
 </body>
