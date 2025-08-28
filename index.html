@@ -54,35 +54,42 @@
             background-size: 200% 200%;
             animation: animate-gradient 4s linear infinite;
         }
-        .gradient-border-card {
-            background-color: rgba(22, 27, 34, 0.8);
+        .project-card {
+            background-color: #161b22;
             border: 1px solid #30363d;
             border-radius: 0.75rem;
-            padding: 1.5rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .gradient-border-card:before {
+        .project-card:before {
             content: '';
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
-            z-index: -1;
-            margin: -1px;
+            z-index: 0;
+            margin: -2px; /* Controls the thickness of the hover border */
             border-radius: inherit;
             background: var(--accent-gradient);
+            background-size: 200% 200%;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            animation: animate-gradient 4s linear infinite;
         }
-        .gradient-border-card:hover:before {
+        .project-card:hover:before {
             opacity: 1;
         }
-        .gradient-border-card-inner {
-            background-color: #0d1117;
-            width: 100%;
-            height: 100%;
-            border-radius: 0.7rem;
-            padding: 1.5rem;
+        .project-card-content {
+            position: relative;
+            z-index: 1;
+            background-color: #161b22;
+            margin: 2px; /* Matches the pseudo-element margin */
+            border-radius: 0.6rem; /* Slightly smaller than parent */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 4px); /* Adjust for the margin */
+            width: calc(100% - 4px);
+            padding: 1rem; /* Added padding to the card content */
         }
         .skill-tag {
             background-color: rgba(88, 166, 255, 0.1);
@@ -134,7 +141,6 @@
     <canvas id="digital-rain-canvas"></canvas>
 
     <div class="content-wrapper">
-        <!-- Header -->
         <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex items-center justify-between">
@@ -153,7 +159,6 @@
             </div>
         </header>
         
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="flex flex-col items-center justify-center relative">
             <button id="close-menu-button" class="absolute top-4 right-4 text-gray-300">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -166,7 +171,6 @@
         </div>
 
         <main>
-            <!-- Hero Section -->
             <section id="home" class="hero-section min-h-screen flex items-center justify-center">
                 <div class="text-center">
                     <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4">
@@ -177,14 +181,13 @@
                         <a href="#projects" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 w-full sm:w-auto">
                             Explore My Work
                         </a>
-                        <a href="Amit_Manjarly_Resume_ML_FT.pdf" download="Amit_Manjarly_Resume_ML_FT.pdf" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 w-full sm:w-auto">
+                        <a href="Amit_Manjarly_Resume_ML_FT.pdf" download="Amit_Manjarly_Resume_ML_FT.pdf" class="border border-blue-500 text-blue-400 font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 w-full sm:w-auto">
                             Download Resume
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- About Section -->
             <section id="about" class="section py-20 md:py-32">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -196,7 +199,6 @@
                 </div>
             </section>
 
-            <!-- Skills Section -->
             <section id="skills" class="section py-20 md:py-32">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -219,7 +221,6 @@
                 </div>
             </section>
 
-            <!-- Experience Section -->
             <section id="experience" class="section py-20 md:py-32">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-20">
@@ -253,8 +254,7 @@
                 </div>
             </section>
 
-            <!-- Projects Section -->
-           <section id="projects" class="section py-20 md:py-32">
+            <section id="projects" class="section py-20 md:py-32">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
                         Featured <span class="gradient-text">Projects</span>
@@ -262,7 +262,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="project-card">
                             <div class="project-card-content">
-                                <img src="image_classification_website_photo.png" alt="Image Classification using CNN & SVM" class="w-full h-40 object-cover rounded-lg">
+                                <img src="image_classification_website_photo.png" alt="Abstract neural network visualization" class="w-full h-40 object-cover rounded-lg">
                                 <div class="pt-4 flex flex-col flex-grow">
                                     <h3 class="text-xl font-bold text-white mb-2">Image Classification with CNNs & SVMs</h3>
                                     <p class="text-gray-400 flex-grow mb-4">Designed custom CNNs in PyTorch for CIFAR-10 classification, applied PCA for dimensionality reduction, and evaluated various models on the MNIST dataset.</p>
@@ -272,7 +272,7 @@
                         </div>
                         <div class="project-card">
                             <div class="project-card-content">
-                                <img src="recommendation_website_photo.png" alt="Hybrid Movie Recommendation Engine" class="w-full h-40 object-cover rounded-lg">
+                                <img src="recommendation_website_photo.png" alt="Data visualization dashboard for movie recommendations" class="w-full h-40 object-cover rounded-lg">
                                 <div class="pt-4 flex flex-col flex-grow">
                                     <h3 class="text-xl font-bold text-white mb-2">Hybrid Movie Recommendation Engine</h3>
                                     <p class="text-gray-400 flex-grow mb-4">Developed a hybrid engine combining SVD and TF-IDF, outperforming baselines by 16x. Addressed the cold-start problem with content-based suggestions.</p>
@@ -284,7 +284,6 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
             <section id="contact" class="section py-20 md:py-32">
                 <div class="container mx-auto px-6 text-center">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -294,21 +293,17 @@
                     <a href="mailto:amitmanjarly99@gmail.com" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 inline-block">
                         Say Hello
                     </a>
-                    <!-- Social Icons -->
                     <div class="flex justify-center space-x-6 mt-12">
-                        <!-- GitHub Icon -->
                         <a href="https://github.com/Manjarly" class="text-gray-400 hover:text-white transition">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
                             </svg>
                         </a>
-                        <!-- LinkedIn Icon -->
                         <a href="https://www.linkedin.com/in/manjarly/" class="text-gray-400 hover:text-white transition">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
                         </a>
-                        <!-- YouTube Icon -->
                         <a href="https://www.youtube.com/@manjarly" class="text-gray-400 hover:text-white transition">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                         </a>
@@ -317,7 +312,6 @@
             </section>
         </main>
 
-        <!-- Footer -->
         <footer class="py-6 section">
             <div class="container mx-auto px-6 text-center text-gray-500">
                 <p>&copy; 2025 Amit Manjarly. All Rights Reserved.</p>
