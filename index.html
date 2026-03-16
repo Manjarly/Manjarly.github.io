@@ -88,6 +88,11 @@ body {
   text-decoration: none; transition: opacity 0.15s; font-family: 'Inter', sans-serif;
 }
 .btn-nav:hover { opacity: 0.85; }
+.btn-resume {
+  background: var(--bg2); color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-resume:hover { background: var(--bg3); opacity: 1; }
 
 /* ─── LAYOUT ─── */
 .page { padding-top: 56px; }
@@ -247,6 +252,80 @@ body {
 .ptag {
   font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px;
   border-radius: 4px; background: var(--bg3); color: var(--text2); letter-spacing: 0.03em;
+}
+
+/* ─── HACKATHONS ─── */
+#hackathons { background: var(--bg); }
+
+.hackathon-card {
+  margin-top: 36px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.hackathon-card:hover { border-color: var(--yellow); transform: translateY(-2px); }
+
+.hk-left { padding: 28px; border-right: 1px solid var(--border); }
+.hk-right { padding: 22px; background: var(--bg); }
+
+.hk-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--yellow); background: rgba(227,179,65,0.08);
+  border: 1px solid rgba(227,179,65,0.3); border-radius: 4px;
+  padding: 4px 10px; margin-bottom: 16px;
+}
+.hk-badge svg { flex-shrink: 0; }
+
+.hk-title {
+  font-size: 18px; font-weight: 600; color: var(--text);
+  letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.3;
+}
+.hk-desc {
+  font-size: 13px; color: var(--text2); line-height: 1.75;
+  margin-bottom: 18px; max-width: 560px;
+}
+.hk-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.hk-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--yellow); text-decoration: none;
+  border: 1px solid rgba(227,179,65,0.3); border-radius: 5px;
+  padding: 5px 12px; transition: background 0.15s;
+}
+.hk-link:hover { background: rgba(227,179,65,0.08); }
+
+.hk-metrics-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.hk-flow { display: flex; flex-direction: column; gap: 0; }
+.hk-flow-step {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text2);
+  padding: 5px 0;
+}
+.hk-flow-num {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(227,179,65,0.12); border: 1px solid rgba(227,179,65,0.3);
+  color: var(--yellow); font-size: 9px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.hk-flow-arrow {
+  font-size: 11px; color: var(--text3); padding-left: 8px; line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .hackathon-card { grid-template-columns: 1fr; }
+  .hk-left { border-right: none; border-bottom: 1px solid var(--border); }
 }
 
 /* ─── EXPERIENCE ─── */
@@ -415,6 +494,7 @@ footer {
     <ul class="nav-links">
       <li><a href="#about">about</a></li>
       <li><a href="#projects">projects</a></li>
+      <li><a href="#hackathons">hackathons</a></li>
       <li><a href="#experience">experience</a></li>
       <li><a href="#chatbot">ai chat</a></li>
       <li><a href="#contact">contact</a></li>
@@ -422,6 +502,7 @@ footer {
   </div>
   <div class="nav-right">
     <div class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</div>
+    <a href="https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf" target="_blank" class="btn-nav btn-resume">Resume ↗</a>
     <a href="#chatbot" class="btn-nav">Ask AI ↗</a>
   </div>
 </nav>
@@ -447,6 +528,10 @@ footer {
           Chat with AI
         </a>
         <a href="#projects" class="btn-ghost">View Projects</a>
+        <a href="https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf" target="_blank" class="btn-ghost">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Resume
+        </a>
         <a href="https://www.linkedin.com/in/manjarly/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
       </div>
       <div class="hero-links">
@@ -478,6 +563,7 @@ footer {
         <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Deep Learning"</span><span class="t-bracket">,</span></div>
         <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Competitive Programming"</span></div>
         <div class="t-line">&nbsp;&nbsp;<span class="t-bracket">],</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"projects"</span><span class="t-bracket">: </span><span class="t-num">6</span><span class="t-bracket">,</span></div>
         <div class="t-line">&nbsp;&nbsp;<span class="t-key">"model"</span><span class="t-bracket">: </span><span class="t-str">"Llama-3.2-3B"</span><span class="t-bracket">,</span></div>
         <div class="t-line">&nbsp;&nbsp;<span class="t-key">"params"</span><span class="t-bracket">: </span><span class="t-num">3_000_000_000</span><span class="t-bracket">,</span></div>
         <div class="t-line">&nbsp;&nbsp;<span class="t-key">"open_to_work"</span><span class="t-bracket">: </span><span class="t-val">true</span></div>
@@ -573,6 +659,72 @@ footer {
         <div class="proj-card-tags"><span class="ptag">GAN</span><span class="ptag">Generative AI</span><span class="ptag">PyTorch</span><span class="ptag">MNIST</span></div>
       </div>
 
+      <div class="proj-card reveal d1" onclick="window.open('https://github.com/Manjarly/Open_World_Continual_Learning_For_Autonomous_Agents','_blank')">
+        <div class="proj-card-top">
+          <div class="proj-card-name">Open-World Continual Learning for Autonomous Agents</div>
+          <a href="https://github.com/Manjarly/Open_World_Continual_Learning_For_Autonomous_Agents" target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+        <div class="proj-card-desc">Capstone project integrating Open-Set Recognition and Continual Learning for autonomous vehicle perception. Agents detect unknown objects and adapt to new environments without catastrophic forgetting. Domain transfer from Waymo (SF/Phoenix) to nuScenes (Boston/Singapore).</div>
+        <div class="proj-metrics">
+          <div class="proj-metrics-row"><span class="pm-key">base_model</span><span class="pm-val blue">YOLOv8m</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">continual_learning</span><span class="pm-val">EWC (Elastic Weight Consolidation)</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">open_set</span><span class="pm-val purple">Entropy-based Uncertainty</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">mlops</span><span class="pm-val yellow">MLflow + DVC</span></div>
+        </div>
+        <div class="proj-card-tags"><span class="ptag">YOLOv8</span><span class="ptag">EWC</span><span class="ptag">Open-Set</span><span class="ptag">PyTorch</span><span class="ptag">MLflow</span><span class="ptag">Waymo</span><span class="ptag">nuScenes</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HACKATHONS -->
+<section id="hackathons" class="section">
+  <div class="inner">
+    <div class="reveal">
+      <div class="sec-label"># hackathons</div>
+      <div class="sec-title">Hackathon Projects</div>
+      <div class="sec-sub">Competitive builds under time pressure</div>
+    </div>
+
+    <div class="hackathon-card reveal d1" onclick="window.open('https://github.com/Manjarly/MistralAI_Hackathon_2026','_blank')">
+      <div class="hk-left">
+        <div class="hk-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Mistral AI Hackathon 2026
+        </div>
+        <div class="hk-title">Nexus — Continual Knowledge Agent</div>
+        <div class="hk-desc">A personal AI agent that learns from your documents, remembers everything across sessions, and searches the web when it doesn't know something — all with per-user accounts and isolated memory. Feed it a PDF, URL, or plain text and it stores knowledge in a personal vector database. Falls back to live Tavily web search automatically, storing those results too so the agent gets smarter with every question.</div>
+        <div class="hk-tags">
+          <span class="ptag">Mistral AI</span><span class="ptag">RAG</span><span class="ptag">ChromaDB</span><span class="ptag">Flask</span><span class="ptag">SQLite</span><span class="ptag">JWT Auth</span><span class="ptag">Tavily</span><span class="ptag">Python</span>
+        </div>
+        <a href="https://github.com/Manjarly/MistralAI_Hackathon_2026" target="_blank" class="hk-link" onclick="event.stopPropagation()">
+          View on GitHub
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <div class="hk-right">
+        <div class="hk-metrics-title">// stack</div>
+        <div class="proj-metrics" style="margin:0;">
+          <div class="proj-metrics-row"><span class="pm-key">llm</span><span class="pm-val blue">mistral-large-2512</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">embeddings</span><span class="pm-val">mistral-embed</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">vector_db</span><span class="pm-val purple">ChromaDB</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">web_search</span><span class="pm-val green">Tavily API</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">auth</span><span class="pm-val yellow">JWT + PBKDF2-SHA256</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">backend</span><span class="pm-val">Flask + SQLite</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">isolation</span><span class="pm-val">Per-user ChromaDB</span></div>
+        </div>
+        <div class="hk-metrics-title" style="margin-top:14px;">// how it works</div>
+        <div class="hk-flow">
+          <div class="hk-flow-step"><span class="hk-flow-num">01</span><span>User asks a question</span></div>
+          <div class="hk-flow-arrow">↓</div>
+          <div class="hk-flow-step"><span class="hk-flow-num">02</span><span>Search personal ChromaDB</span></div>
+          <div class="hk-flow-arrow">↓</div>
+          <div class="hk-flow-step"><span class="hk-flow-num">03</span><span>Mistral validates relevance</span></div>
+          <div class="hk-flow-arrow">↓</div>
+          <div class="hk-flow-step"><span class="hk-flow-num">04</span><span>Answer from memory or Tavily web search</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -658,10 +810,10 @@ Ask me anything — project results, technical details, how to collaborate, or h
           <div class="sidebar-panel-title">// quick prompts</div>
           <button class="qbtn" onclick="sendPrompt('What ML projects has Amit built?')">What ML projects has Amit built?</button>
           <button class="qbtn" onclick="sendPrompt('Explain the STaR fine-tuning project')">Explain the STaR fine-tuning project</button>
+          <button class="qbtn" onclick="sendPrompt('Tell me about the Open World Continual Learning capstone project')">Open-World Continual Learning project?</button>
+          <button class="qbtn" onclick="sendPrompt('Tell me about Nexus, the Mistral AI Hackathon project')">Mistral AI Hackathon — Nexus agent?</button>
           <button class="qbtn" onclick="sendPrompt('What are Amit\\'s core technical skills?')">Core technical skills?</button>
-          <button class="qbtn" onclick="sendPrompt('Recommendation engine results?')">Recommendation engine results?</button>
           <button class="qbtn" onclick="sendPrompt('How can I contact or collaborate with Amit?')">How to contact Amit?</button>
-          <button class="qbtn" onclick="sendPrompt('Tell me about the GAN project')">Tell me about the GAN project</button>
         </div>
       </div>
     </div>
@@ -773,6 +925,31 @@ const SYS = `You are an AI assistant on Amit Manjarly's portfolio website. Answe
 ### 4. MNIST Digit Generation using GAN
 - GAN (Generator + Discriminator) for digit synthesis, mode collapse prevention
 - Tech: PyTorch
+
+### 5. Open-World Continual Learning for Autonomous Agents (Capstone Project)
+- Team project (Amit: MLOps & Backend)
+- Integrates Open-Set Recognition + Continual Learning for autonomous vehicle perception
+- Detects unknown objects and adapts to new environments without catastrophic forgetting
+- Source domain: Waymo Open Dataset (San Francisco, Phoenix, Mountain View)
+- Target domain: nuScenes (Boston, Singapore)
+- Base detector: YOLOv8m | Continual learning: Elastic Weight Consolidation (EWC)
+- Open-set recognition: Entropy-based uncertainty thresholding
+- MLOps: MLflow experiment tracking + DVC data versioning
+- Tech: PyTorch, Ultralytics YOLOv8, Waymo SDK, nuscenes-devkit, MLflow, DVC, Google Cloud
+
+### 6. Nexus — Continual Mistral Knowledge Agent (Mistral AI Hackathon 2026)
+- Built for Mistral AI Hackathon 2026
+- Personal AI agent that learns from documents (PDF, URL, text) and remembers across sessions
+- Stores knowledge in per-user ChromaDB vector database; falls back to Tavily web search when memory is insufficient
+- Every web search result is automatically stored — agent gets smarter with each question
+- Per-user isolation: each user gets their own ChromaDB collection
+- LLM: mistral-large-2512 | Embeddings: mistral-embed | Vector DB: ChromaDB
+- Auth: JWT (HMAC-SHA256) + PBKDF2-SHA256 password hashing (260k iterations)
+- Backend: Flask + SQLite | Frontend: Single-file Vanilla HTML/CSS/JS
+- Tech: Python, Flask, ChromaDB, SQLite, Mistral API, Tavily API, JWT
+
+## Resume
+Amit's resume can be downloaded at: https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf
 
 ## Skills
 Deep Learning: PyTorch, CNN, GAN | NLP/LLMs: HuggingFace, Fine-Tuning, STaR, Llama
