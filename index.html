@@ -1,398 +1,829 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amit Manjarly | Machine Learning Engineer</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Manjarly/Manjarly.github.io/main/favicon1.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        /* Custom styles for the "Digital Brain" theme */
-        :root {
-            --bg-color: #0d1117;
-            --primary-color: #c9d1d9;
-            --secondary-color: #8b949e;
-            --accent-color: #58a6ff;
-            --accent-gradient: linear-gradient(90deg, #58a6ff, #a371f7, #58a6ff);
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-            font-family: 'Poppins', sans-serif;
-        }
-        #digital-rain-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        .hero-section {
-            background: radial-gradient(ellipse at center, rgba(13, 17, 23, 0) 0%, rgba(13, 17, 23, 0.8) 80%);
-        }
-        .section {
-            background-color: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        @keyframes animate-gradient {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-        .gradient-text {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: animate-gradient 4s linear infinite;
-        }
-        .project-card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-card:before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            z-index: 0;
-            margin: -2px; /* Controls the thickness of the hover border */
-            border-radius: inherit;
-            background: var(--accent-gradient);
-            background-size: 200% 200%;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            animation: animate-gradient 4s linear infinite;
-        }
-        .project-card:hover:before {
-            opacity: 1;
-        }
-        .project-card-content {
-            position: relative;
-            z-index: 1;
-            background-color: #161b22;
-            margin: 2px; /* Matches the pseudo-element margin */
-            border-radius: 0.6rem; /* Slightly smaller than parent */
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: calc(100% - 4px); /* Adjust for the margin */
-            width: calc(100% - 4px);
-            padding: 1rem; /* Added padding to the card content */
-        }
-        .skill-tag {
-            background-color: rgba(88, 166, 255, 0.1);
-            color: var(--accent-color);
-            font-family: 'Roboto Mono', monospace;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 2.5rem;
-            padding-bottom: 2rem;
-            border-left: 2px solid #30363d;
-        }
-        .timeline-item:last-child {
-            border-left: 2px solid transparent;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -0.5rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-        }
-        /* Improved Mobile Menu Styles */
-        #mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100vh;
-            width: 75%; /* Covers 3/4 of the screen */
-            background-color: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            z-index: 100;
-        }
-        #mobile-menu.open {
-            transform: translateX(0);
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Amit Manjarly — ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --bg:       #0d1117;
+  --bg2:      #161b22;
+  --bg3:      #21262d;
+  --border:   #30363d;
+  --border2:  #21262d;
+  --text:     #e6edf3;
+  --text2:    #8b949e;
+  --text3:    #484f58;
+  --green:    #3fb950;
+  --blue:     #58a6ff;
+  --orange:   #f78166;
+  --purple:   #bc8cff;
+  --yellow:   #e3b341;
+  --card-bg:  #161b22;
+  --hover:    #1c2128;
+}
+[data-theme="light"] {
+  --bg:       #ffffff;
+  --bg2:      #f6f8fa;
+  --bg3:      #eaeef2;
+  --border:   #d0d7de;
+  --border2:  #eaeef2;
+  --text:     #1f2328;
+  --text2:    #656d76;
+  --text3:    #bfc6cc;
+  --green:    #1a7f37;
+  --blue:     #0969da;
+  --orange:   #cf222e;
+  --purple:   #8250df;
+  --yellow:   #9a6700;
+  --card-bg:  #f6f8fa;
+  --hover:    #f3f4f6;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6;
+  overflow-x: hidden; transition: background 0.3s, color 0.3s;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; background: var(--bg); border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-left { display: flex; align-items: center; gap: 20px; }
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+  color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 6px;
+}
+.nav-logo .bracket { color: var(--green); }
+.nav-links { display: flex; gap: 2px; list-style: none; }
+.nav-links a {
+  display: block; padding: 5px 10px; font-size: 12px; font-weight: 500;
+  color: var(--text2); text-decoration: none; border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-links a:hover { background: var(--bg3); color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.theme-toggle {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--bg2); border: 1px solid var(--border);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: background 0.15s;
+}
+.theme-toggle:hover { background: var(--bg3); }
+.btn-nav {
+  padding: 5px 14px; border-radius: 6px; background: var(--green); color: #fff;
+  font-size: 12px; font-weight: 600; border: none; cursor: pointer;
+  text-decoration: none; transition: opacity 0.15s; font-family: 'Inter', sans-serif;
+}
+.btn-nav:hover { opacity: 0.85; }
+
+/* ─── LAYOUT ─── */
+.page { padding-top: 56px; }
+.section { padding: 64px 0; border-bottom: 1px solid var(--border2); }
+.inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.sec-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+  color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+}
+.sec-title { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; margin-bottom: 4px; }
+.sec-sub { font-size: 13px; color: var(--text2); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; } .d3 { transition-delay: 0.24s; }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: calc(100vh - 56px); display: flex; align-items: center;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+#hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px; opacity: 0.4;
+}
+.hero-inner {
+  max-width: 960px; margin: 0 auto; padding: 80px 24px;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 360px; gap: 64px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 4px 10px; border-radius: 20px;
+  border: 1px solid rgba(63,185,80,0.3); background: rgba(63,185,80,0.08);
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green);
+  letter-spacing: 0.05em; margin-bottom: 20px;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.hero-name {
+  font-size: clamp(32px,5vw,48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  color: var(--text); opacity: 0; animation: slideUp 0.6s 0.1s ease forwards;
+}
+.hero-role {
+  font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--green);
+  margin-top: 10px; margin-bottom: 16px; opacity: 0; animation: slideUp 0.6s 0.2s ease forwards;
+}
+.cursor { display: inline-block; width: 2px; height: 14px; background: var(--green); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+.hero-bio {
+  font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 500px;
+  opacity: 0; animation: slideUp 0.6s 0.3s ease forwards;
+}
+.hero-bio strong { color: var(--text); font-weight: 500; }
+.hero-actions {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px;
+  opacity: 0; animation: slideUp 0.6s 0.4s ease forwards;
+}
+@keyframes slideUp { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
+.btn-primary {
+  padding: 8px 18px; border-radius: 6px; background: var(--green); color: #fff;
+  font-size: 13px; font-weight: 500; border: none; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: opacity 0.15s; font-family: 'Inter', sans-serif;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  padding: 8px 18px; border-radius: 6px; background: var(--bg2); color: var(--text);
+  font-size: 13px; font-weight: 500; border: 1px solid var(--border); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+  transition: background 0.15s; font-family: 'Inter', sans-serif;
+}
+.btn-ghost:hover { background: var(--bg3); }
+.hero-links {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
+  opacity: 0; animation: slideUp 0.6s 0.5s ease forwards;
+}
+.hlink {
+  display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px;
+  border-radius: 5px; border: 1px solid var(--border);
+  font-size: 12px; color: var(--text2); text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em;
+}
+.hlink:hover { border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,0.06); }
+.hlink svg { width: 12px; height: 12px; }
+
+/* terminal */
+.hero-terminal {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; opacity: 0; animation: slideUp 0.6s 0.35s ease forwards;
+}
+.terminal-bar {
+  background: var(--bg3); padding: 10px 14px;
+  display: flex; align-items: center; gap: 7px; border-bottom: 1px solid var(--border);
+}
+.tbar-dot { width: 10px; height: 10px; border-radius: 50%; }
+.tbar-dot.red { background: #ff5f57; } .tbar-dot.yellow { background: #febc2e; } .tbar-dot.green { background: #28c840; }
+.tbar-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text2); margin-left: 6px; }
+.terminal-body { padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.9; }
+.t-comment{color:var(--text3);} .t-key{color:var(--blue);} .t-val{color:var(--green);}
+.t-str{color:var(--yellow);} .t-num{color:var(--purple);} .t-bracket{color:var(--text2);}
+.t-line { display: flex; }
+
+/* ─── ABOUT ─── */
+#about { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; }
+.about-text { font-size: 13.5px; color: var(--text2); line-height: 1.8; }
+.about-text p { margin-bottom: 12px; }
+.about-text strong { color: var(--text); font-weight: 500; }
+.skill-section { display: flex; flex-direction: column; gap: 20px; }
+.skill-group-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  padding: 3px 10px; border-radius: 20px; font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500; border: 1px solid; transition: opacity 0.15s;
+}
+.chip:hover { opacity: 0.75; }
+.chip-blue  { color:var(--blue);   border-color:rgba(88,166,255,0.3);  background:rgba(88,166,255,0.06); }
+.chip-green { color:var(--green);  border-color:rgba(63,185,80,0.3);   background:rgba(63,185,80,0.06); }
+.chip-purple{ color:var(--purple); border-color:rgba(188,140,255,0.3); background:rgba(188,140,255,0.06); }
+.chip-yellow{ color:var(--yellow); border-color:rgba(227,179,65,0.3);  background:rgba(227,179,65,0.06); }
+.chip-orange{ color:#f0883e;       border-color:rgba(240,136,62,0.3);  background:rgba(240,136,62,0.06); }
+
+/* ─── PROJECTS ─── */
+#projects { background: var(--bg2); }
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+.proj-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+  display: flex; flex-direction: column; cursor: pointer;
+}
+.proj-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+.proj-card-top {
+  padding: 16px 18px 14px; border-bottom: 1px solid var(--border2);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+}
+.proj-card-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; letter-spacing: -0.01em; }
+.proj-card-link { color: var(--text3); text-decoration: none; flex-shrink: 0; margin-top: 2px; transition: color 0.15s; }
+.proj-card:hover .proj-card-link { color: var(--blue); }
+.proj-card-link svg { width: 14px; height: 14px; }
+.proj-card-desc { padding: 12px 18px; font-size: 12.5px; color: var(--text2); line-height: 1.7; flex: 1; }
+.proj-metrics { margin: 0 18px 14px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; }
+.proj-metrics-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 7px 12px; border-bottom: 1px solid var(--border2);
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+}
+.proj-metrics-row:last-child { border-bottom: none; }
+.pm-key { color: var(--text3); } .pm-val { color: var(--green); font-weight: 500; }
+.pm-val.blue{color:var(--blue);} .pm-val.purple{color:var(--purple);} .pm-val.yellow{color:var(--yellow);}
+.proj-card-tags { padding: 10px 18px 14px; display: flex; flex-wrap: wrap; gap: 5px; }
+.ptag {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px;
+  border-radius: 4px; background: var(--bg3); color: var(--text2); letter-spacing: 0.03em;
+}
+
+/* ─── EXPERIENCE ─── */
+#experience { background: var(--bg); }
+.exp-list { margin-top: 36px; }
+.exp-item {
+  display: grid; grid-template-columns: 200px 1fr; gap: 32px;
+  padding: 28px 0; border-bottom: 1px solid var(--border2);
+}
+.exp-item:first-child { border-top: 1px solid var(--border2); }
+.exp-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.05em; margin-bottom: 6px; }
+.exp-org { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 4px; }
+.exp-badge { display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; margin-top: 6px; }
+.badge-green{background:rgba(63,185,80,0.1);color:var(--green);}
+.badge-blue{background:rgba(88,166,255,0.1);color:var(--blue);}
+.badge-yellow{background:rgba(227,179,65,0.1);color:var(--yellow);}
+.exp-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 12px; letter-spacing: -0.01em; }
+.exp-bullets { display: flex; flex-direction: column; gap: 7px; }
+.exp-bullet { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--text2); line-height: 1.6; }
+.exp-bullet::before { content: '▸'; color: var(--green); font-size: 10px; flex-shrink: 0; margin-top: 3px; }
+
+/* ─── CHATBOT ─── */
+#chatbot { background: var(--bg2); }
+.chat-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; margin-top: 36px; }
+.chat-box {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; display: flex; flex-direction: column; height: 540px;
+}
+.chat-header {
+  background: var(--bg2); padding: 12px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.chat-header-av {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--green); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff; font-family: 'JetBrains Mono', monospace;
+}
+.chat-header-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.chat-header-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); letter-spacing: 0.05em; }
+.chat-model-badge {
+  margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  padding: 3px 8px; border-radius: 4px;
+  background: rgba(88,166,255,0.1); color: var(--blue); border: 1px solid rgba(88,166,255,0.2);
+}
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.msg { display: flex; gap: 8px; animation: msgIn 0.25s ease; }
+@keyframes msgIn { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+.msg.user { flex-direction: row-reverse; }
+.msg-av {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; margin-top: 1px; font-family: 'JetBrains Mono', monospace;
+}
+.msg.bot .msg-av { background: var(--green); color: #fff; }
+.msg.user .msg-av { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+.msg-bub {
+  max-width: 80%; padding: 9px 13px; border-radius: 8px;
+  font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word;
+  border: 1px solid var(--border);
+}
+.msg.bot .msg-bub { background: var(--bg2); color: var(--text2); border-bottom-left-radius: 2px; }
+.msg.user .msg-bub { background: rgba(63,185,80,0.1); color: var(--text); border-color: rgba(63,185,80,0.3); border-bottom-right-radius: 2px; }
+.typing-dots { display: flex; gap: 3px; align-items: center; padding: 2px 0; }
+.typing-dots span { width: 5px; height: 5px; border-radius: 50%; background: var(--text3); animation: td 1.3s infinite; }
+.typing-dots span:nth-child(2){animation-delay:.15s;} .typing-dots span:nth-child(3){animation-delay:.3s;}
+@keyframes td{0%,60%,100%{transform:translateY(0);opacity:.3;}30%{transform:translateY(-4px);opacity:1;}}
+.chat-input-area {
+  padding: 12px 14px; border-top: 1px solid var(--border);
+  background: var(--bg2); display: flex; gap: 8px; align-items: flex-end;
+}
+.chat-ta {
+  flex: 1; resize: none; outline: none; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px;
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
+  min-height: 38px; max-height: 100px; line-height: 1.5; transition: border-color 0.15s;
+}
+.chat-ta:focus { border-color: var(--blue); }
+.chat-ta::placeholder { color: var(--text3); }
+.chat-send {
+  width: 36px; height: 36px; border-radius: 6px; background: var(--green);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0; transition: opacity 0.15s;
+}
+.chat-send:hover { opacity: 0.85; }
+.chat-send:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* sidebar */
+.chat-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.sidebar-panel { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.sidebar-panel-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3);
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border2);
+}
+.qbtn {
+  display: block; width: 100%; text-align: left; background: var(--bg2);
+  border: 1px solid var(--border2); border-radius: 6px; padding: 8px 10px; margin-bottom: 6px;
+  cursor: pointer; font-size: 12px; color: var(--text2); line-height: 1.45;
+  transition: border-color 0.15s, color 0.15s; font-family: 'Inter', sans-serif;
+}
+.qbtn:last-child { margin-bottom: 0; }
+.qbtn:hover { border-color: var(--green); color: var(--text); }
+
+/* error banner */
+.chat-error {
+  margin: 0 16px 12px; padding: 10px 12px; border-radius: 6px;
+  background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.3);
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #f85149;
+  display: none;
+}
+
+/* ─── CONTACT ─── */
+#contact { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; }
+.contact-copy { font-size: 13.5px; color: var(--text2); line-height: 1.8; }
+.contact-copy p { margin-bottom: 12px; }
+.contact-links { display: flex; flex-direction: column; }
+.clink {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; border-bottom: 1px solid var(--border2);
+  text-decoration: none; gap: 12px; transition: background 0.1s;
+}
+.clink:first-child { border-top: 1px solid var(--border2); }
+.clink-left { display: flex; align-items: center; gap: 10px; }
+.clink-icon {
+  width: 32px; height: 32px; border-radius: 8px; background: var(--bg2);
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: center; font-size: 13px; flex-shrink: 0; transition: border-color 0.15s;
+}
+.clink:hover .clink-icon { border-color: var(--blue); }
+.clink-name { font-size: 13px; font-weight: 500; color: var(--text); }
+.clink-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); }
+.clink-arrow { color: var(--text3); font-size: 12px; transition: transform 0.15s, color 0.15s; }
+.clink:hover .clink-arrow { transform: translateX(3px); color: var(--blue); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 20px 24px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.ft-left { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); }
+.ft-left span { color: var(--green); }
+.ft-right { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text3); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  .chat-layout { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-    <canvas id="digital-rain-canvas"></canvas>
+<nav class="nav">
+  <div class="nav-left">
+    <a href="#hero" class="nav-logo"><span class="bracket">&lt;</span>amit.manjarly<span class="bracket">/&gt;</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#chatbot">ai chat</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</div>
+    <a href="#chatbot" class="btn-nav">Ask AI ↗</a>
+  </div>
+</nav>
 
-    <div class="content-wrapper">
-        <header class="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm">
-            <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <a href="#" class="text-xl font-bold text-white tracking-widest">MANJARLY</a>
-                    <nav class="hidden md:flex space-x-8 text-sm">
-                        <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
-                        <a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a>
-                        <a href="#experience" class="text-gray-300 hover:text-white transition">Experience</a>
-                        <a href="#projects" class="text-gray-300 hover:text-white transition">Projects</a>
-                        <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
-                    </nav>
-                    <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none z-[110]">
-                        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </header>
-        
-        <div id="mobile-menu" class="flex flex-col items-center justify-center relative">
-            <button id="close-menu-button" class="absolute top-4 right-4 text-gray-300">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <a href="#about" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">About</a>
-            <a href="#skills" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Skills</a>
-            <a href="#experience" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Experience</a>
-            <a href="#projects" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Projects</a>
-            <a href="#contact" class="block py-4 text-lg text-gray-300 hover:text-white transition-colors">Contact</a>
-        </div>
+<div class="page">
 
-        <main>
-            <section id="home" class="hero-section min-h-screen flex items-center justify-center">
-                <div class="text-center">
-                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4">
-                        <span class="gradient-text">Amit Manjarly</span>
-                    </h1>
-                    <p class="text-lg md:text-xl font-mono text-gray-400 mb-8">Machine Learning Engineer & Data Scientist</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#projects" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 w-full sm:w-auto">
-                            Explore My Work
-                        </a>
-                        <a href="Amit_Manjarly_Resume_ML.pdf" download="Amit_Manjarly_Resume_ML.pdf" class="border border-blue-500 text-blue-400 font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 w-full sm:w-auto">
-                            Download Resume
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" class="section py-20 md:py-32">
-                <div class="container mx-auto px-6">
-                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                        About <span class="gradient-text">Me</span>
-                    </h2>
-                    <p class="max-w-3xl mx-auto text-center text-gray-400 text-lg leading-relaxed">
-                        Ardent Data Science graduate with hands-on experience in machine learning, Python, and data analysis. Skilled in building and optimizing predictive models and applying algorithms to solve real-world problems. With 3+ years in Quality Assurance, I bring strong attention to detail and a problem-solving mindset, aspiring to apply my skills in a full-time Machine Learning Engineer role.
-                    </p>
-                </div>
-            </section>
-
-            <section id="skills" class="section py-20 md:py-32">
-                <div class="container mx-auto px-6">
-                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                        Technical <span class="gradient-text">Skills</span>
-                    </h2>
-                    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Apache Kafka</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="experience" class="section py-20 md:py-32">
-                <div class="container mx-auto px-6">
-                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-20">
-                        Work <span class="gradient-text">Experience</span>
-                    </h2>
-                    <div class="max-w-3xl mx-auto">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <p class="font-mono text-sm text-blue-400 mb-1">March 2021 - July 2024</p>
-                            <h3 class="text-xl font-semibold text-white">Data Engineering Management and Governance Analyst</h3>
-                            <p class="text-md text-gray-400 mb-4">Accenture PLC - Hyderabad, India</p>
-                            <ul class="list-disc list-inside text-gray-400 space-y-2">
-                                <li>Optimized Python scripts by refining algorithms, reducing processing time by 15%.</li>
-                                <li>Validated data using SQL in Impala and Hive, ensuring 100% accuracy and integrity.</li>
-                                <li>Analyzed workflows and proposed process improvements, leading to a 25% increase in efficiency.</li>
-                                <li>Contributed to an international banking project, improving operational efficiency by 15%.</li>
-                                <li>Utilized JIRA and KANBAN boards for task tracking, enhancing team collaboration by 40%.</li>
-                            </ul>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <p class="font-mono text-sm text-blue-400 mb-1">Jan 2021 - Feb 2021</p>
-                            <h3 class="text-xl font-semibold text-white">Technical Intern</h3>
-                            <p class="text-md text-gray-400 mb-4">Terminal Trend - Ahmedabad, India</p>
-                            <ul class="list-disc list-inside text-gray-400 space-y-2">
-                                <li>Acquired proficiency in JavaScript for front-end development.</li>
-                                <li>Developed interactive games using HTML, CSS, and JavaScript.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects" class="section py-20 md:py-32">
-                <div class="container mx-auto px-6">
-                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-                        Featured <span class="gradient-text">Projects</span>
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="project-card">
-                            <div class="project-card-content">
-                                <img src="image_classification_website_photo.png" alt="Abstract neural network visualization" class="w-full h-full h-40 object-cover rounded-lg">
-                                <div class="pt-4 flex flex-col flex-grow">
-                                    <h3 class="text-xl font-bold text-white mb-2">Image Classification with CNNs & SVMs</h3>
-                                    <p class="text-gray-400 flex-grow mb-4">Designed custom CNNs in PyTorch for CIFAR-10 classification, applied PCA for dimensionality reduction, and evaluated various models on the MNIST dataset.</p>
-                                    <a href="https://github.com/Manjarly/Image_Classification_Using_CNN_and_SVM" class="font-mono text-blue-400 hover:text-blue-300 self-start mt-auto">View on GitHub &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-card-content">
-                                <img src="recommendation_website_photo.png" alt="Data visualization dashboard for movie recommendations" class="w-full h-full h-40 object-cover rounded-lg">
-                                <div class="pt-4 flex flex-col flex-grow">
-                                    <h3 class="text-xl font-bold text-white mb-2">Hybrid Movie Recommendation Engine</h3>
-                                    <p class="text-gray-400 flex-grow mb-4">Developed a hybrid engine combining SVD and TF-IDF, outperforming baselines by 16x. Addressed the cold-start problem with content-based suggestions.</p>
-                                    <a href="https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine" class="font-mono text-blue-400 hover:text-blue-300 self-start mt-auto">View on GitHub &rarr;</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="section py-20 md:py-32">
-                <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        Get In <span class="gradient-text">Touch</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-xl mx-auto mb-8">I'm actively seeking new opportunities and would love to connect. Feel free to reach out!</p>
-                    <a href="mailto:amitmanjarly99@gmail.com" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-500 transition-all duration-300 inline-block">
-                        Say Hello
-                    </a>
-                    <div class="flex justify-center space-x-6 mt-12">
-                        <a href="https://github.com/Manjarly" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/manjarly/" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.youtube.com/@manjarly" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="py-6 section">
-            <div class="container mx-auto px-6 text-center text-gray-500">
-                <p>&copy; 2025 Amit Manjarly. All Rights Reserved.</p>
-            </div>
-        </footer>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><div class="badge-dot"></div>Open to Opportunities</div>
+      <h1 class="hero-name">Amit Manjarly</h1>
+      <div class="hero-role"><span id="typedRole"></span><span class="cursor"></span></div>
+      <p class="hero-bio">
+        <strong>ML Engineer & AI Researcher</strong> based in Arizona, USA.
+        I fine-tune large language models, build end-to-end ML systems, and
+        explore the boundaries of what neural networks can learn.
+        Currently running in the race of <strong>AI</strong>.
+      </p>
+      <div class="hero-actions">
+        <a href="#chatbot" class="btn-primary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Chat with AI
+        </a>
+        <a href="#projects" class="btn-ghost">View Projects</a>
+        <a href="https://www.linkedin.com/in/manjarly/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/Manjarly" target="_blank" class="hlink">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github
+        </a>
+        <a href="https://www.youtube.com/@manjarly" target="_blank" class="hlink">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          youtube
+        </a>
+        <a href="https://leetcode.com/Manjarly/" target="_blank" class="hlink">leetcode</a>
+        <a href="https://codeforces.com/profile/Manjarly" target="_blank" class="hlink">codeforces</a>
+        <a href="https://twitter.com/manjarly" target="_blank" class="hlink">twitter/x</a>
+      </div>
     </div>
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <div class="tbar-dot red"></div><div class="tbar-dot yellow"></div><div class="tbar-dot green"></div>
+        <span class="tbar-title">profile.json</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-bracket">{</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"name"</span><span class="t-bracket">: </span><span class="t-str">"Amit Manjarly"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"role"</span><span class="t-bracket">: </span><span class="t-str">"ML Engineer"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"location"</span><span class="t-bracket">: </span><span class="t-str">"Arizona, USA"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"focus"</span><span class="t-bracket">: [</span></div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"LLM Fine-Tuning"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Deep Learning"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Competitive Programming"</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-bracket">],</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"model"</span><span class="t-bracket">: </span><span class="t-str">"Llama-3.2-3B"</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"params"</span><span class="t-bracket">: </span><span class="t-num">3_000_000_000</span><span class="t-bracket">,</span></div>
+        <div class="t-line">&nbsp;&nbsp;<span class="t-key">"open_to_work"</span><span class="t-bracket">: </span><span class="t-val">true</span></div>
+        <div class="t-line"><span class="t-bracket">}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Digital Rain Animation Script
-        const canvas = document.getElementById('digital-rain-canvas');
-        const ctx = canvas.getContext('2d');
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="inner">
+    <div class="reveal"><div class="sec-label"># about</div><div class="sec-title">About Me</div></div>
+    <div class="about-grid">
+      <div class="about-text reveal d1">
+        <p>I'm <strong>Amit Manjarly</strong>, an ML engineer and researcher from <strong>Arizona, USA</strong>. My work focuses on training and fine-tuning large language models, building intelligent recommendation systems, and applying deep learning to real-world problems.</p>
+        <p>My latest project involved fine-tuning a <strong>3B parameter Llama model</strong> on GSM8K using the Self-Taught Reasoner (STaR) methodology — demonstrating that clever data bootstrapping can outperform naive supervised fine-tuning.</p>
+        <p>I'm also a competitive programmer — actively solving algorithmic problems in <strong>Java and C++</strong> on LeetCode and Codeforces, and sharing knowledge through my YouTube channel.</p>
+      </div>
+      <div class="skill-section reveal d2">
+        <div><div class="skill-group-title">// deep learning</div><div class="chips"><span class="chip chip-blue">PyTorch</span><span class="chip chip-blue">CNN</span><span class="chip chip-blue">GAN</span><span class="chip chip-blue">Transfer Learning</span></div></div>
+        <div><div class="skill-group-title">// nlp & llms</div><div class="chips"><span class="chip chip-green">HuggingFace</span><span class="chip chip-green">Fine-Tuning</span><span class="chip chip-green">STaR</span><span class="chip chip-green">Llama 3.2</span><span class="chip chip-green">bitsandbytes</span></div></div>
+        <div><div class="skill-group-title">// ml algorithms</div><div class="chips"><span class="chip chip-purple">SVD</span><span class="chip chip-purple">SVM</span><span class="chip chip-purple">TF-IDF</span><span class="chip chip-purple">Collab. Filtering</span><span class="chip chip-purple">PCA</span></div></div>
+        <div><div class="skill-group-title">// languages & tools</div><div class="chips"><span class="chip chip-yellow">Python</span><span class="chip chip-yellow">Java</span><span class="chip chip-yellow">C++</span><span class="chip chip-orange">Pandas</span><span class="chip chip-orange">Scikit-learn</span><span class="chip chip-orange">Git</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        let drops = [];
-        let fontSize = 16;
-        let columns = 0;
-        const characters = '01';
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="inner">
+    <div class="reveal"><div class="sec-label"># projects</div><div class="sec-title">Selected Work</div><div class="sec-sub">End-to-end ML projects with documented results</div></div>
+    <div class="proj-grid">
 
-        function initialize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let i = 0; i < columns; i++) {
-                drops[i] = 1;
-            }
-        }
+      <div class="proj-card reveal d1" onclick="window.open('https://github.com/Manjarly/LLM-Fine-Tuning-for-Enhanced-Mathematical-Reasoning-STaR','_blank')">
+        <div class="proj-card-top">
+          <div class="proj-card-name">LLM Fine-Tuning for Mathematical Reasoning (STaR)</div>
+          <a href="https://github.com/Manjarly/LLM-Fine-Tuning-for-Enhanced-Mathematical-Reasoning-STaR" target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+        <div class="proj-card-desc">Fine-tuned Llama-3.2-3B-Instruct using STaR on GSM8K math dataset. Compared vs Zero-Shot CoT and Vanilla SFT. Enabled single-GPU training via 4-bit quantization with bitsandbytes.</div>
+        <div class="proj-metrics">
+          <div class="proj-metrics-row"><span class="pm-key">model</span><span class="pm-val blue">Llama-3.2-3B-Instruct</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">zero_shot_cot</span><span class="pm-val">47.56%</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">vanilla_sft</span><span class="pm-val yellow">44.00%</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">quantization</span><span class="pm-val purple">4-bit (bitsandbytes)</span></div>
+        </div>
+        <div class="proj-card-tags"><span class="ptag">LLM</span><span class="ptag">STaR</span><span class="ptag">HuggingFace</span><span class="ptag">PyTorch</span><span class="ptag">GSM8K</span></div>
+      </div>
 
-        function draw() {
-            ctx.fillStyle = 'rgba(13, 17, 23, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#58a6ff';
-            ctx.font = fontSize + 'px Roboto Mono';
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters[Math.floor(Math.random() * characters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
+      <div class="proj-card reveal d2" onclick="window.open('https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine','_blank')">
+        <div class="proj-card-top">
+          <div class="proj-card-name">End-to-End Hybrid Recommendation Engine</div>
+          <a href="https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine" target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+        <div class="proj-card-desc">Hybrid movie recommender combining SVD collaborative filtering and TF-IDF content-based filtering on MovieLens 100k. Cold-start handling via content-based fallback.</div>
+        <div class="proj-metrics">
+          <div class="proj-metrics-row"><span class="pm-key">dataset</span><span class="pm-val blue">MovieLens 100k</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">precision@10</span><span class="pm-val">~0.26</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">recall@10</span><span class="pm-val">~0.12</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">vs_popularity_baseline</span><span class="pm-val">0.15 → 0.26 ↑</span></div>
+        </div>
+        <div class="proj-card-tags"><span class="ptag">SVD</span><span class="ptag">TF-IDF</span><span class="ptag">Collab. Filtering</span><span class="ptag">Scikit-learn</span></div>
+      </div>
 
-        // Debounce function to limit how often resize is handled
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
+      <div class="proj-card reveal d1" onclick="window.open('https://github.com/Manjarly/Image_Classification_Using_CNN_and_SVM','_blank')">
+        <div class="proj-card-top">
+          <div class="proj-card-name">Image Classification: CNN & SVM (CIFAR-10 / MNIST)</div>
+          <a href="https://github.com/Manjarly/Image_Classification_Using_CNN_and_SVM" target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+        <div class="proj-card-desc">CNN from scratch for CIFAR-10 binary classification. Logistic Regression + SVM with RBF kernel for MNIST. PCA dimensionality reduction, ROC curves, regularization analysis.</div>
+        <div class="proj-metrics">
+          <div class="proj-metrics-row"><span class="pm-key">cifar10_accuracy</span><span class="pm-val">~85%</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">cifar10_auc</span><span class="pm-val yellow">0.7338</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">mnist_accuracy</span><span class="pm-val">~100%</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">mnist_auc</span><span class="pm-val">1.00</span></div>
+        </div>
+        <div class="proj-card-tags"><span class="ptag">CNN</span><span class="ptag">SVM</span><span class="ptag">PCA</span><span class="ptag">PyTorch</span><span class="ptag">ROC</span></div>
+      </div>
 
-        const debouncedInitialize = debounce(initialize, 250);
-        window.addEventListener('resize', debouncedInitialize);
+      <div class="proj-card reveal d2" onclick="window.open('https://github.com/Manjarly/MNIST-Digit-Generation-using-GAN','_blank')">
+        <div class="proj-card-top">
+          <div class="proj-card-name">MNIST Digit Generation using GAN</div>
+          <a href="https://github.com/Manjarly/MNIST-Digit-Generation-using-GAN" target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+        <div class="proj-card-desc">Generative Adversarial Network for synthesizing realistic handwritten digits. Explored training dynamics, mode collapse prevention, and progressive image quality across epochs.</div>
+        <div class="proj-metrics">
+          <div class="proj-metrics-row"><span class="pm-key">type</span><span class="pm-val blue">Generative Model</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">architecture</span><span class="pm-val">Generator + Discriminator</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">framework</span><span class="pm-val purple">PyTorch</span></div>
+          <div class="proj-metrics-row"><span class="pm-key">dataset</span><span class="pm-val">MNIST</span></div>
+        </div>
+        <div class="proj-card-tags"><span class="ptag">GAN</span><span class="ptag">Generative AI</span><span class="ptag">PyTorch</span><span class="ptag">MNIST</span></div>
+      </div>
 
-        setInterval(draw, 45);
-        initialize();
+    </div>
+  </div>
+</section>
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="inner">
+    <div class="reveal"><div class="sec-label"># experience</div><div class="sec-title">Journey</div></div>
+    <div class="exp-list">
+      <div class="exp-item reveal d1">
+        <div><div class="exp-date">2024 — PRESENT</div><div class="exp-org">Independent / Academic</div><div class="exp-badge badge-green">Active</div></div>
+        <div><div class="exp-title">ML Research & Engineering</div><div class="exp-bullets">
+          <div class="exp-bullet">Fine-tuned Llama-3.2-3B using STaR — bootstrapping rationales, verifying answers, refining incorrect chains, achieving better math reasoning than naive SFT</div>
+          <div class="exp-bullet">Built end-to-end hybrid recommendation engine with SVD + TF-IDF achieving Precision@10 of 0.26 vs 0.15 popularity baseline on MovieLens 100k</div>
+          <div class="exp-bullet">Implemented CNN from scratch in PyTorch for CIFAR-10 binary classification (85% accuracy); SVM with RBF kernel for MNIST (AUC 1.00)</div>
+          <div class="exp-bullet">Developed GAN for MNIST digit synthesis — explored mode collapse prevention and training stability</div>
+        </div></div>
+      </div>
+      <div class="exp-item reveal d2">
+        <div><div class="exp-date">ONGOING</div><div class="exp-org">LeetCode · Codeforces</div><div class="exp-badge badge-blue">Java / C++</div></div>
+        <div><div class="exp-title">Competitive Programming</div><div class="exp-bullets">
+          <div class="exp-bullet">Actively solving algorithmic problems in Java and C++ on LeetCode and Codeforces</div>
+          <div class="exp-bullet">Focus: data structures, dynamic programming, graph algorithms, combinatorics, optimization</div>
+          <div class="exp-bullet">Algorithmic rigor directly informs better ML system design and debugging</div>
+        </div></div>
+      </div>
+      <div class="exp-item reveal d1">
+        <div><div class="exp-date">ONGOING</div><div class="exp-org">YouTube @manjarly</div><div class="exp-badge badge-yellow">Creator</div></div>
+        <div><div class="exp-title">Technical Content Creator</div><div class="exp-bullets">
+          <div class="exp-bullet">Creates educational content on ML, LLM fine-tuning, and competitive programming</div>
+          <div class="exp-bullet">Teaches Java and C++ for algorithmic problem-solving</div>
+          <div class="exp-bullet">Documents the AI learning journey, making complex topics accessible</div>
+        </div></div>
+      </div>
+      <div class="exp-item reveal d2">
+        <div><div class="exp-date">EDUCATION</div><div class="exp-org">Arizona, USA</div><div class="exp-badge badge-blue">CS / AI</div></div>
+        <div><div class="exp-title">CS & AI Studies</div><div class="exp-bullets">
+          <div class="exp-bullet">Coursework in Machine Learning, NLP, deep learning systems, and algorithm design</div>
+          <div class="exp-bullet">Hands-on with HuggingFace Transformers, PyTorch, and the modern ML ecosystem</div>
+          <div class="exp-bullet">Applied learning through complete ML pipelines from raw data to evaluation</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
+<!-- CHATBOT -->
+<section id="chatbot" class="section">
+  <div class="inner">
+    <div class="reveal">
+      <div class="sec-label"># ai assistant</div>
+      <div class="sec-title">Ask Anything About Me</div>
+      <div class="sec-sub">Powered by Claude — no key needed, just ask</div>
+    </div>
+    <div class="chat-layout">
+      <div class="chat-box reveal">
+        <div class="chat-header">
+          <div class="chat-header-av">A</div>
+          <div>
+            <div class="chat-header-name">Amit's Portfolio AI</div>
+            <div class="chat-header-sub">● ONLINE · full context loaded</div>
+          </div>
+          <div class="chat-model-badge">claude-sonnet</div>
+        </div>
+        <div id="chatError" class="chat-error">⚠ Could not reach the AI. Make sure you've deployed to Vercel and added your ANTHROPIC_API_KEY environment variable.</div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot">
+            <div class="msg-av">A</div>
+            <div class="msg-bub">Hi! I'm Amit's AI assistant. I know everything about his projects, skills, and background.
 
-        closeMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
+Ask me anything — project results, technical details, how to collaborate, or his experience.</div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <textarea class="chat-ta" id="chatInput" placeholder="Ask about projects, skills, experience…" rows="1"></textarea>
+          <button class="chat-send" id="chatSend" onclick="sendMessage()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="chat-sidebar reveal d2">
+        <div class="sidebar-panel">
+          <div class="sidebar-panel-title">// quick prompts</div>
+          <button class="qbtn" onclick="sendPrompt('What ML projects has Amit built?')">What ML projects has Amit built?</button>
+          <button class="qbtn" onclick="sendPrompt('Explain the STaR fine-tuning project')">Explain the STaR fine-tuning project</button>
+          <button class="qbtn" onclick="sendPrompt('What are Amit\\'s core technical skills?')">Core technical skills?</button>
+          <button class="qbtn" onclick="sendPrompt('Recommendation engine results?')">Recommendation engine results?</button>
+          <button class="qbtn" onclick="sendPrompt('How can I contact or collaborate with Amit?')">How to contact Amit?</button>
+          <button class="qbtn" onclick="sendPrompt('Tell me about the GAN project')">Tell me about the GAN project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-        for (let link of mobileMenuLinks) {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        }
-    </script>
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="inner">
+    <div class="reveal"><div class="sec-label"># contact</div><div class="sec-title">Get In Touch</div></div>
+    <div class="contact-grid">
+      <div class="contact-copy reveal d1">
+        <p>I'm open to ML engineering roles, research collaborations, and interesting projects at the intersection of AI and engineering.</p>
+        <p>Best way to reach me is LinkedIn. All my code is on GitHub and educational content on YouTube.</p>
+      </div>
+      <div class="contact-links reveal d2">
+        <a href="https://www.linkedin.com/in/manjarly/" target="_blank" class="clink">
+          <div class="clink-left"><div class="clink-icon">💼</div><div><div class="clink-name">LinkedIn</div><div class="clink-val">in/manjarly</div></div></div>
+          <div class="clink-arrow">→</div>
+        </a>
+        <a href="https://github.com/Manjarly" target="_blank" class="clink">
+          <div class="clink-left"><div class="clink-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div><div><div class="clink-name">GitHub</div><div class="clink-val">github.com/Manjarly</div></div></div>
+          <div class="clink-arrow">→</div>
+        </a>
+        <a href="https://www.youtube.com/@manjarly" target="_blank" class="clink">
+          <div class="clink-left"><div class="clink-icon">▶️</div><div><div class="clink-name">YouTube</div><div class="clink-val">@manjarly</div></div></div>
+          <div class="clink-arrow">→</div>
+        </a>
+        <a href="https://leetcode.com/Manjarly/" target="_blank" class="clink">
+          <div class="clink-left"><div class="clink-icon">⚡</div><div><div class="clink-name">LeetCode</div><div class="clink-val">leetcode.com/Manjarly</div></div></div>
+          <div class="clink-arrow">→</div>
+        </a>
+        <a href="https://twitter.com/manjarly" target="_blank" class="clink">
+          <div class="clink-left"><div class="clink-icon">𝕏</div><div><div class="clink-name">Twitter / X</div><div class="clink-val">@manjarly</div></div></div>
+          <div class="clink-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="ft-left"><span>&lt;</span> built by <span>Amit Manjarly</span> · © 2026 <span>/&gt;</span></div>
+  <div class="ft-right">Arizona, USA · ML Engineer · Open to work</div>
+</footer>
+
+<script>
+/* ── THEME ── */
+function toggleTheme() {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', next);
+}
+(function(){
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const b = document.getElementById('themeBtn');
+  if (b) b.textContent = t === 'dark' ? '☀️' : '🌙';
+})();
+
+/* ── TYPEWRITER ── */
+const roles = ['ML Engineer', 'AI Researcher', 'LLM Fine-Tuner', 'Competitive Programmer', 'Python / Java / C++'];
+let ri = 0, ci = 0, deleting = false;
+function type() {
+  const el = document.getElementById('typedRole'); if (!el) return;
+  const cur = roles[ri];
+  if (!deleting) { el.textContent = cur.slice(0, ++ci); if (ci === cur.length) { deleting = true; setTimeout(type, 1800); return; } }
+  else { el.textContent = cur.slice(0, --ci); if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; } }
+  setTimeout(type, deleting ? 45 : 75);
+}
+type();
+
+/* ── REVEAL ── */
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── CHATBOT ── */
+const SYS = `You are an AI assistant on Amit Manjarly's portfolio website. Answer questions about his background, projects, skills, and experience precisely and professionally.
+
+## About Amit Manjarly
+- Location: Arizona, USA
+- GitHub: https://github.com/Manjarly
+- LinkedIn: https://www.linkedin.com/in/manjarly/
+- YouTube: @manjarly (Java/C++ competitive programming and AI/ML tutorials)
+- LeetCode: https://leetcode.com/Manjarly/ | Codeforces: https://codeforces.com/profile/Manjarly
+- Interests: Machine Learning, LLMs, Competitive Programming (Java/C++), Chess, Books, Running
+
+## Projects
+### 1. LLM Fine-Tuning for Mathematical Reasoning (STaR)
+- Model: meta-llama/Llama-3.2-3B-Instruct | Dataset: openai/gsm8k
+- Zero-Shot CoT: 47.56% | Vanilla SFT: 44.00% (overfitting) | STaR: improved
+- STaR: bootstrap rationale → verify → re-prompt with correct answer → train on cleaner set
+- 4-bit quantization via bitsandbytes for single-GPU training
+- Tech: HuggingFace Transformers, accelerate, PyTorch
+
+### 2. End-to-End Hybrid Movie Recommendation Engine
+- Dataset: MovieLens 100k | SVD CF + TF-IDF CBF + cold-start handling
+- Precision@10 ~0.26, Recall@10 ~0.12 vs Popularity ~0.15/~0.06 vs Random ~0.01/~0.01
+- Tech: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+
+### 3. Image Classification CNN & SVM
+- CIFAR-10: CNN (PyTorch) + PCA. Accuracy ~85%, AUC 0.7338
+- MNIST: LR + SVM RBF. ~100% accuracy, AUC 1.00
+- Tech: PyTorch, Torchvision, Scikit-learn
+
+### 4. MNIST Digit Generation using GAN
+- GAN (Generator + Discriminator) for digit synthesis, mode collapse prevention
+- Tech: PyTorch
+
+## Skills
+Deep Learning: PyTorch, CNN, GAN | NLP/LLMs: HuggingFace, Fine-Tuning, STaR, Llama
+ML: SVD, SVM, TF-IDF, CF, PCA | Languages: Python, Java, C++
+Tools: Pandas, NumPy, Scikit-learn, Matplotlib, Git, Jupyter, bitsandbytes
+
+Best reached via LinkedIn: https://www.linkedin.com/in/manjarly/
+Be concise, technically accurate, and professional.`;
+
+let hist = [], busy = false;
+const ta = document.getElementById('chatInput');
+ta.addEventListener('input', function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,100)+'px'; });
+ta.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); }});
+
+function addMsg(role, text) {
+  const w = document.getElementById('chatMessages');
+  const d = document.createElement('div'); d.className=`msg ${role}`;
+  const av = document.createElement('div'); av.className='msg-av'; av.textContent = role==='bot'?'A':'U';
+  const b = document.createElement('div'); b.className='msg-bub'; b.textContent = text;
+  d.appendChild(av); d.appendChild(b); w.appendChild(d); w.scrollTop=w.scrollHeight;
+}
+function showTyping(){
+  const w=document.getElementById('chatMessages');
+  const d=document.createElement('div'); d.className='msg bot'; d.id='typing';
+  const av=document.createElement('div'); av.className='msg-av'; av.textContent='A';
+  const b=document.createElement('div'); b.className='msg-bub';
+  b.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div>';
+  d.appendChild(av); d.appendChild(b); w.appendChild(d); w.scrollTop=w.scrollHeight;
+}
+function rmTyping(){ const t=document.getElementById('typing'); if(t) t.remove(); }
+function showError(){ document.getElementById('chatError').style.display='block'; }
+
+async function sendMessage(){
+  if(busy) return;
+  const text=ta.value.trim(); if(!text) return;
+  ta.value=''; ta.style.height='auto';
+  addMsg('user',text); hist.push({role:'user',content:text});
+  busy=true; document.getElementById('chatSend').disabled=true; showTyping();
+  try {
+    const r = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})
+    });
+    const data = await r.json(); rmTyping();
+    if(data.error){ addMsg('bot','Error: '+(data.error.message||'Something went wrong.')); showError(); }
+    else { const rep=data.content[0].text; addMsg('bot',rep); hist.push({role:'assistant',content:rep}); }
+  } catch(e){ rmTyping(); addMsg('bot','Could not reach the server. See the error message above.'); showError(); }
+  busy=false; document.getElementById('chatSend').disabled=false;
+}
+function sendPrompt(t){ ta.value=t; sendMessage(); }
+</script>
 </body>
 </html>
