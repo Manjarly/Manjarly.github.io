@@ -392,6 +392,11 @@ body {
 }
 .msg.bot .msg-bub { background: var(--bg2); color: var(--text2); border-bottom-left-radius: 2px; }
 .msg.user .msg-bub { background: rgba(63,185,80,0.1); color: var(--text); border-color: rgba(63,185,80,0.3); border-bottom-right-radius: 2px; }
+.msg-bub strong { font-weight: 600; color: var(--text); }
+.msg-bub a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+.msg-bub a:hover { color: var(--green); }
+.msg-bub code { background: var(--bg3); padding: 1px 5px; border-radius: 4px; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.msg-bub em { font-style: italic; }
 .typing-dots { display: flex; gap: 3px; align-items: center; padding: 2px 0; }
 .typing-dots span { width: 5px; height: 5px; border-radius: 50%; background: var(--text3); animation: td 1.3s infinite; }
 .typing-dots span:nth-child(2){animation-delay:.15s;} .typing-dots span:nth-child(3){animation-delay:.3s;}
@@ -949,7 +954,7 @@ const SYS = `You are an AI assistant on Amit Manjarly's portfolio website. Answe
 - Tech: Python, Flask, ChromaDB, SQLite, Mistral API, Tavily API, JWT
 
 ## Resume
-Amit's resume can be downloaded at: https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf
+Amit's resume can be downloaded at: https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_MLE.pdf
 
 ## Skills
 Deep Learning: PyTorch, CNN, GAN | NLP/LLMs: HuggingFace, Fine-Tuning, STaR, Llama
@@ -957,18 +962,48 @@ ML: SVD, SVM, TF-IDF, CF, PCA | Languages: Python, Java, C++
 Tools: Pandas, NumPy, Scikit-learn, Matplotlib, Git, Jupyter, bitsandbytes
 
 Best reached via LinkedIn: https://www.linkedin.com/in/manjarly/
-Be concise, technically accurate, and professional.`;
+Be concise, conversational, and direct. Format responses cleanly without excessive markdown bolding or raw asterisks.`;
 
 let hist = [], busy = false;
 const ta = document.getElementById('chatInput');
 ta.addEventListener('input', function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,100)+'px'; });
 ta.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendMessage(); }});
 
+function formatMarkdown(text) {
+  if (!text) return '';
+  let html = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Inline code: `code`
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  // Markdown links: [text](url)
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>');
+
+  // Bold: **text**
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+  // Italic: *text* (not adjacent to other asterisks)
+  html = html.replace(/(^|[^\*])\*([^\*\n]+)\*([^\*]|$)/g, '$1<em>$2</em>$3');
+
+  // Convert bullet lists: lines starting with "- " or "* " to clean "• "
+  html = html.replace(/^[•\-\*]\s+/gm, '• ');
+
+  return html;
+}
+
 function addMsg(role, text) {
   const w = document.getElementById('chatMessages');
   const d = document.createElement('div'); d.className=`msg ${role}`;
   const av = document.createElement('div'); av.className='msg-av'; av.textContent = role==='bot'?'A':'U';
-  const b = document.createElement('div'); b.className='msg-bub'; b.textContent = text;
+  const b = document.createElement('div'); b.className='msg-bub';
+  if (role === 'bot') {
+    b.innerHTML = formatMarkdown(text);
+  } else {
+    b.textContent = text;
+  }
   d.appendChild(av); d.appendChild(b); w.appendChild(d); w.scrollTop=w.scrollHeight;
 }
 function showTyping(){
