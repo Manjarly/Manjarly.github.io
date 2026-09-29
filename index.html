@@ -2170,11 +2170,11 @@
 
         <div class="chat-suggestions">
           <span class="suggestion-label">Quick Prompts:</span>
-          <button class="suggestion-btn" onclick="sendPrompt('Explain Amit's work as Machine Learning Engineer Intern at Resilient across Arabica, Choco, and Fray.')">Resilient Internship</button>
-          <button class="suggestion-btn" onclick="sendPrompt('How does Counterflow solve omitted variable bias in dynamic pricing?')">Causal Dynamic Pricing</button>
-          <button class="suggestion-btn" onclick="sendPrompt('Explain the Top-K Sparse Autoencoder and Causal Steering implementation in Interp Circuit Engine.')">Interp Circuit Engine</button>
-          <button class="suggestion-btn" onclick="sendPrompt('What was the methodology and result of Amit's STaR math reasoning project on GSM8K?')">STaR Reasoning Loop</button>
-          <button class="suggestion-btn" onclick="sendPrompt('Summarize Amit's academic background at ASU and enterprise experience at Accenture.')">Background &amp; Credentials</button>
+          <button class="suggestion-btn" data-prompt="Explain Amit's work as Machine Learning Engineer Intern at Resilient across Arabica, Choco, and Fray.">Resilient Internship</button>
+          <button class="suggestion-btn" data-prompt="How does Counterflow solve omitted variable bias in dynamic pricing?">Causal Dynamic Pricing</button>
+          <button class="suggestion-btn" data-prompt="Explain the Top-K Sparse Autoencoder and Causal Steering implementation in Interp Circuit Engine.">Interp Circuit Engine</button>
+          <button class="suggestion-btn" data-prompt="What was the methodology and result of Amit's STaR math reasoning project on GSM8K?">STaR Reasoning Loop</button>
+          <button class="suggestion-btn" data-prompt="Summarize Amit's academic background at ASU and enterprise experience at Accenture.">Background &amp; Credentials</button>
         </div>
 
         <div class="chat-input-bar">
@@ -2430,9 +2430,20 @@
 
     function sendPrompt(promptText) {
       var inputEl = document.getElementById('chatInput');
-      inputEl.value = promptText;
-      sendMessage();
+      if (inputEl) {
+        inputEl.value = promptText;
+        sendMessage();
+      }
     }
+
+    document.querySelectorAll('.suggestion-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var prompt = this.getAttribute('data-prompt');
+        if (prompt) {
+          sendPrompt(prompt);
+        }
+      });
+    });
 
     var chatInput = document.getElementById('chatInput');
     if (chatInput) {
