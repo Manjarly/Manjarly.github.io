@@ -2278,6 +2278,78 @@
       return formatted;
     }
 
+    function generateLocalReply(q) {
+      var text = (q || '').toLowerCase();
+      if (text.includes('resilient') || text.includes('intern') || text.includes('current job') || text.includes('arabica') || text.includes('choco') || text.includes('fray')) {
+        return "**Machine Learning Engineer Intern at Resilient (July 2026 - Present)**\n\n" +
+          "Amit works on geospatial digital twins and causal decision platforms in Tempe, AZ:\n" +
+          "- **Resilient Arabica:** Coffee digital twin using CBAM spatial/channel attention, Presto foundation model fine-tuning, strict-typed TTA accumulators, watershed boundary simplification, and ERA5-Land climate forecasting.\n" +
+          "- **Resilient Choco:** West African cocoa monitoring with FTW PRUE subfield segmentation, distance-field boundary separation, Bayesian HPO checkpoint pruning, Cox survival (CSSVD), and causal policy targeting (PSM, DML).\n" +
+          "- **Resilient Fray:** Cotton avoided-loss platform integrating USDA NASS yield data, ERA5/NOAA storm hazards, 3-way spatial-block holdouts (0.5-degree cells), and chronological holdouts (2021-2025) backed by SHA-256 ledgers and FastAPI.";
+      }
+      if (text.includes('counterflow') || text.includes('pricing') || text.includes('causal') || text.includes('dispatch') || text.includes('elasticity')) {
+        return "**Counterflow: Distributed Dynamic Pricing & Causal Dispatch Engine**\n\n" +
+          "- Solves omitted variable bias where naive ML predicts positive price elasticity.\n" +
+          "- Uses **Robinson Double Machine Learning (DML)** to isolate true price sensitivity, combined with **Conservative Q-Learning (CQL)** for offline reinforcement learning.\n" +
+          "- Validated via **Doubly Robust Off-Policy Evaluation (DR-OPE)** with 95% bootstrap confidence bounds.\n" +
+          "- Built on Uber H3 hexagonal spatial indexing, Ray distributed computing workers, Redis cache, and FastAPI (<2ms dispatch latency).\n" +
+          "- **Benchmark Result:** +103.5% revenue over naive baseline, +27.6% over standard ML.";
+      }
+      if (text.includes('interp') || text.includes('circuit') || text.includes('sae') || text.includes('sparse autoencoder') || text.includes('interpretability')) {
+        return "**Interp Circuit Engine: Mechanistic Interpretability Architecture**\n\n" +
+          "- Analyzes frontier LLMs (Qwen 2.5, Kimi K2.6, Gemma 2, SmolLM2, LLaMA-3).\n" +
+          "- Implements **Top-K Sparse Autoencoders (SAEs)** decomposing 896-dim polysemantic residual streams into 3,584 monosemantic latent features.\n" +
+          "- Features Direct Logit Attribution (DLA), active dead latent resampling, a streaming token-shuffling ring buffer, and real-time causal activation steering.";
+      }
+      if (text.includes('continual') || text.includes('ewc') || text.includes('yolo') || text.includes('autonomous') || text.includes('driving')) {
+        return "**Open-World Continual Learning for Autonomous Agents**\n\n" +
+          "- Upgraded object detection to **YOLOv11m** trained on Waymo Open Dataset and continually adapted to nuScenes.\n" +
+          "- Employs **Elastic Weight Consolidation (EWC)** with Fisher Information matrix regularization to eliminate catastrophic forgetting.\n" +
+          "- Integrates entropy-based open-set recognition to flag unseen object categories in real time. Tracked with MLflow and DVC (<120ms CPU inference).";
+      }
+      if (text.includes('star') || text.includes('math') || text.includes('reasoning') || text.includes('gsm8k') || text.includes('qlora')) {
+        return "**LLM Fine-Tuning for Mathematical Reasoning (STaR)**\n\n" +
+          "- Fine-tuned Llama-3.2-3B on GSM8K using the **Self-Taught Reasoner (STaR)** rationale bootstrapping technique.\n" +
+          "- Outperformed Vanilla SFT (44.00%) and Zero-Shot CoT (47.56%).\n" +
+          "- Executed with 4-bit QLoRA via bitsandbytes and Hugging Face PEFT on a single GPU.";
+      }
+      if (text.includes('accenture') || text.includes('software engineer') || text.includes('past work') || text.includes('backend') || text.includes('etl')) {
+        return "**Accenture PLC - Software Engineer (Data & Backend)** (March 2021 - July 2024, 3.5 years)\n\n" +
+          "- Engineered automated test harness frameworks cutting QA regression cycles by 40%.\n" +
+          "- Optimized Apache Hive and Impala analytical queries, reducing pipeline latency by 33% across multi-terabyte datasets.\n" +
+          "- Managed relational schemas and ETL refactoring across Oracle and enterprise data warehouses.";
+      }
+      if (text.includes('education') || text.includes('degree') || text.includes('gpa') || text.includes('asu') || text.includes('university') || text.includes('college')) {
+        return "**Education & Academic Background:**\n\n" +
+          "- **Arizona State University (ASU):** M.S. in Data Science, Analytics and Engineering (DSAE), Tempe, AZ. Graduating May 2026.\n" +
+          "- **Gujarat Technological University (GTU):** B.E. in Computer Engineering (2015 - 2019).\n" +
+          "- Competitive Programming: Active in Java and C++ on LeetCode (leetcode.com/Manjarly) and Codeforces (codeforces.com/profile/Manjarly).";
+      }
+      if (text.includes('skill') || text.includes('stack') || text.includes('tech') || text.includes('python') || text.includes('pytorch')) {
+        return "**Primary Technical Stack & Skills:**\n\n" +
+          "- **Languages:** Python, C++, Java, SQL, JavaScript, HTML/CSS.\n" +
+          "- **Machine Learning & AI:** PyTorch, Hugging Face, Transformers, YOLOv11m, Sparse Autoencoders (SAEs), Double Machine Learning (DML), Offline RL (CQL), Continual Learning (EWC), CBAM Attention.\n" +
+          "- **Distributed & Infrastructure:** Ray, Redis, Docker, FastAPI, Uber H3, MLflow, DVC, Git, Linux.\n" +
+          "- **Data Engineering:** Apache Hive, Impala, Oracle, ETL Pipelines.";
+      }
+      if (text.includes('resume') || text.includes('contact') || text.includes('email') || text.includes('linkedin') || text.includes('github')) {
+        return "**Contact & Profile Links:**\n\n" +
+          "- **Email:** amitmanjarly99@gmail.com\n" +
+          "- **Location:** Tempe, Arizona, United States\n" +
+          "- **LinkedIn:** [linkedin.com/in/manjarly](https://linkedin.com/in/manjarly)\n" +
+          "- **GitHub:** [github.com/Manjarly](https://github.com/Manjarly)\n" +
+          "- **Resume:** [Download ML Resume (PDF)](Amit_Manjarly_Resume_ML.pdf)";
+      }
+      return "**Amit Manjarly** is a Machine Learning Engineer Intern at **Resilient** and a Graduate Student completing his M.S. in Data Science, Analytics and Engineering at **Arizona State University** (graduating May 2026).\n\n" +
+        "He specializes in **Causal Machine Learning**, **Mechanistic Interpretability (SAEs)**, **Continual Learning (EWC)**, and **Distributed Systems (Ray / H3)**.\n\n" +
+        "Feel free to ask about:\n" +
+        "- His work at **Resilient** (Arabica, Choco, and Fray digital twins)\n" +
+        "- The **Counterflow** causal dynamic pricing engine\n" +
+        "- **Interp Circuit Engine** (Sparse Autoencoders on LLMs)\n" +
+        "- **YOLOv11m Continual Learning** on autonomous driving datasets\n" +
+        "- Education, skills, or resume.";
+    }
+
     async function sendMessage() {
       if (chatBusy) return;
       var inputEl = document.getElementById('chatInput');
@@ -2295,9 +2367,9 @@
       var tempId = 'temp-' + Date.now();
       appendMessage('assistant', 'Thinking...', tempId);
 
-      var API_URL = window.location.hostname.includes('github.io')
-        ? 'https://manjarly.vercel.app/api/chat'
-        : '/api/chat';
+      var API_URL = window.location.hostname.includes('vercel.app')
+        ? '/api/chat'
+        : 'https://manjarly.vercel.app/api/chat';
 
       try {
         chatHistory.push({ role: 'user', content: query });
@@ -2305,7 +2377,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: 'claude-3-7-sonnet-20250219',
+            model: 'claude-3-5-sonnet-20241022',
             max_tokens: 1000,
             system: SYS_PROMPT,
             messages: chatHistory
@@ -2313,21 +2385,27 @@
         });
 
         if (!res.ok) {
-          throw new Error('Endpoint returned HTTP ' + res.status);
+          throw new Error('Proxy status ' + res.status);
         }
 
         var data = await res.json();
-        var reply = data.content?.[0]?.text || data.error?.message || 'No response returned from model.';
+        if (data.error) {
+          throw new Error(data.error.message || 'API error');
+        }
+        var reply = data.content?.[0]?.text || 'No response returned from model.';
         chatHistory.push({ role: 'assistant', content: reply });
 
         var tempEl = document.getElementById(tempId);
         if (tempEl) {
-          tempEl.innerHTML = '<div class="bubble-author">Portfolio Assistant</div>' + formatChatResponse(reply);
+          tempEl.innerHTML = '<div class="bubble-author">Portfolio Assistant (Live Claude)</div>' + formatChatResponse(reply);
         }
       } catch (err) {
+        // Graceful fallback to verified knowledge base
+        var fallbackReply = generateLocalReply(query);
+        chatHistory.push({ role: 'assistant', content: fallbackReply });
         var tempEl = document.getElementById(tempId);
         if (tempEl) {
-          tempEl.innerHTML = '<div class="bubble-author">Notice</div>Could not connect to the live AI proxy (' + err.message + '). Ensure your Vercel deployment has ANTHROPIC_API_KEY configured.';
+          tempEl.innerHTML = '<div class="bubble-author">Portfolio Assistant</div>' + formatChatResponse(fallbackReply);
         }
       } finally {
         chatBusy = false;
