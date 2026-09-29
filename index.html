@@ -1,1466 +1,870 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amit Manjarly — ML Engineer</title>
+  <title>Manjarly</title>
+  <meta name="description" content="Portfolio of Amit Manjarly. Machine Learning Engineer specializing in Causal Inference, Offline Reinforcement Learning, Mechanistic Interpretability, and Geospatial Digital Twins." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    /* ─── TOKENS ─── */
-    :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #21262d;
-      --border: #30363d;
-      --border2: #21262d;
-      --text: #e6edf3;
-      --text2: #8b949e;
-      --text3: #484f58;
-      --green: #3fb950;
-      --blue: #58a6ff;
-      --orange: #f78166;
-      --purple: #bc8cff;
-      --yellow: #e3b341;
-      --card-bg: #161b22;
-      --hover: #1c2128;
+    :root, html[data-theme="light"], body[data-theme="light"] {
+      --bg: #f8f7f2;
+      --bg-surface: #efece3;
+      --bg-card: #e5e1d5;
+      --bg-hover: #dad5c7;
+      --border: #c8c2b4;
+      --border-subtle: #d8d3c5;
+      --text: #111827;
+      --text-muted: #374151;
+      --text-dim: #6b7280;
+      --text-emphasis: #000000;
+      --accent: #b45309;
+      --accent-light: #92400e;
+      --accent-dim: #fef3c7;
+      --accent-border: #d97706;
+      --primary: #0284c7;
+      --primary-dim: #e0f2fe;
+      --primary-border: #0ea5e9;
+      --badge-bg: #dfd9cb;
+      --badge-border: #aba291;
+      --badge-text: #0369a1;
+      
+      --font-heading: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    [data-theme="light"] {
-      --bg: #ffffff;
-      --bg2: #f6f8fa;
-      --bg3: #eaeef2;
-      --border: #d0d7de;
-      --border2: #eaeef2;
-      --text: #1f2328;
-      --text2: #656d76;
-      --text3: #bfc6cc;
-      --green: #1a7f37;
-      --blue: #0969da;
-      --orange: #cf222e;
-      --purple: #8250df;
-      --yellow: #9a6700;
-      --card-bg: #f6f8fa;
-      --hover: #f3f4f6;
+    [data-theme="dark"], html[data-theme="dark"], body[data-theme="dark"] {
+      --bg: #000000 !important;
+      --bg-surface: #0a0a0a !important;
+      --bg-card: #121212 !important;
+      --bg-hover: #1c1c1c !important;
+      --border: #262626 !important;
+      --border-subtle: #181818 !important;
+      --text: #f3f4f6 !important;
+      --text-muted: #9ca3af !important;
+      --text-dim: #6b7280 !important;
+      --text-emphasis: #ffffff !important;
+      
+      /* Scientifically soothing, attractive solar gold (~575nm wavelength, high legibility, zero harsh orange) */
+      --accent: #f2ca4b !important;
+      --accent-light: #fae074 !important;
+      --accent-dim: #1f1a08 !important;
+      --accent-border: #524210 !important;
+      
+      --primary: #38bdf8 !important;
+      --primary-dim: #082132 !important;
+      --primary-border: #0369a1 !important;
+      --badge-bg: #141414 !important;
+      --badge-border: #2a2a2a !important;
+      --badge-text: #38bdf8 !important;
     }
 
-    *,
-    *::before,
-    *::after {
+    html[data-theme="light"],
+    body[data-theme="light"] {
+      background-color: #f8f7f2 !important;
+      color: #111827 !important;
+    }
+
+    html[data-theme="light"] .masthead {
+      background-color: #f8f7f2 !important;
+      border-color: #c8c2b4 !important;
+    }
+
+    html[data-theme="light"] .project-card,
+    html[data-theme="light"] .hero-card-table,
+    html[data-theme="light"] .stat-box,
+    html[data-theme="light"] .chatbot-card {
+      background-color: #efece3 !important;
+      border-color: #c8c2b4 !important;
+    }
+
+    html[data-theme="light"] .project-card-header,
+    html[data-theme="light"] .chatbot-card-header {
+      background-color: #e5e1d5 !important;
+      border-color: #c8c2b4 !important;
+    }
+
+    html[data-theme="light"] .btn-secondary {
+      background-color: #e5e1d5 !important;
+      border-color: #c8c2b4 !important;
+      color: #111827 !important;
+    }
+
+    html[data-theme="light"] .btn-secondary:hover {
+      background-color: #dad5c7 !important;
+      border-color: #0284c7 !important;
+      color: #0284c7 !important;
+    }
+
+    html[data-theme="light"] .chat-window {
+      background-color: #f8f7f2 !important;
+      border-color: #c8c2b4 !important;
+    }
+
+    html[data-theme="light"] .chat-input {
+      background-color: #efece3 !important;
+      border-color: #c8c2b4 !important;
+      color: #111827 !important;
+    }
+
+    html[data-theme="light"] .chat-bubble.assistant {
+      background-color: #e5e1d5 !important;
+      border-color: #c8c2b4 !important;
+      color: #111827 !important;
+    }
+
+    html[data-theme="light"] .chat-bubble.user {
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+    }
+
+    html[data-theme="light"] .tech-pill {
+      background-color: #dfd9cb !important;
+      border-color: #aba291 !important;
+      color: #0369a1 !important;
+    }
+
+    html[data-theme="light"] .tech-pill.accent {
+      background-color: #fef3c7 !important;
+      border-color: #d97706 !important;
+      color: #b45309 !important;
+    }
+
+    html[data-theme="light"] .highlight {
+      color: #000000 !important;
+      font-weight: 600 !important;
+      background: none !important;
+      border: none !important;
+    }
+
+    html[data-theme="dark"],
+    body[data-theme="dark"] {
+      background-color: #000000 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html[data-theme="dark"] .masthead {
+      background-color: #000000 !important;
+      border-color: #262626 !important;
+    }
+
+    html[data-theme="dark"] .project-card,
+    html[data-theme="dark"] .hero-card-table,
+    html[data-theme="dark"] .stat-box,
+    html[data-theme="dark"] .chatbot-card {
+      background-color: #0a0a0a !important;
+      border-color: #262626 !important;
+    }
+
+    html[data-theme="dark"] .project-card-header,
+    html[data-theme="dark"] .chatbot-card-header {
+      background-color: #121212 !important;
+      border-color: #262626 !important;
+    }
+
+    html[data-theme="dark"] .btn-secondary {
+      background-color: #121212 !important;
+      border-color: #262626 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html[data-theme="dark"] .btn-secondary:hover {
+      background-color: #1c1c1c !important;
+      border-color: #38bdf8 !important;
+      color: #38bdf8 !important;
+    }
+
+    html[data-theme="dark"] .chat-window {
+      background-color: #000000 !important;
+      border-color: #262626 !important;
+    }
+
+    html[data-theme="dark"] .chat-input {
+      background-color: #0a0a0a !important;
+      border-color: #262626 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html[data-theme="dark"] .chat-bubble.assistant {
+      background-color: #121212 !important;
+      border-color: #262626 !important;
+      color: #f3f4f6 !important;
+    }
+
+    html[data-theme="dark"] .chat-bubble.user {
+      background-color: #38bdf8 !important;
+      color: #000000 !important;
+    }
+
+    html[data-theme="dark"] .tech-pill {
+      background-color: #141414 !important;
+      border-color: #2a2a2a !important;
+      color: #38bdf8 !important;
+    }
+
+    html[data-theme="dark"] .tech-pill.accent {
+      background-color: #1f1a08 !important;
+      border-color: #524210 !important;
+      color: #f2ca4b !important;
+    }
+
+    html[data-theme="dark"] .highlight {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+      background: none !important;
+      border: none !important;
+    }
+
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      border-radius: 0px !important;
+      box-shadow: none !important;
     }
 
     html {
       scroll-behavior: smooth;
+      background-color: var(--bg);
     }
 
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
+      transition: background-color 0.15s ease, color 0.15s ease;
     }
 
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg2);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    /* ─── NAV ─── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
+    a {
+      color: inherit;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .nav-logo .bracket {
-      color: var(--green);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 5px 10px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text2);
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .nav-links a:hover {
-      background: var(--bg3);
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.25;
       color: var(--text);
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    h1 {
+      font-size: 3.2rem;
+      letter-spacing: -0.03em;
     }
 
-    .theme-toggle {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: background 0.15s;
+    h2 {
+      font-size: 2.3rem;
+      letter-spacing: -0.02em;
     }
 
-    .theme-toggle:hover {
-      background: var(--bg3);
-    }
-
-    .btn-nav {
-      padding: 5px 14px;
-      border-radius: 6px;
-      background: var(--green);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.15s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-nav:hover {
-      opacity: 0.85;
-    }
-
-    .btn-resume {
-      background: var(--bg2);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-resume:hover {
-      background: var(--bg3);
-      opacity: 1;
-    }
-
-    /* ─── LAYOUT ─── */
-    .page {
-      padding-top: 56px;
-    }
-
-    .section {
-      padding: 64px 0;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .sec-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--green);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .sec-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--text);
+    h3 {
+      font-size: 1.55rem;
       letter-spacing: -0.01em;
-      margin-bottom: 4px;
     }
 
-    .sec-sub {
-      font-size: 13px;
-      color: var(--text2);
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+    p {
+      margin-bottom: 1.1rem;
+      color: var(--text);
     }
 
-    .reveal.in {
-      opacity: 1;
-      transform: translateY(0);
+    p.lead {
+      font-size: 1.2rem;
+      color: var(--text);
+      line-height: 1.7;
     }
 
-    .d1 {
-      transition-delay: 0.08s;
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
     }
 
-    .d2 {
-      transition-delay: 0.16s;
+    /* EDITORIAL KEYWORD EMPHASIS (Clean typography, no error-like boxes) */
+    .highlight {
+      color: #ffffff;
+      font-weight: 600;
+      background: none !important;
+      border: none !important;
+      padding: 0 !important;
+      display: inline !important;
     }
 
-    .d3 {
-      transition-delay: 0.24s;
-    }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: calc(100vh - 56px);
-      display: flex;
-      align-items: center;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.4;
-    }
-
-    .hero-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 24px;
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .hero-badge {
+    /* COMPANY LOGOS */
+    .company-logo-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      justify-content: center;
+      padding: 4px;
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      height: 44px;
+      width: 44px;
+      flex-shrink: 0;
+    }
+
+    .company-logo-badge.accenture {
+      width: auto;
+      padding: 6px 10px;
+      background-color: var(--bg-card);
+      border-color: var(--border);
+    }
+
+    .company-logo-img {
+      max-height: 36px;
+      max-width: 36px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* TECH STACK PILLS */
+    .tech-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .tech-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 4px;
+    }
+
+    .tech-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      background-color: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--badge-text);
+      letter-spacing: 0.02em;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .tech-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tech-pill.accent {
+      background-color: var(--accent-dim);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+
+    .tech-pill.broad {
+      background-color: var(--bg-hover);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    /* TOP MASTHEAD */
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .masthead-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .masthead-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .masthead-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .masthead-role {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 3px 8px;
+      border: 1px solid var(--primary-border);
+      background-color: var(--primary-dim);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .masthead-nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .masthead-link {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    .masthead-link:hover {
+      color: var(--text);
+    }
+
+    /* ACTION BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      color: var(--text);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-hover);
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    .btn-primary {
+      border-color: var(--accent);
+      background-color: var(--accent);
+      color: #0d1117;
+      font-weight: 700;
+    }
+
+    [data-theme="light"] .btn-primary {
+      color: #ffffff !important;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-light);
+      border-color: var(--accent-light);
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background-color: var(--bg-card);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* CONTAINER LAYOUT */
+    .layout-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-block {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-heading-wrapper {
+      margin-bottom: 44px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 820px;
+      line-height: 1.6;
+    }
+
+    /* HERO SECTION */
+    .hero-container {
+      padding: 64px 0 54px 0;
+    }
+
+    .hero-badge-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: var(--accent-dim);
+      border: 1px solid var(--accent-border);
       padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(63, 185, 80, 0.3);
-      background: rgba(63, 185, 80, 0.08);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--green);
+      margin-bottom: 18px;
+      text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 20px;
     }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: pulse 2s ease-in-out infinite;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 40px;
+      align-items: start;
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.3;
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
       }
     }
 
     .hero-name {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 600;
+      font-size: 3.4rem;
+      font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
-      color: var(--text);
-      opacity: 0;
-      animation: slideUp 0.6s 0.1s ease forwards;
+      margin-bottom: 14px;
     }
 
-    .hero-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: var(--green);
-      margin-top: 10px;
-      margin-bottom: 16px;
-      opacity: 0;
-      animation: slideUp 0.6s 0.2s ease forwards;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      height: 14px;
-      background: var(--green);
-      margin-left: 2px;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0;
-      }
+    .hero-subtitle {
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
     }
 
     .hero-bio {
-      font-size: 14px;
-      color: var(--text2);
-      line-height: 1.75;
-      max-width: 500px;
-      opacity: 0;
-      animation: slideUp 0.6s 0.3s ease forwards;
-    }
-
-    .hero-bio strong {
+      font-size: 1.15rem;
       color: var(--text);
-      font-weight: 500;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-      opacity: 0;
-      animation: slideUp 0.6s 0.4s ease forwards;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .btn-primary {
-      padding: 8px 18px;
-      border-radius: 6px;
-      background: var(--green);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: opacity 0.15s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.85;
-    }
-
-    .btn-ghost {
-      padding: 8px 18px;
-      border-radius: 6px;
-      background: var(--bg2);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: background 0.15s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-ghost:hover {
-      background: var(--bg3);
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      opacity: 0;
-      animation: slideUp 0.6s 0.5s ease forwards;
-    }
-
-    .hlink {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      border-radius: 5px;
-      border: 1px solid var(--border);
-      font-size: 12px;
-      color: var(--text2);
-      text-decoration: none;
-      transition: border-color 0.15s, color 0.15s, background 0.15s;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.02em;
-    }
-
-    .hlink:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: rgba(88, 166, 255, 0.06);
-    }
-
-    .hlink svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    /* terminal */
-    .hero-terminal {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      opacity: 0;
-      animation: slideUp 0.6s 0.35s ease forwards;
-    }
-
-    .terminal-bar {
-      background: var(--bg3);
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .tbar-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .tbar-dot.red {
-      background: #ff5f57;
-    }
-
-    .tbar-dot.yellow {
-      background: #febc2e;
-    }
-
-    .tbar-dot.green {
-      background: #28c840;
-    }
-
-    .tbar-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text2);
-      margin-left: 6px;
-    }
-
-    .terminal-body {
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .t-comment {
-      color: var(--text3);
-    }
-
-    .t-key {
-      color: var(--blue);
-    }
-
-    .t-val {
-      color: var(--green);
-    }
-
-    .t-str {
-      color: var(--yellow);
-    }
-
-    .t-num {
-      color: var(--purple);
-    }
-
-    .t-bracket {
-      color: var(--text2);
-    }
-
-    .t-line {
-      display: flex;
-    }
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: var(--bg);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 36px;
-    }
-
-    .about-text {
-      font-size: 13.5px;
-      color: var(--text2);
-      line-height: 1.8;
-    }
-
-    .about-text p {
-      margin-bottom: 12px;
-    }
-
-    .about-text strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .skill-section {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .skill-group-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 8px;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      border: 1px solid;
-      transition: opacity 0.15s;
-    }
-
-    .chip:hover {
-      opacity: 0.75;
-    }
-
-    .chip-blue {
-      color: var(--blue);
-      border-color: rgba(88, 166, 255, 0.3);
-      background: rgba(88, 166, 255, 0.06);
-    }
-
-    .chip-green {
-      color: var(--green);
-      border-color: rgba(63, 185, 80, 0.3);
-      background: rgba(63, 185, 80, 0.06);
-    }
-
-    .chip-purple {
-      color: var(--purple);
-      border-color: rgba(188, 140, 255, 0.3);
-      background: rgba(188, 140, 255, 0.06);
-    }
-
-    .chip-yellow {
-      color: var(--yellow);
-      border-color: rgba(227, 179, 65, 0.3);
-      background: rgba(227, 179, 65, 0.06);
-    }
-
-    .chip-orange {
-      color: #f0883e;
-      border-color: rgba(240, 136, 62, 0.3);
-      background: rgba(240, 136, 62, 0.06);
-    }
-
-    /* ─── PROJECTS ─── */
-    #projects {
-      background: var(--bg2);
-    }
-
-    .proj-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 36px;
-    }
-
-    .proj-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .proj-card:hover {
-      border-color: var(--blue);
-      transform: translateY(-2px);
-    }
-
-    .proj-card-top {
-      padding: 16px 18px 14px;
-      border-bottom: 1px solid var(--border2);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .proj-card-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.4;
-      letter-spacing: -0.01em;
-    }
-
-    .proj-card-link {
-      color: var(--text3);
-      text-decoration: none;
-      flex-shrink: 0;
-      margin-top: 2px;
-      transition: color 0.15s;
-    }
-
-    .proj-card:hover .proj-card-link {
-      color: var(--blue);
-    }
-
-    .proj-card-link svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .proj-card-desc {
-      padding: 12px 18px;
-      font-size: 12.5px;
-      color: var(--text2);
       line-height: 1.7;
-      flex: 1;
+      margin-bottom: 28px;
+      max-width: 660px;
     }
 
-    .proj-metrics {
-      margin: 0 18px 14px;
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .proj-metrics-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 12px;
-      border-bottom: 1px solid var(--border2);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-    }
-
-    .proj-metrics-row:last-child {
-      border-bottom: none;
-    }
-
-    .pm-key {
-      color: var(--text3);
-    }
-
-    .pm-val {
-      color: var(--green);
-      font-weight: 500;
-    }
-
-    .pm-val.blue {
-      color: var(--blue);
-    }
-
-    .pm-val.purple {
-      color: var(--purple);
-    }
-
-    .pm-val.yellow {
-      color: var(--yellow);
-    }
-
-    .proj-card-tags {
-      padding: 10px 18px 14px;
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 12px;
+      align-items: center;
     }
 
-    .ptag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--bg3);
-      color: var(--text2);
-      letter-spacing: 0.03em;
-    }
-
-    /* ─── HACKATHONS ─── */
-    #hackathons {
-      background: var(--bg);
-    }
-
-    .hackathon-card {
-      margin-top: 36px;
-      background: var(--bg2);
+    .hero-card-table {
       border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
+      background-color: var(--bg-surface);
+      padding: 24px;
+    }
+
+    .card-row {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
+      grid-template-columns: 130px 1fr;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
     }
 
-    .hackathon-card:hover {
-      border-color: var(--yellow);
-      transform: translateY(-2px);
+    .card-row:first-child {
+      padding-top: 0;
     }
 
-    .hk-left {
-      padding: 28px;
-      border-right: 1px solid var(--border);
+    .card-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .hk-right {
-      padding: 22px;
-      background: var(--bg);
-    }
-
-    .hk-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
       text-transform: uppercase;
-      color: var(--yellow);
-      background: rgba(227, 179, 65, 0.08);
-      border: 1px solid rgba(227, 179, 65, 0.3);
-      border-radius: 4px;
-      padding: 4px 10px;
-      margin-bottom: 16px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
     }
 
-    .hk-badge svg {
-      flex-shrink: 0;
-    }
-
-    .hk-title {
-      font-size: 18px;
-      font-weight: 600;
+    .card-value {
       color: var(--text);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      line-height: 1.3;
+      line-height: 1.5;
     }
 
-    .hk-desc {
-      font-size: 13px;
-      color: var(--text2);
-      line-height: 1.75;
-      margin-bottom: 18px;
-      max-width: 560px;
+    /* TELEMETRY STATS */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 36px;
     }
 
-    .hk-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-bottom: 18px;
+    @media (max-width: 850px) {
+      .stat-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .hk-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--yellow);
-      text-decoration: none;
-      border: 1px solid rgba(227, 179, 65, 0.3);
-      border-radius: 5px;
-      padding: 5px 12px;
-      transition: background 0.15s;
-    }
-
-    .hk-link:hover {
-      background: rgba(227, 179, 65, 0.08);
-    }
-
-    .hk-metrics-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 8px;
-    }
-
-    .hk-flow {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .hk-flow-step {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text2);
-      padding: 5px 0;
-    }
-
-    .hk-flow-num {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      background: rgba(227, 179, 65, 0.12);
-      border: 1px solid rgba(227, 179, 65, 0.3);
-      color: var(--yellow);
-      font-size: 9px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hk-flow-arrow {
-      font-size: 11px;
-      color: var(--text3);
-      padding-left: 8px;
-      line-height: 1;
-    }
-
-    @media (max-width: 768px) {
-      .hackathon-card {
+    @media (max-width: 500px) {
+      .stat-row {
         grid-template-columns: 1fr;
       }
-
-      .hk-left {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
     }
 
-    /* ─── EXPERIENCE ─── */
-    #experience {
-      background: var(--bg);
+    .stat-box {
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      padding: 22px 20px;
     }
 
-    .exp-list {
-      margin-top: 36px;
-    }
-
-    .exp-item {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 32px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .exp-item:first-child {
-      border-top: 1px solid var(--border2);
-    }
-
-    .exp-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text3);
-      letter-spacing: 0.05em;
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
       margin-bottom: 6px;
     }
 
-    .exp-org {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text2);
+    .stat-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
       margin-bottom: 4px;
     }
 
-    .exp-badge {
-      display: inline-flex;
-      align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-top: 6px;
+    .stat-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
     }
 
-    .badge-green {
-      background: rgba(63, 185, 80, 0.1);
-      color: var(--green);
-    }
-
-    .badge-blue {
-      background: rgba(88, 166, 255, 0.1);
-      color: var(--blue);
-    }
-
-    .badge-yellow {
-      background: rgba(227, 179, 65, 0.1);
-      color: var(--yellow);
-    }
-
-    .exp-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .exp-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .exp-bullet {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 13px;
-      color: var(--text2);
-      line-height: 1.6;
-    }
-
-    .exp-bullet::before {
-      content: '▸';
-      color: var(--green);
-      font-size: 10px;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-
-    /* ─── CHATBOT ─── */
-    #chatbot {
-      background: var(--bg2);
-    }
-
-    .chat-layout {
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 20px;
-      margin-top: 36px;
-    }
-
-    .chat-box {
-      background: var(--bg);
+    /* PROJECT & EXPERIENCE CARDS */
+    .project-card {
       border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      height: 540px;
+      background-color: var(--bg-surface);
+      margin-bottom: 44px;
     }
 
-    .chat-header {
-      background: var(--bg2);
-      padding: 12px 16px;
+    .project-card-header {
+      padding: 20px 24px;
       border-bottom: 1px solid var(--border);
+      background-color: var(--bg-card);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-    }
-
-    .chat-header-av {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--green);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .chat-header-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .chat-header-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--green);
-      letter-spacing: 0.05em;
-    }
-
-    .chat-model-badge {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(88, 166, 255, 0.1);
-      color: var(--blue);
-      border: 1px solid rgba(88, 166, 255, 0.2);
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-
-    .msg {
-      display: flex;
-      gap: 8px;
-      animation: msgIn 0.25s ease;
-    }
-
-    @keyframes msgIn {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .msg.user {
-      flex-direction: row-reverse;
-    }
-
-    .msg-av {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 1px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .msg.bot .msg-av {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .msg.user .msg-av {
-      background: var(--bg3);
-      color: var(--text2);
-      border: 1px solid var(--border);
-    }
-
-    .msg-bub {
-      max-width: 80%;
-      padding: 9px 13px;
-      border-radius: 8px;
-      font-size: 13px;
-      line-height: 1.65;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border: 1px solid var(--border);
-    }
-
-    .msg.bot .msg-bub {
-      background: var(--bg2);
-      color: var(--text2);
-      border-bottom-left-radius: 2px;
-    }
-
-    .msg.user .msg-bub {
-      background: rgba(63, 185, 80, 0.1);
-      color: var(--text);
-      border-color: rgba(63, 185, 80, 0.3);
-      border-bottom-right-radius: 2px;
-    }
-
-    .msg-bub strong {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .msg-bub a {
-      color: var(--blue);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .msg-bub a:hover {
-      color: var(--green);
-    }
-
-    .msg-bub code {
-      background: var(--bg3);
-      padding: 1px 5px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .msg-bub em {
-      font-style: italic;
-    }
-
-    .typing-dots {
-      display: flex;
-      gap: 3px;
-      align-items: center;
-      padding: 2px 0;
-    }
-
-    .typing-dots span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--text3);
-      animation: td 1.3s infinite;
-    }
-
-    .typing-dots span:nth-child(2) {
-      animation-delay: .15s;
-    }
-
-    .typing-dots span:nth-child(3) {
-      animation-delay: .3s;
-    }
-
-    @keyframes td {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-        opacity: .3;
-      }
-
-      30% {
-        transform: translateY(-4px);
-        opacity: 1;
-      }
-    }
-
-    .chat-input-area {
-      padding: 12px 14px;
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-    }
-
-    .chat-ta {
-      flex: 1;
-      resize: none;
-      outline: none;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 8px 12px;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      min-height: 38px;
-      max-height: 100px;
-      line-height: 1.5;
-      transition: border-color 0.15s;
-    }
-
-    .chat-ta:focus {
-      border-color: var(--blue);
-    }
-
-    .chat-ta::placeholder {
-      color: var(--text3);
-    }
-
-    .chat-send {
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      background: var(--green);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      flex-shrink: 0;
-      transition: opacity 0.15s;
-    }
-
-    .chat-send:hover {
-      opacity: 0.85;
-    }
-
-    .chat-send:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
-
-    /* sidebar */
-    .chat-sidebar {
-      display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 14px;
     }
 
-    .sidebar-panel {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px;
+    .project-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .sidebar-panel-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .qbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 6px;
-      padding: 8px 10px;
-      margin-bottom: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      color: var(--text2);
-      line-height: 1.45;
-      transition: border-color 0.15s, color 0.15s;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .qbtn:last-child {
-      margin-bottom: 0;
-    }
-
-    .qbtn:hover {
-      border-color: var(--green);
+    .project-card-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 4px;
       color: var(--text);
     }
 
-    /* error banner */
-    .chat-error {
-      margin: 0 16px 12px;
-      padding: 10px 12px;
-      border-radius: 6px;
-      background: rgba(248, 81, 73, 0.1);
-      border: 1px solid rgba(248, 81, 73, 0.3);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #f85149;
-      display: none;
+    .project-card-sub {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--text-muted);
     }
 
-    /* ─── CONTACT ─── */
-    #contact {
-      background: var(--bg);
+    .project-card-body {
+      padding: 28px 24px;
     }
 
-    .contact-grid {
+    .project-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 36px;
+      gap: 32px;
     }
 
-    .contact-copy {
-      font-size: 13.5px;
-      color: var(--text2);
-      line-height: 1.8;
+    @media (max-width: 850px) {
+      .project-split {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .contact-copy p {
-      margin-bottom: 12px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .clink {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border2);
-      text-decoration: none;
-      gap: 12px;
-      transition: background 0.1s;
-    }
-
-    .clink:first-child {
-      border-top: 1px solid var(--border2);
-    }
-
-    .clink-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .clink-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--bg2);
+    .project-img-box {
       border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-      transition: border-color 0.15s;
+      background-color: var(--bg);
+      margin: 18px 0;
+      overflow: hidden;
     }
 
-    .clink:hover .clink-icon {
-      border-color: var(--blue);
+    .project-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
 
-    .clink-name {
-      font-size: 13px;
-      font-weight: 500;
+    .img-caption {
+      padding: 11px 16px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background-color: var(--bg-card);
+      line-height: 1.4;
+    }
+
+    /* BULLET LIST */
+    .feature-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 14px;
+      color: var(--text);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .feature-list li::before {
+      content: "-";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* PLAIN-TEXT EXPLANATION PANELS */
+    .info-panel {
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+      padding: 18px 22px;
+      margin: 16px 0;
+    }
+
+    .info-panel-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    /* BENCHMARK TABLE */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    th {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background-color: var(--bg-card);
+      color: var(--text-muted);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
       color: var(--text);
     }
 
-    .clink-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text3);
+    tr:last-child td {
+      border-bottom: none;
     }
 
-    .clink-arrow {
-      color: var(--text3);
-      font-size: 12px;
-      transition: transform 0.15s, color 0.15s;
+    tr:hover td {
+      background-color: var(--bg-hover);
     }
 
-    .clink:hover .clink-arrow {
-      transform: translateX(3px);
-      color: var(--blue);
+    .highlight-row td {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 20px 24px;
+    /* CHATBOT */
+    .chatbot-card {
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .chatbot-card-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-card);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1468,521 +872,1269 @@
       gap: 12px;
     }
 
-    .ft-left {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text3);
+    .chatbot-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
     }
 
-    .ft-left span {
-      color: var(--green);
+    .chatbot-status {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #3fb950;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .ft-right {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text3);
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #3fb950;
+      display: inline-block;
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
+    .chat-window {
+      height: 400px;
+      overflow-y: auto;
+      padding: 24px;
+      background-color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
 
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
+    .chat-bubble {
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+      max-width: 88%;
+      word-wrap: break-word;
+    }
 
-      .proj-grid {
+    .chat-bubble.user {
+      align-self: flex-end;
+      background-color: var(--bg-card);
+      color: var(--text);
+    }
+
+    .chat-bubble.assistant {
+      align-self: flex-start;
+      background-color: var(--bg-surface);
+      color: var(--text);
+    }
+
+    .bubble-author {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .chat-bubble.user .bubble-author {
+      color: var(--text-dim);
+    }
+
+    .chat-suggestions {
+      padding: 12px 20px;
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .suggestion-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    .suggestion-btn {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      background-color: var(--bg-surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .suggestion-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chat-input-bar {
+      display: flex;
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-surface);
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 16px 20px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+    }
+
+    .chat-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .chat-send-btn {
+      padding: 16px 26px;
+      border: none;
+      border-left: 1px solid var(--border);
+      background-color: var(--accent);
+      color: #0d1117;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    [data-theme="light"] .chat-send-btn {
+      color: #ffffff;
+    }
+
+    .chat-send-btn:hover {
+      background-color: var(--accent-light);
+    }
+
+    .chat-send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 54px 0 40px 0;
+      border-top: 1px solid var(--border);
+      background-color: var(--bg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 750px) {
+      .footer-grid {
         grid-template-columns: 1fr;
       }
+    }
 
-      .exp-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
 
-      .chat-layout {
-        grid-template-columns: 1fr;
-      }
+    .footer-links {
+      list-style: none;
+    }
 
-      .nav-links {
-        display: none;
-      }
+    .footer-links li {
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+      gap: 12px;
     }
   </style>
-</head>
 
+  <!-- ISOLATED THEME SCRIPT (Runs instantly in HEAD) -->
+  <script>
+    function getSavedTheme() {
+      try {
+        return localStorage.getItem('amit_theme_preference') || 'light';
+      } catch (e) {
+        return 'light';
+      }
+    }
+
+    function setSavedTheme(t) {
+      try {
+        localStorage.setItem('amit_theme_preference', t);
+      } catch (e) {}
+    }
+
+    function updateThemeButton(theme) {
+      var btn = document.getElementById('themeToggleBtn');
+      if (!btn) return;
+      if (theme === 'light') {
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Switch to Dark Mode';
+        btn.setAttribute('title', 'Switch to Dark Mode');
+      } else {
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Switch to Light Mode';
+        btn.setAttribute('title', 'Switch to Light Mode');
+      }
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (document.body) {
+        document.body.setAttribute('data-theme', theme);
+      }
+      setSavedTheme(theme);
+      updateThemeButton(theme);
+    }
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = (current === 'light') ? 'dark' : 'light';
+      applyTheme(next);
+    }
+
+    // Apply saved theme or default to light immediately before body render
+    var initialTheme = getSavedTheme();
+    document.documentElement.setAttribute('data-theme', initialTheme);
+  </script>
+</head>
 <body>
 
-  <nav class="nav">
-    <div class="nav-left">
-      <a href="#hero" class="nav-logo"><span class="bracket">&lt;</span>amit.manjarly<span
-          class="bracket">/&gt;</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">about</a></li>
-        <li><a href="#projects">projects</a></li>
-        <li><a href="#hackathons">hackathons</a></li>
-        <li><a href="#experience">experience</a></li>
-        <li><a href="#chatbot">ai chat</a></li>
-        <li><a href="#contact">contact</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <div class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">☀️</div>
-      <a href="https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf" target="_blank"
-        class="btn-nav btn-resume">Resume ↗</a>
-      <a href="#chatbot" class="btn-nav">Ask AI ↗</a>
-    </div>
-  </nav>
+  <!-- TOP MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-left">
+        <a href="#hero" class="masthead-title">Amit Manjarly</a>
+        <span class="masthead-role">Machine Learning Engineer</span>
+      </div>
 
-  <div class="page">
+      <nav class="masthead-nav">
+        <a href="#experience" class="masthead-link">Experience</a>
+        <a href="#projects" class="masthead-link">Projects</a>
+        <a href="#skills" class="masthead-link">Skills &amp; Keywords</a>
+        <a href="#assistant" class="masthead-link">AI Assistant</a>
+      </nav>
 
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-inner">
+      <div>
+        <!-- Single clean theme toggle button in masthead (Default: Light Theme -> Switch to Dark Mode) -->
+        <button id="themeToggleBtn" class="btn btn-secondary" onclick="toggleTheme()" title="Switch to Dark Mode">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          Switch to Dark Mode
+        </button>
+        <script>
+          (function() {
+            var cur = document.documentElement.getAttribute('data-theme') || 'light';
+            updateThemeButton(cur);
+          })();
+        </script>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-container">
+      <div class="hero-grid">
         <div>
-          <div class="hero-badge">
-            <div class="badge-dot"></div>Open to Opportunities
-          </div>
+          <span class="hero-badge-tag">Machine Learning &bull; Causal Inference &bull; Distributed Systems</span>
           <h1 class="hero-name">Amit Manjarly</h1>
-          <div class="hero-role"><span id="typedRole"></span><span class="cursor"></span></div>
+          <div class="hero-subtitle">Machine Learning Engineer &amp; Graduate Researcher</div>
+          
           <p class="hero-bio">
-            <strong>ML Engineer & AI Researcher</strong> based in Arizona, USA.
-            I fine-tune large language models, build end-to-end ML systems, and
-            explore the boundaries of what neural networks can learn.
-            Currently running in the race of <strong>AI</strong>.
+            I design and deploy end-to-end Machine Learning systems, unconfounded causal decision pipelines, and mechanistic interpretability engines. Currently engineering agricultural digital twin foundation models as a Machine Learning Engineer Intern at Resilient, and completing my M.S. in Data Science, Analytics and Engineering at Arizona State University. Grounded by 3.5 years of enterprise data backend engineering at Accenture.
           </p>
-          <div class="hero-actions">
-            <a href="#chatbot" class="btn-primary">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+
+          <!-- PROMINENT ACTIONS AT TOP (Directly visible to recruiters, only once) -->
+          <div class="hero-buttons">
+            <a href="Amit_Manjarly_Resume_ML.pdf" target="_blank" download class="btn btn-primary" style="padding: 12px 22px; font-size: 0.95rem;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download ML Resume
+            </a>
+            
+            <a href="https://github.com/Manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 12px 18px; font-size: 0.92rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Profile
+            </a>
+
+            <a href="https://www.linkedin.com/in/manjarly/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 12px 18px; font-size: 0.92rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              LinkedIn Profile
+            </a>
+
+            <a href="#projects" class="btn btn-secondary" style="padding: 12px 16px; font-size: 0.92rem;">
+              Explore Projects &darr;
+            </a>
+          </div>
+        </div>
+
+        <!-- RECRUITER MATCHING SNAPSHOT TABLE (Broad, Mid, and High Niche Terms) -->
+        <div class="hero-card-table">
+          <div class="card-row">
+            <span class="card-label">Current Role</span>
+            <span class="card-value"><strong>Machine Learning Engineer Intern</strong> at Resilient</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Education</span>
+            <span class="card-value"><strong>M.S. in Data Science, Analytics &amp; Engineering</strong>, ASU (May 2026)</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Enterprise Base</span>
+            <span class="card-value"><strong>Software Engineer at Accenture PLC</strong> (3.5 Years Production Data &amp; Backend)</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Core Disciplines</span>
+            <span class="card-value">Machine Learning, Deep Learning, LLMs, NLP, Computer Vision, Recommender Systems, MLOps, Data Engineering</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Applied Methodologies</span>
+            <span class="card-value">LLM Fine-Tuning (QLoRA), RAG, Object Detection, SVD Matrix Factorization, ETL Pipelines, REST APIs, Docker, CI/CD</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Advanced Specializations</span>
+            <span class="card-value">Causal Inference (Robinson DML), Offline RL (CQL, DR-OPE), Sparse Autoencoders (Top-K SAEs), Geospatial Twins, Continual Learning (EWC)</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Primary Stack</span>
+            <span class="card-value">Python (Expert), PyTorch, Hugging Face, Scikit-learn, Ray, Polars, FastAPI, Docker, SQL, Java, C++</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY STATS / METRICS -->
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-number">+103.5%</div>
+          <div class="stat-title">Revenue Uplift vs Naive</div>
+          <div class="stat-desc">Causal-RL Dynamic Pricing in Counterflow marketplace simulator</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">Unbiased</div>
+          <div class="stat-title">Price Elasticity Recovery</div>
+          <div class="stat-desc">Robinson Double Machine Learning eliminates omitted variable bias</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3,584</div>
+          <div class="stat-title">Monosemantic Features</div>
+          <div class="stat-desc">Extracted per LLM layer with Top-K Sparse Autoencoders</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3.5+ Years</div>
+          <div class="stat-title">Enterprise Systems</div>
+          <div class="stat-desc">High-throughput transactional data pipelines at Accenture PLC</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: PROFESSIONAL EXPERIENCE -->
+    <section id="experience" class="section-block">
+      <div class="section-heading-wrapper">
+        <div class="section-tag">// WORK EXPERIENCE</div>
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-desc">
+          Building production-grade machine learning models, geospatial digital twins, and scalable distributed data platforms.
+        </p>
+      </div>
+
+      <!-- EXPERIENCE 1: RESILIENT (With Attached Resilient Logo & Highlighted Keywords) -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <div class="project-header-left">
+            <!-- Attached Resilient Logo -->
+            <div class="company-logo-badge" title="Resilient">
+              <img src="resilient_logo.jpg" alt="Resilient Logo" class="company-logo-img" />
+            </div>
+            <div>
+              <h3 class="project-card-title">Machine Learning Engineer Intern</h3>
+              <div class="project-card-sub">Resilient | July 2026 - Present | Tempe, AZ &amp; Remote</div>
+            </div>
+          </div>
+          <div>
+            <span class="tech-pill accent">ACTIVE ROLE</span>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <p>
+            Contributing directly to Resilient's core agricultural digital twin modeling mesh, building multi-spectral Earth observation pipelines, geospatial foundation models, and causal avoided-loss estimators across three flagship repositories:
+          </p>
+
+          <!-- Satellite Visual for Resilient -->
+          <div class="project-img-box">
+            <img src="resilient_geospatial_twin.jpg" alt="Geospatial Machine Learning and Digital Twin Modeling for Resilient Agriculture" class="project-img" />
+            <div class="img-caption">
+              Multi-spectral Earth observation satellite data fusion pipeline (Sentinel-2, Landsat-8, ERA5-Land), field cadastral boundary segmentation, phenology stress heatmaps, and counterfactual avoided-loss response curves across agricultural digital twins.
+            </div>
+          </div>
+
+          <div class="project-split" style="margin-top: 24px;">
+            <div>
+              <h4>1. resilient-arabica (Coffee Sector Digital Twin)</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>CBAM Spatial-Channel Attention</strong>: Implemented the Convolutional Block Attention Module combining channel and spatial attention mechanisms across <span class="highlight">11 daily climate channels</span> and 4 static soil/elevation features to capture fine-grained phenology stress.
+                </li>
+                <li>
+                  <strong>Presto Foundation Model Backbone</strong>: Fine-tuned the Presto geospatial foundation model for <span class="highlight">temporal-spectral sequence representations</span> across <span class="highlight">17,123 observed panel units</span> in Brazil and the Philippines.
+                </li>
+                <li>
+                  <strong>Strict-Typed Test-Time Augmentation (TTA)</strong>: Designed strict-typed TTA accumulators to maintain invariant feature representations across arbitrary satellite revisit geometries.
+                </li>
+                <li>
+                  <strong>Watershed Boundary Isolation</strong>: Replaced coarse bounding boxes with <span class="highlight">watershed segmentation</span> and <span class="highlight">Douglas-Peucker polygon simplification</span>, verified against the <span class="highlight">Object-F1 metric</span>.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4>2. resilient-choco &amp; resilient-fray (Cocoa &amp; Cotton Belt Engines)</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>FTW PRUE Subfield Segmentation</strong>: Implemented the Fields of the World PRUE subfield segmentation engine in <code>resilient-choco</code>, utilizing <span class="highlight">distance-field boundary separation</span> and <span class="highlight">epistemic uncertainty quantification</span>.
+                </li>
+                <li>
+                  <strong>Bayesian HPO with Checkpoint Pruning</strong>: Integrated Bayesian hyperparameter optimization with automated checkpoint pruning, cutting model exploration compute cycles by <span class="highlight">40% compute reduction</span>.
+                </li>
+                <li>
+                  <strong>Causal Avoided-Loss Modeling</strong>: Formulated <span class="highlight">Propensity Score Matching (PSM)</span>, <span class="highlight">Difference-in-Differences (DiD)</span>, and <span class="highlight">R-Learner causal estimators</span> to quantify avoided crop losses under extreme climatic hazards.
+                </li>
+                <li>
+                  <strong>Cryptographic Holdout Ledgers</strong>: Established <span class="highlight">spatial-block 3-way holdouts</span> (0.5-degree blocks) and <span class="highlight">chronological unseen-year holdouts</span> (2021-2025) backed by <span class="highlight">SHA-256 cryptographic ledgers</span>; deployed <span class="highlight">sub-100ms FastAPI endpoints</span>.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Prominent Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill">PyTorch</span>
+            <span class="tech-pill">TorchGeo</span>
+            <span class="tech-pill">TerraTorch</span>
+            <span class="tech-pill">Timm</span>
+            <span class="tech-pill">GeoPandas</span>
+            <span class="tech-pill">Xarray</span>
+            <span class="tech-pill">Rasterio</span>
+            <span class="tech-pill">Earth Engine API</span>
+            <span class="tech-pill">Scikit-learn</span>
+            <span class="tech-pill">Scikit-survival</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE 2: ACCENTURE (With Official Theme-Adaptive Accenture Logo) -->
+      <div class="project-card" style="margin-bottom: 0;">
+        <div class="project-card-header">
+          <div class="project-header-left">
+            <!-- Accenture Logo (Theme-Adaptive SVG: White in Dark Mode, Crisp Charcoal in Light Mode) -->
+            <div class="company-logo-badge accenture" title="Accenture" style="background: transparent; border: 1px solid var(--border); padding: 4px 10px; height: 44px; display: inline-flex; align-items: center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" style="height: 28px; width: auto; display: block;" aria-label="Accenture Logo">
+                <text x="10" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="700" fill="var(--text)" letter-spacing="-1">accenture</text>
+                <path d="M118 12 L128 17 L118 22 L121 17 Z" fill="#a100ff"/>
               </svg>
-              Chat with AI
-            </a>
-            <a href="#projects" class="btn-ghost">View Projects</a>
-            <a href="https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf"
-              target="_blank" class="btn-ghost">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-              Resume
-            </a>
-            <a href="https://www.linkedin.com/in/manjarly/" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+            </div>
+            <div>
+              <h3 class="project-card-title">Software Engineer - Data &amp; Backend</h3>
+              <div class="project-card-sub">Accenture PLC | March 2021 - July 2024 | Hyderabad, India</div>
+            </div>
           </div>
-          <div class="hero-links">
-            <a href="https://github.com/Manjarly" target="_blank" class="hlink">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              github
-            </a>
-            <a href="https://www.youtube.com/@manjarly" target="_blank" class="hlink">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-              youtube
-            </a>
-            <a href="https://leetcode.com/Manjarly/" target="_blank" class="hlink">leetcode</a>
-            <a href="https://codeforces.com/profile/Manjarly" target="_blank" class="hlink">codeforces</a>
-            <a href="https://twitter.com/manjarly" target="_blank" class="hlink">twitter/x</a>
+          <div>
+            <span class="tech-pill">3.5 YEARS ENTERPRISE</span>
           </div>
         </div>
-        <div class="hero-terminal">
-          <div class="terminal-bar">
-            <div class="tbar-dot red"></div>
-            <div class="tbar-dot yellow"></div>
-            <div class="tbar-dot green"></div>
-            <span class="tbar-title">profile.json</span>
-          </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-bracket">{</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"name"</span><span class="t-bracket">: </span><span
-                class="t-str">"Amit Manjarly"</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"role"</span><span class="t-bracket">: </span><span
-                class="t-str">"ML Engineer"</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"location"</span><span class="t-bracket">: </span><span
-                class="t-str">"Arizona, USA"</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"focus"</span><span class="t-bracket">: [</span></div>
-            <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"LLM Fine-Tuning"</span><span
-                class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Deep Learning"</span><span
-                class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Competitive Programming"</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-bracket">],</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"projects"</span><span class="t-bracket">: </span><span
-                class="t-num">6</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"model"</span><span class="t-bracket">: </span><span
-                class="t-str">"Llama-3.2-3B"</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"params"</span><span class="t-bracket">: </span><span
-                class="t-num">3_000_000_000</span><span class="t-bracket">,</span></div>
-            <div class="t-line">&nbsp;&nbsp;<span class="t-key">"open_to_work"</span><span class="t-bracket">:
-              </span><span class="t-val">true</span></div>
-            <div class="t-line"><span class="t-bracket">}</span></div>
+        <div class="project-card-body">
+          <p>
+            Engineered enterprise data backends and automated testing pipelines for an international banking platform over 3.5 years, optimizing large-scale distributed databases processing millions of daily transactions:
+          </p>
+
+          <ul class="feature-list">
+            <li>
+              <strong>Python &amp; SQL Automated Test Framework</strong>: Architected a high-throughput automated verification framework for core transactional databases, resulting in a <span class="highlight">40% reduction in regression QA cycle times</span>.
+            </li>
+            <li>
+              <strong>Distributed SQL Query Optimization</strong>: Optimized distributed <span class="highlight">Apache Hive and Impala query plans</span> across terabyte-scale financial logs, cutting end-to-end data pipeline latency by <span class="highlight">33% latency reduction</span>.
+            </li>
+            <li>
+              <strong>ETL Pipeline Refactoring</strong>: Refactored critical ETL data workflows across Hive, Impala, and <span class="highlight">Oracle databases</span>, cutting nightly production batch windows by <span class="highlight">15% shorter batch windows</span>.
+            </li>
+            <li>
+              <strong>Data Quality &amp; Integrity Validation</strong>: Developed automated schema validation and anomaly-detection protocols in Python and SQL, guaranteeing reliable training data feeds for downstream analytical modeling.
+            </li>
+            <li>
+              <strong>Telemetry &amp; Agile Delivery</strong>: Built operational <span class="highlight">Tableau operational dashboards</span> for real-time pipeline monitoring and coordinated delivery with cross-functional teams using JIRA and Kanban methodologies.
+            </li>
+          </ul>
+
+          <!-- Prominent Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">SQL</span>
+            <span class="tech-pill">Apache Hive</span>
+            <span class="tech-pill">Apache Impala</span>
+            <span class="tech-pill">Oracle DB</span>
+            <span class="tech-pill">Bash</span>
+            <span class="tech-pill">Linux</span>
+            <span class="tech-pill">Git</span>
+            <span class="tech-pill">Tableau</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># about</div>
-          <div class="sec-title">About Me</div>
-        </div>
-        <div class="about-grid">
-          <div class="about-text reveal d1">
-            <p>I'm <strong>Amit Manjarly</strong>, an ML engineer and researcher from <strong>Arizona, USA</strong>. My
-              work focuses on training and fine-tuning large language models, building intelligent recommendation
-              systems, and applying deep learning to real-world problems.</p>
-            <p>My latest project involved fine-tuning a <strong>3B parameter Llama model</strong> on GSM8K using the
-              Self-Taught Reasoner (STaR) methodology — demonstrating that clever data bootstrapping can outperform
-              naive supervised fine-tuning.</p>
-            <p>I'm also a competitive programmer — actively solving algorithmic problems in <strong>Java and
-                C++</strong> on LeetCode and Codeforces, and sharing knowledge through my YouTube channel.</p>
+    <!-- SECTION 02: FEATURED PROJECTS -->
+    <section id="projects" class="section-block">
+      <div class="section-heading-wrapper">
+        <div class="section-tag">// APPLIED RESEARCH &amp; SYSTEMS</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-desc">
+          Causal inference platforms, mechanistic interpretability suites, autonomous driving perception, LLM reasoning, SaaS knowledge agents, and empirical CV/RecSys benchmarks.
+        </p>
+      </div>
+
+      <!-- PROJECT 1: COUNTERFLOW CAUSAL POLICY ENGINE (Authentic Data Charts) -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-card-title">Counterflow: Distributed Spatio-Temporal Dynamic Pricing &amp; Causal Policy Platform</h3>
+            <div class="project-card-sub">Causal Inference &bull; Offline Reinforcement Learning &bull; Uber H3 Hexagonal Simulator</div>
           </div>
-          <div class="skill-section reveal d2">
+          <div>
+            <a href="https://github.com/Manjarly/counterfactual-policy-engine" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Repo &rarr;
+            </a>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-split">
             <div>
-              <div class="skill-group-title">// deep learning</div>
-              <div class="chips"><span class="chip chip-blue">PyTorch</span><span class="chip chip-blue">CNN</span><span
-                  class="chip chip-blue">GAN</span><span class="chip chip-blue">Transfer Learning</span></div>
+              <h4>The Problem: Why Naive Machine Learning Fails in Dynamic Pricing</h4>
+              <p>
+                In production marketplaces (like ride-sharing, food delivery, and streaming CDN routing), price surges occur when unobserved latent demand spikes (such as heavy rainstorms, stadium concerts, or peak hours) happen.
+              </p>
+              <p>
+                Because high demand and high prices coincide in historical logs, standard supervised machine learning models mistakenly learn that high prices <em>cause</em> higher demand. When deployed, naive models aggressively overprice users, causing catastrophic churn. Furthermore, live exploration burns customer goodwill, while naive offline Q-learning overestimates unvisited actions.
+              </p>
+            </div>
+
+            <div>
+              <h4>The Solution: Counterflow Three-Pillar Architecture</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>Robinson Double Machine Learning (DML):</strong> Deconstructs the problem in two stages by predicting demand from confounders and surge prices from confounders separately, subtracting out the nuisance components to isolate the true exogenous causal price sensitivity curve without bias.
+                </li>
+                <li>
+                  <strong>Conservative Q-Learning (CQL):</strong> Penalizes out-of-distribution pricing actions in historical trajectory logs, guaranteeing a strict lower bound on true policy value.
+                </li>
+                <li>
+                  <strong>Doubly Robust Off-Policy Evaluation (DR-OPE):</strong> Combines inverse propensity weighting and outcome reward models to produce unbiased 95% bootstrap confidence bounds before live rollout.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Plain-Text Technical Explanation -->
+          <div class="info-panel">
+            <div class="info-panel-title">Plain-Text Technical Architecture Summary</div>
+            <p style="margin-bottom: 6px;">
+              <strong>Robinson DML:</strong> Uses K-fold cross-fitting to isolate the treatment effect. Residualized conversion is regressed on residualized surge prices, achieving mathematical consistency even when nuisance models converge at slower non-parametric rates.
+            </p>
+            <p style="margin-bottom: 0;">
+              <strong>Distributed Serving:</strong> Shipped with a sub-2ms asynchronous FastAPI dispatch service, Ray distributed worker pools for batch trajectory evaluation, and a Redis spatial cache partitioned over Uber H3 hexagons.
+            </p>
+          </div>
+
+          <!-- Benchmark Table -->
+          <h4 style="margin-top: 24px;">Audited Benchmark Results</h4>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Decision Policy</th>
+                  <th>Total Revenue</th>
+                  <th>Fulfilled Requests</th>
+                  <th>Fulfillment Rate</th>
+                  <th>Price Elasticity Bias</th>
+                  <th>Revenue Uplift</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Naive Fixed Pricing</strong></td>
+                  <td>$97,380</td>
+                  <td>6,492 / 17,611</td>
+                  <td>36.9%</td>
+                  <td>Baseline</td>
+                  <td>Baseline</td>
+                </tr>
+                <tr>
+                  <td><strong>Confounded Supervised ML</strong></td>
+                  <td>$155,279</td>
+                  <td>6,442 / 17,538</td>
+                  <td>36.7%</td>
+                  <td>+0.055 (Severe Omitted Bias)</td>
+                  <td>+59.5%</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>Counterflow Causal-RL (Ours)</strong></td>
+                  <td><strong>$198,185</strong></td>
+                  <td><strong>5,130 / 17,425</strong></td>
+                  <td><strong>29.4%</strong></td>
+                  <td><strong>-0.0002 (Unbiased)</strong></td>
+                  <td><strong>+103.5%</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 4 Project Visualizations (2x2 Grid) -->
+          <div class="project-split" style="margin-top: 24px;">
+            <div>
+              <div class="project-img-box">
+                <img src="spatial_h3_heatmap.png" alt="Uber H3 Spatio-Temporal Hex Grid Simulation" class="project-img" />
+                <div class="img-caption">
+                  City-scale Uber H3 hexagonal spatial grid simulation tracking localized active supply, pending demand, and correlated spatial shocks.
+                </div>
+              </div>
+              <div class="project-img-box">
+                <img src="benchmark_results.png" alt="Revenue and Efficiency Benchmark Policy Bake-Off" class="project-img" />
+                <div class="img-caption">
+                  Policy bake-off comparing Naive Fixed Pricing, Confounded Supervised ML, and Counterflow Causal-RL revenue uplifts.
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="project-img-box">
+                <img src="causal_elasticity_curve.png" alt="Causal Elasticity Curve vs Confounded Supervised ML" class="project-img" />
+                <div class="img-caption">
+                  True downward-sloping causal price elasticity recovered by Robinson DML versus confounded positive elasticity learned by naive ML.
+                </div>
+              </div>
+              <div class="project-img-box">
+                <img src="ope_value_comparison.png" alt="Doubly Robust Off-Policy Evaluation with 95% Confidence Guarantees" class="project-img" />
+                <div class="img-caption">
+                  Off-Policy Evaluation bounds using Doubly Robust and Self-Normalized Importance Sampling with 95% confidence intervals.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill accent">Robinson DML</span>
+            <span class="tech-pill accent">Conservative Q-Learning</span>
+            <span class="tech-pill accent">Doubly Robust OPE</span>
+            <span class="tech-pill">PyTorch 2.0+</span>
+            <span class="tech-pill">Ray Distributed</span>
+            <span class="tech-pill">Uber H3</span>
+            <span class="tech-pill">Polars</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Redis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: INTERP CIRCUIT ENGINE (Neural Hook Schematic) -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-card-title">Interp Circuit Engine: Sparse Autoencoders &amp; Causal Steering</h3>
+            <div class="project-card-sub">Mechanistic Interpretability &bull; Sparse Autoencoders &bull; Activation Steering in PyTorch</div>
+          </div>
+          <div>
+            <a href="https://github.com/Manjarly/interp-circuit-engine" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Repo &rarr;
+            </a>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-img-box">
+            <img src="interp_sae_architecture.jpg" alt="Top-K Sparse Autoencoder Architecture and Causal Concept Steering Loop" class="project-img" />
+            <div class="img-caption">
+              Top-K Sparse Autoencoder architecture. High-dimensional polysemantic residual activations are intercepted via forward hooks and decomposed into 3,584 monosemantic latent concept features. Causal activation steering injects scaled concept directions back into the forward pass.
+            </div>
+          </div>
+
+          <div class="project-split" style="margin-top: 24px;">
+            <div>
+              <h4>Decomposing Polysemantic Neurons into Monosemantic Concepts</h4>
+              <p>
+                In frontier Large Language Models, single neurons are polysemantic: one neuron fires for a chaotic mixture of concepts (like French verbs, legal dates, and python syntax).
+              </p>
+              <p>
+                Interp Circuit Engine resolves this superposition dilemma by training overcomplete Top-K Sparse Autoencoders (SAEs) that project dense 896-dimension residual vectors into 3,584 distinct, monosemantic latent features. Enforcing exact top-32 feature activations per token eliminates the severe feature shrinkage bias seen in standard L1 autoencoders.
+              </p>
+            </div>
+
+            <div>
+              <h4>Causal Activation Steering &amp; Direct Logit Attribution</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>Direct Logit Attribution (DLA):</strong> Projects decoder feature vectors directly onto the model's unembedding vocabulary matrix, instantly discovering which words each latent feature boosts or suppresses.
+                </li>
+                <li>
+                  <strong>Causal Activation Injection:</strong> Modifies intermediate transformer layer activations in real time during the forward pass, steering text generation toward targeted semantic domains without prompt engineering.
+                </li>
+                <li>
+                  <strong>Streaming Ring Buffer:</strong> In-memory token-shuffling ring buffer decouples intra-document correlation during extraction hooks, supporting Apple Silicon (MPS), CUDA, and CPU.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Plain-Text Model Matrix -->
+          <h4 style="margin-top: 24px;">Supported Model Architectures Matrix</h4>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model Family</th>
+                  <th>Model Identifier</th>
+                  <th>Key Architecture Features</th>
+                  <th>Hook Points Verified</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Kimi / Moonshot</strong></td>
+                  <td>moonshotai/Kimi-k2.6</td>
+                  <td>MoE / Dense reasoning architecture</td>
+                  <td>resid_post, mlp_out</td>
+                </tr>
+                <tr>
+                  <td><strong>Moonlight</strong></td>
+                  <td>moonshotai/Moonlight-16B-A3B</td>
+                  <td>Sparse Mixture-of-Experts (MoE)</td>
+                  <td>resid_post</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>Qwen 2.5</strong></td>
+                  <td>Qwen/Qwen2.5-0.5B, 1.5B, 7B</td>
+                  <td>Grouped-Query Attention (GQA), RoPE, SwiGLU</td>
+                  <td>resid_post, attn_out, mlp_out</td>
+                </tr>
+                <tr>
+                  <td><strong>SmolLM2</strong></td>
+                  <td>HuggingFaceTB/SmolLM2-360M</td>
+                  <td>Compact high-throughput research baseline</td>
+                  <td>resid_post, mlp_out</td>
+                </tr>
+                <tr>
+                  <td><strong>Gemma 2</strong></td>
+                  <td>google/gemma-2-2b</td>
+                  <td>Sliding window attention, Logit soft-capping</td>
+                  <td>resid_post</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill accent">Top-K SAE</span>
+            <span class="tech-pill accent">Causal Steering</span>
+            <span class="tech-pill">PyTorch</span>
+            <span class="tech-pill">Hugging Face Transformers</span>
+            <span class="tech-pill">Einops</span>
+            <span class="tech-pill">Accelerate</span>
+            <span class="tech-pill">Streamlit Dashboard</span>
+            <span class="tech-pill">Plotly</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: OPEN-WORLD CONTINUAL LEARNING (Driving Cameras Visual) -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-card-title">Open-World Continual Learning for Autonomous Agents</h3>
+            <div class="project-card-sub">Autonomous Vehicle Perception &bull; Elastic Weight Consolidation (EWC) &bull; Waymo to nuScenes</div>
+          </div>
+          <div>
+            <a href="https://github.com/Manjarly/open-world-continual-learning" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Repo &rarr;
+            </a>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-img-box">
+            <img src="autonomous_ewc_pipeline.jpg" alt="Open-World Continual Learning for Autonomous Driving Perception Pipeline" class="project-img" />
+            <div class="img-caption">
+              Cross-domain autonomous perception pipeline. Adapting YOLOv11m from Waymo Open Dataset (Phoenix/SF) to nuScenes (Boston/Singapore) using Elastic Weight Consolidation (EWC) and Entropy-based Open-Set Recognition.
+            </div>
+          </div>
+
+          <div class="project-split" style="margin-top: 20px;">
+            <div>
+              <h4>Preventing Catastrophic Forgetting Across Cities</h4>
+              <p>
+                Perception detectors trained on one geographic domain (like Waymo in sunny Phoenix) suffer severe performance loss when transferred to new domains with different weather, sensor rigs, and vehicle styles (like nuScenes in rainy Boston and Singapore).
+              </p>
+              <p>
+                We integrated Elastic Weight Consolidation (EWC) into a YOLOv11m backbone. EWC measures the Fisher Information matrix to calculate which weights are vital to prior driving environments, penalizing parameter updates that would destroy prior knowledge while learning new classes.
+              </p>
+            </div>
+
+            <div>
+              <h4>Real-Time Open-Set Recognition (OSR)</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>Entropy Uncertainty Thresholding:</strong> Analyzes predictive entropy on detection heads to flag never-before-seen obstacles (construction debris, rare vehicles) as Unknown/Out-of-Distribution instead of misclassifying them with false confidence.
+                </li>
+                <li>
+                  <strong>High-Speed Production Inference:</strong> Containerized with Docker Compose and FastAPI, achieving sub-120ms CPU inference latency suitable for edge perception.
+                </li>
+                <li>
+                  <strong>MLOps Pipeline:</strong> End-to-end experiment tracking with MLflow and reproducible dataset versioning via DVC.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill accent">Continual Learning (EWC)</span>
+            <span class="tech-pill accent">Open-Set Recognition</span>
+            <span class="tech-pill">PyTorch</span>
+            <span class="tech-pill">YOLOv11</span>
+            <span class="tech-pill">Waymo Open Dataset</span>
+            <span class="tech-pill">nuScenes</span>
+            <span class="tech-pill">MLflow</span>
+            <span class="tech-pill">DVC</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4: STAR MATH REASONING (Verification Loop Visual) -->
+      <div class="project-card">
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-card-title">LLM Fine-Tuning for Mathematical Reasoning (STaR)</h3>
+            <div class="project-card-sub">Llama-3.2-3B-Instruct &bull; Self-Taught Reasoner Bootstrapping &bull; GSM8K Benchmark</div>
+          </div>
+          <div>
+            <a href="https://github.com/Manjarly/LLM-Finetuning-Math-Reasoning" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Repo &rarr;
+            </a>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-img-box">
+            <img src="star_reasoning_pipeline.jpg" alt="STaR Mathematical Reasoning Empirical Research Dashboard" class="project-img" />
+            <div class="img-caption">
+              Empirical STaR mathematical reasoning research dashboard: live GSM8K multi-step reasoning trace inspection, automated verification, Vanilla SFT vs STaR loss curves, accuracy progression (44.0% SFT vs 58.4% STaR), and 4-bit LoRA adapter rank matrix weight heatmap.
+            </div>
+          </div>
+
+          <div class="project-split" style="margin-top: 20px;">
+            <div>
+              <h4>Why Vanilla SFT Failed vs. Rationale Bootstrapping</h4>
+              <p>
+                In our initial experiments on GSM8K using <code>Llama-3.2-3B-Instruct</code>, vanilla supervised fine-tuning achieved only 44.00% accuracy, underperforming even Zero-Shot Chain-of-Thought (47.56%). Direct supervised training caused the model to overfit on superficial formatting rather than learning general problem-solving logic.
+              </p>
+            </div>
+
+            <div>
+              <h4>The STaR Verification &amp; Rationalization Loop</h4>
+              <ul class="feature-list">
+                <li>
+                  <strong>Rationale Bootstrapping:</strong> Prompts the model to generate step-by-step reasoning chains. If the answer is verified correct, the chain is retained.
+                </li>
+                <li>
+                  <strong>Rationalization of Mistakes:</strong> If incorrect, the ground-truth answer is provided to prompt the model to discover a working derivation, repairing flawed steps.
+                </li>
+                <li>
+                  <strong>4-Bit QLoRA Acceleration:</strong> Quantized to 4-bit precision via bitsandbytes and bfloat16 adapters, slashing GPU memory consumption by 75% for single-GPU training.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="tech-stack-row">
+            <span class="tech-label">TECH STACK:</span>
+            <span class="tech-pill accent">STaR Bootstrapping</span>
+            <span class="tech-pill accent">QLoRA</span>
+            <span class="tech-pill">Llama-3.2-3B</span>
+            <span class="tech-pill">Hugging Face</span>
+            <span class="tech-pill">bitsandbytes</span>
+            <span class="tech-pill">PyTorch</span>
+            <span class="tech-pill">GSM8K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5 & 6: NEXUS KNOWLEDGE AGENT & HYBRID MOVIE RECOMMENDER (2-Column Grid) -->
+      <div class="project-split" style="margin-bottom: 44px;">
+        <!-- Nexus Agent Card (Real SaaS AI Product UI) -->
+        <div class="project-card" style="margin-bottom: 0;">
+          <div class="project-card-header">
+            <div>
+              <h3 class="project-card-title">Nexus: Continual Knowledge Agent</h3>
+              <div class="project-card-sub">Mistral AI Worldwide Hackathon 2026 &bull; SaaS Knowledge Base</div>
             </div>
             <div>
-              <div class="skill-group-title">// nlp & llms</div>
-              <div class="chips"><span class="chip chip-green">HuggingFace</span><span
-                  class="chip chip-green">Fine-Tuning</span><span class="chip chip-green">STaR</span><span
-                  class="chip chip-green">Llama 3.2</span><span class="chip chip-green">bitsandbytes</span></div>
+              <a href="https://github.com/Manjarly/nexus-agent" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <!-- Modern SaaS Application Interface Screenshot -->
+            <div class="project-img-box" style="margin-top: 0;">
+              <img src="nexus_agent.jpg" alt="Nexus AI Knowledge Agent Product Application Interface" class="project-img" />
+              <div class="img-caption">
+                Nexus AI Agent application interface: multi-source document library (PDF, URLs), isolated ChromaDB vector memory, and conversational assistant with citation verification.
+              </div>
+            </div>
+
+            <p style="margin-top: 14px;">
+              A multi-tenant Retrieval-Augmented Generation (RAG) assistant featuring isolated personal vector memories and intelligent web search fallbacks:
+            </p>
+            <ul class="feature-list">
+              <li>
+                <strong>Dual Retrieval Routing:</strong> Queries per-user ChromaDB collections using mistral-embed. If similarity drops below threshold, automatically calls Tavily live web search.
+              </li>
+              <li>
+                <strong>Automatic Memory Ingestion:</strong> Discovered web search snippets are chunked and permanently indexed into the user's vector store so the agent grows smarter with each question.
+              </li>
+              <li>
+                <strong>Enterprise Security:</strong> JWT session authentication with PBKDF2-SHA256 password hashing (260,000 rounds) and isolated SQLite storage.
+              </li>
+            </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-label">TECH STACK:</span>
+              <span class="tech-pill">Mistral-Large</span>
+              <span class="tech-pill">ChromaDB</span>
+              <span class="tech-pill">Tavily API</span>
+              <span class="tech-pill">Flask</span>
+              <span class="tech-pill">SQLite</span>
+              <span class="tech-pill">JWT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hybrid Movie Recommender Card (ML Evaluation Workbench) -->
+        <div class="project-card" style="margin-bottom: 0;">
+          <div class="project-card-header">
+            <div>
+              <h3 class="project-card-title">Hybrid Recommendation Engine</h3>
+              <div class="project-card-sub">MovieLens 100k Benchmark &bull; SVD Matrix Factorization &bull; TF-IDF Content Similarity</div>
             </div>
             <div>
-              <div class="skill-group-title">// ml algorithms</div>
-              <div class="chips"><span class="chip chip-purple">SVD</span><span class="chip chip-purple">SVM</span><span
-                  class="chip chip-purple">TF-IDF</span><span class="chip chip-purple">Collab. Filtering</span><span
-                  class="chip chip-purple">PCA</span></div>
+              <a href="https://github.com/Manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <!-- ML Recommendation Evaluation Workbench -->
+            <div class="project-img-box" style="margin-top: 0;">
+              <img src="movie_recommender.jpg" alt="Hybrid Recommendation Engine ML Evaluation Workbench" class="project-img" />
+              <div class="img-caption">
+                Recommendation engine evaluation workbench: SVD latent factor decomposition, Precision@K comparative benchmark curves (P@10 = 0.260 vs 0.150 baseline), TF-IDF content similarity matrix, and real-time inference rank scoring breakdown.
+              </div>
+            </div>
+
+            <p style="margin-top: 14px;">
+              Production hybrid recommendation pipeline combining Singular Value Decomposition (SVD) matrix factorization with TF-IDF content-based cosine similarity:
+            </p>
+            <ul class="feature-list">
+              <li>
+                <strong>73% Relative Precision Uplift:</strong> Achieved Precision@10 of 0.26 versus 0.15 for popularity baseline and 0.01 for random baselines on MovieLens 100k.
+              </li>
+              <li>
+                <strong>Cold-Start Mitigation:</strong> Automatically routes users with low interaction counts to genre metadata similarity vectors, transitioning seamlessly to collaborative latent factors as interactions scale.
+              </li>
+            </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-label">TECH STACK:</span>
+              <span class="tech-pill">SVD</span>
+              <span class="tech-pill">TF-IDF</span>
+              <span class="tech-pill">Scikit-learn</span>
+              <span class="tech-pill">Pandas</span>
+              <span class="tech-pill">NumPy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 7 & 8: COMPUTER VISION BENCHMARK & GAN DIGIT SYNTHESIS (2-Column Grid) -->
+      <div class="project-split">
+        <!-- CNN vs SVM Benchmark Card (Empirical Heatmaps & ROC Curves) -->
+        <div class="project-card" style="margin-bottom: 0;">
+          <div class="project-card-header">
+            <div>
+              <h3 class="project-card-title">Computer Vision: CNN vs. SVM Benchmarks</h3>
+              <div class="project-card-sub">CIFAR-10 &bull; MNIST &bull; PCA Feature Extraction</div>
             </div>
             <div>
-              <div class="skill-group-title">// languages & tools</div>
-              <div class="chips"><span class="chip chip-yellow">Python</span><span
-                  class="chip chip-yellow">Java</span><span class="chip chip-yellow">C++</span><span
-                  class="chip chip-orange">Pandas</span><span class="chip chip-orange">Scikit-learn</span><span
-                  class="chip chip-orange">Git</span></div>
+              <a href="https://github.com/Manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <!-- Empirical Experimental Visual -->
+            <div class="project-img-box" style="margin-top: 0;">
+              <img src="cv_benchmarks.jpg" alt="Computer Vision Empirical Benchmark: Confusion Matrix and ROC Curves" class="project-img" />
+              <div class="img-caption">
+                Empirical benchmark dashboard: multi-class confusion matrix heatmaps, dual ROC curves (AUC 0.734 vs 1.00), and 2D PCA decision boundary scatter plots.
+              </div>
+            </div>
+
+            <p style="margin-top: 14px;">
+              Comparative evaluation of deep convolutional representations versus kernelized support vector machines:
+            </p>
+            <ul class="feature-list">
+              <li>
+                <strong>CIFAR-10 Custom CNN:</strong> Implemented a 4-layer PyTorch architecture (2 conv + 2 FC with ReLU and Max-Pooling), achieving 85% test accuracy and AUC 0.734.
+              </li>
+              <li>
+                <strong>PCA and Kernel SVM:</strong> Applied Principal Component Analysis (100 components) on MNIST digits; benchmarked Radial Basis Function (RBF) SVM against regularized logistic regression, achieving ~100% test accuracy with AUC 1.00.
+              </li>
+            </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-label">TECH STACK:</span>
+              <span class="tech-pill">PyTorch</span>
+              <span class="tech-pill">Torchvision</span>
+              <span class="tech-pill">Scikit-learn</span>
+              <span class="tech-pill">PCA</span>
+              <span class="tech-pill">SVM RBF</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAN Digit Synthesis Card (Digit Matrix & Loss Curves Dashboard) -->
+        <div class="project-card" style="margin-bottom: 0;">
+          <div class="project-card-header">
+            <div>
+              <h3 class="project-card-title">GAN Digit Synthesis &amp; Training Dynamics</h3>
+              <div class="project-card-sub">Generative Deep Learning &bull; Minimax Game Stability</div>
+            </div>
+            <div>
+              <a href="https://github.com/Manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <!-- Empirical Training Results Visual -->
+            <div class="project-img-box" style="margin-top: 0;">
+              <img src="gan_synthesis.jpg" alt="GAN Training Dashboard: Synthetic Digits and Loss Curves" class="project-img" />
+              <div class="img-caption">
+                Empirical GAN training analysis: 8x8 synthetic digit matrix (DCGAN epoch 100), generator vs discriminator loss curves, and 2D latent space interpolation grid.
+              </div>
+            </div>
+
+            <p style="margin-top: 14px;">
+              Explored generative modeling and minimax game optimization dynamics in PyTorch:
+            </p>
+            <ul class="feature-list">
+              <li>
+                <strong>Mode Collapse Mitigation:</strong> Implemented two-player zero-sum GAN architectures with alternating discriminator and generator gradient descent updates.
+              </li>
+              <li>
+                <strong>Latent Manifold Interpolation:</strong> Mapped continuous transitions across the latent noise vector, validating smooth semantic interpolation between synthetic digit classes.
+              </li>
+            </ul>
+
+            <div class="tech-stack-row">
+              <span class="tech-label">TECH STACK:</span>
+              <span class="tech-pill">PyTorch</span>
+              <span class="tech-pill">GAN</span>
+              <span class="tech-pill">Minimax Optimization</span>
+              <span class="tech-pill">Matplotlib</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># projects</div>
-          <div class="sec-title">Selected Work</div>
-          <div class="sec-sub">End-to-end ML projects with documented results</div>
-        </div>
-        <div class="proj-grid">
-
-          <div class="proj-card reveal d1"
-            onclick="window.open('https://github.com/Manjarly/LLM-Fine-Tuning-for-Enhanced-Mathematical-Reasoning-STaR','_blank')">
-            <div class="proj-card-top">
-              <div class="proj-card-name">LLM Fine-Tuning for Mathematical Reasoning (STaR)</div>
-              <a href="https://github.com/Manjarly/LLM-Fine-Tuning-for-Enhanced-Mathematical-Reasoning-STaR"
-                target="_blank" class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></a>
-            </div>
-            <div class="proj-card-desc">Fine-tuned Llama-3.2-3B-Instruct using STaR on GSM8K math dataset. Compared vs
-              Zero-Shot CoT and Vanilla SFT. Enabled single-GPU training via 4-bit quantization with bitsandbytes.</div>
-            <div class="proj-metrics">
-              <div class="proj-metrics-row"><span class="pm-key">model</span><span
-                  class="pm-val blue">Llama-3.2-3B-Instruct</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">zero_shot_cot</span><span class="pm-val">47.56%</span>
-              </div>
-              <div class="proj-metrics-row"><span class="pm-key">vanilla_sft</span><span
-                  class="pm-val yellow">44.00%</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">quantization</span><span class="pm-val purple">4-bit
-                  (bitsandbytes)</span></div>
-            </div>
-            <div class="proj-card-tags"><span class="ptag">LLM</span><span class="ptag">STaR</span><span
-                class="ptag">HuggingFace</span><span class="ptag">PyTorch</span><span class="ptag">GSM8K</span></div>
-          </div>
-
-          <div class="proj-card reveal d2"
-            onclick="window.open('https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine','_blank')">
-            <div class="proj-card-top">
-              <div class="proj-card-name">End-to-End Hybrid Recommendation Engine</div>
-              <a href="https://github.com/Manjarly/End-to-End-Hybrid-Recommendation-Engine" target="_blank"
-                class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></a>
-            </div>
-            <div class="proj-card-desc">Hybrid movie recommender combining SVD collaborative filtering and TF-IDF
-              content-based filtering on MovieLens 100k. Cold-start handling via content-based fallback.</div>
-            <div class="proj-metrics">
-              <div class="proj-metrics-row"><span class="pm-key">dataset</span><span class="pm-val blue">MovieLens
-                  100k</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">precision@10</span><span class="pm-val">~0.26</span>
-              </div>
-              <div class="proj-metrics-row"><span class="pm-key">recall@10</span><span class="pm-val">~0.12</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">vs_popularity_baseline</span><span class="pm-val">0.15
-                  → 0.26 ↑</span></div>
-            </div>
-            <div class="proj-card-tags"><span class="ptag">SVD</span><span class="ptag">TF-IDF</span><span
-                class="ptag">Collab. Filtering</span><span class="ptag">Scikit-learn</span></div>
-          </div>
-
-          <div class="proj-card reveal d1"
-            onclick="window.open('https://github.com/Manjarly/Image_Classification_Using_CNN_and_SVM','_blank')">
-            <div class="proj-card-top">
-              <div class="proj-card-name">Image Classification: CNN & SVM (CIFAR-10 / MNIST)</div>
-              <a href="https://github.com/Manjarly/Image_Classification_Using_CNN_and_SVM" target="_blank"
-                class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></a>
-            </div>
-            <div class="proj-card-desc">CNN from scratch for CIFAR-10 binary classification. Logistic Regression + SVM
-              with RBF kernel for MNIST. PCA dimensionality reduction, ROC curves, regularization analysis.</div>
-            <div class="proj-metrics">
-              <div class="proj-metrics-row"><span class="pm-key">cifar10_accuracy</span><span class="pm-val">~85%</span>
-              </div>
-              <div class="proj-metrics-row"><span class="pm-key">cifar10_auc</span><span
-                  class="pm-val yellow">0.7338</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">mnist_accuracy</span><span class="pm-val">~100%</span>
-              </div>
-              <div class="proj-metrics-row"><span class="pm-key">mnist_auc</span><span class="pm-val">1.00</span></div>
-            </div>
-            <div class="proj-card-tags"><span class="ptag">CNN</span><span class="ptag">SVM</span><span
-                class="ptag">PCA</span><span class="ptag">PyTorch</span><span class="ptag">ROC</span></div>
-          </div>
-
-          <div class="proj-card reveal d2"
-            onclick="window.open('https://github.com/Manjarly/MNIST-Digit-Generation-using-GAN','_blank')">
-            <div class="proj-card-top">
-              <div class="proj-card-name">MNIST Digit Generation using GAN</div>
-              <a href="https://github.com/Manjarly/MNIST-Digit-Generation-using-GAN" target="_blank"
-                class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></a>
-            </div>
-            <div class="proj-card-desc">Generative Adversarial Network for synthesizing realistic handwritten digits.
-              Explored training dynamics, mode collapse prevention, and progressive image quality across epochs.</div>
-            <div class="proj-metrics">
-              <div class="proj-metrics-row"><span class="pm-key">type</span><span class="pm-val blue">Generative
-                  Model</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">architecture</span><span class="pm-val">Generator +
-                  Discriminator</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">framework</span><span
-                  class="pm-val purple">PyTorch</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">dataset</span><span class="pm-val">MNIST</span></div>
-            </div>
-            <div class="proj-card-tags"><span class="ptag">GAN</span><span class="ptag">Generative AI</span><span
-                class="ptag">PyTorch</span><span class="ptag">MNIST</span></div>
-          </div>
-
-          <div class="proj-card reveal d1"
-            onclick="window.open('https://github.com/Manjarly/Open_World_Continual_Learning_For_Autonomous_Agents','_blank')">
-            <div class="proj-card-top">
-              <div class="proj-card-name">Open-World Continual Learning for Autonomous Agents</div>
-              <a href="https://github.com/Manjarly/Open_World_Continual_Learning_For_Autonomous_Agents" target="_blank"
-                class="proj-card-link" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></a>
-            </div>
-            <div class="proj-card-desc">Capstone project integrating Open-Set Recognition and Continual Learning for
-              autonomous vehicle perception. Agents detect unknown objects and adapt to new environments without
-              catastrophic forgetting. Domain transfer from Waymo (SF/Phoenix) to nuScenes (Boston/Singapore).</div>
-            <div class="proj-metrics">
-              <div class="proj-metrics-row"><span class="pm-key">base_model</span><span
-                  class="pm-val blue">YOLOv8m</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">continual_learning</span><span class="pm-val">EWC
-                  (Elastic Weight Consolidation)</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">open_set</span><span
-                  class="pm-val purple">Entropy-based Uncertainty</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">mlops</span><span class="pm-val yellow">MLflow +
-                  DVC</span></div>
-            </div>
-            <div class="proj-card-tags"><span class="ptag">YOLOv8</span><span class="ptag">EWC</span><span
-                class="ptag">Open-Set</span><span class="ptag">PyTorch</span><span class="ptag">MLflow</span><span
-                class="ptag">Waymo</span><span class="ptag">nuScenes</span></div>
-          </div>
-
-        </div>
+    <!-- SECTION 03: SKILLS & EDUCATION -->
+    <section id="skills" class="section-block">
+      <div class="section-heading-wrapper">
+        <div class="section-tag">// COMPETENCIES &amp; RECRUITER KEYWORDS</div>
+        <h2 class="section-title">Skills &amp; Technical Keywords</h2>
+        <p class="section-desc">
+          Structured keyword hierarchy for recruiters and engineering managers, spanning broad fundamentals, applied machine learning systems, and deep scientific specializations.
+        </p>
       </div>
-    </section>
 
-    <!-- HACKATHONS -->
-    <section id="hackathons" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># hackathons</div>
-          <div class="sec-title">Hackathon Projects</div>
-          <div class="sec-sub">Competitive builds under time pressure</div>
-        </div>
-
-        <div class="hackathon-card reveal d1"
-          onclick="window.open('https://github.com/Manjarly/MistralAI_Hackathon_2026','_blank')">
-          <div class="hk-left">
-            <div class="hk-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg>
-              Mistral AI Hackathon 2026
+      <div class="project-split">
+        <!-- Education & Competitive Programming -->
+        <div>
+          <div class="project-card" style="margin-bottom: 24px;">
+            <div class="project-card-header">
+              <h3 class="project-card-title">Education</h3>
             </div>
-            <div class="hk-title">Nexus — Continual Knowledge Agent</div>
-            <div class="hk-desc">A personal AI agent that learns from your documents, remembers everything across
-              sessions, and searches the web when it doesn't know something — all with per-user accounts and isolated
-              memory. Feed it a PDF, URL, or plain text and it stores knowledge in a personal vector database. Falls
-              back to live Tavily web search automatically, storing those results too so the agent gets smarter with
-              every question.</div>
-            <div class="hk-tags">
-              <span class="ptag">Mistral AI</span><span class="ptag">RAG</span><span class="ptag">ChromaDB</span><span
-                class="ptag">Flask</span><span class="ptag">SQLite</span><span class="ptag">JWT Auth</span><span
-                class="ptag">Tavily</span><span class="ptag">Python</span>
-            </div>
-            <a href="https://github.com/Manjarly/MistralAI_Hackathon_2026" target="_blank" class="hk-link"
-              onclick="event.stopPropagation()">
-              View on GitHub
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </div>
-          <div class="hk-right">
-            <div class="hk-metrics-title">// stack</div>
-            <div class="proj-metrics" style="margin:0;">
-              <div class="proj-metrics-row"><span class="pm-key">llm</span><span
-                  class="pm-val blue">mistral-large-2512</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">embeddings</span><span
-                  class="pm-val">mistral-embed</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">vector_db</span><span
-                  class="pm-val purple">ChromaDB</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">web_search</span><span class="pm-val green">Tavily
-                  API</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">auth</span><span class="pm-val yellow">JWT +
-                  PBKDF2-SHA256</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">backend</span><span class="pm-val">Flask +
-                  SQLite</span></div>
-              <div class="proj-metrics-row"><span class="pm-key">isolation</span><span class="pm-val">Per-user
-                  ChromaDB</span></div>
-            </div>
-            <div class="hk-metrics-title" style="margin-top:14px;">// how it works</div>
-            <div class="hk-flow">
-              <div class="hk-flow-step"><span class="hk-flow-num">01</span><span>User asks a question</span></div>
-              <div class="hk-flow-arrow">↓</div>
-              <div class="hk-flow-step"><span class="hk-flow-num">02</span><span>Search personal ChromaDB</span></div>
-              <div class="hk-flow-arrow">↓</div>
-              <div class="hk-flow-step"><span class="hk-flow-num">03</span><span>Mistral validates relevance</span>
+            <div class="project-card-body">
+              <div style="margin-bottom: 20px;">
+                <h4 style="font-size: 1.15rem;">Master of Science in Data Science, Analytics and Engineering (DSAE)</h4>
+                <div class="mono" style="color: var(--accent); margin-bottom: 6px;">Arizona State University | Tempe, AZ | Aug 2024 - May 2026</div>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0;">
+                  Coursework: Machine Learning Systems, Deep Learning, Statistical Causal Inference, Natural Language Processing, Algorithm Design.
+                </p>
               </div>
-              <div class="hk-flow-arrow">↓</div>
-              <div class="hk-flow-step"><span class="hk-flow-num">04</span><span>Answer from memory or Tavily web
-                  search</span></div>
+
+              <div style="border-top: 1px solid var(--border-subtle); padding-top: 18px;">
+                <h4 style="font-size: 1.15rem;">Bachelor of Engineering in Computer Engineering</h4>
+                <div class="mono" style="color: var(--accent); margin-bottom: 6px;">Gujarat Technological University | Ahmedabad, India | Aug 2015 - Jun 2019</div>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0;">
+                  Coursework: Data Structures &amp; Algorithms, Operating Systems, Database Management Systems, Object-Oriented Programming, Computer Networks.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" style="margin-bottom: 0;">
+            <div class="project-card-header">
+              <h3 class="project-card-title">Competitive Programming &amp; Content</h3>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Active competitive programmer solving algorithmic challenges in Java and C++ on LeetCode and Codeforces. Focus areas: graph algorithms, dynamic programming, tree decomposition, combinatorics, and memory profiling.
+              </p>
+              <p>
+                Technical educator on YouTube (<strong>@manjarly</strong>), authoring in-depth tutorials on competitive programming, data structures, and machine learning architectures.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+                <a href="https://leetcode.com/Manjarly/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LeetCode Profile &rarr;</a>
+                <a href="https://codeforces.com/profile/Manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Codeforces Profile &rarr;</a>
+                <a href="https://www.youtube.com/@manjarly" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">YouTube Channel &rarr;</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># experience</div>
-          <div class="sec-title">Journey</div>
-        </div>
-        <div class="exp-list">
-          <div class="exp-item reveal d1">
-            <div>
-              <div class="exp-date">2024 — PRESENT</div>
-              <div class="exp-org">Independent / Academic</div>
-              <div class="exp-badge badge-green">Active</div>
+        <!-- 4-Tier Skills & Keyword Matrix for Recruiter Matching -->
+        <div>
+          <div class="project-card" style="margin-bottom: 0;">
+            <div class="project-card-header">
+              <h3 class="project-card-title">Technical Competency &amp; Keyword Match Matrix</h3>
             </div>
-            <div>
-              <div class="exp-title">ML Research & Engineering</div>
-              <div class="exp-bullets">
-                <div class="exp-bullet">Fine-tuned Llama-3.2-3B using STaR — bootstrapping rationales, verifying
-                  answers, refining incorrect chains, achieving better math reasoning than naive SFT</div>
-                <div class="exp-bullet">Built end-to-end hybrid recommendation engine with SVD + TF-IDF achieving
-                  Precision@10 of 0.26 vs 0.15 popularity baseline on MovieLens 100k</div>
-                <div class="exp-bullet">Implemented CNN from scratch in PyTorch for CIFAR-10 binary classification (85%
-                  accuracy); SVM with RBF kernel for MNIST (AUC 1.00)</div>
-                <div class="exp-bullet">Developed GAN for MNIST digit synthesis — explored mode collapse prevention and
-                  training stability</div>
+            <div class="project-card-body">
+              <!-- Tier 1: Core Fundamentals -->
+              <div style="margin-bottom: 20px;">
+                <h4 style="font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">1. Core ML &amp; AI Fundamentals</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span class="tech-pill broad">Machine Learning</span>
+                  <span class="tech-pill broad">Deep Learning</span>
+                  <span class="tech-pill broad">Natural Language Processing (NLP)</span>
+                  <span class="tech-pill broad">Large Language Models (LLMs)</span>
+                  <span class="tech-pill broad">Computer Vision</span>
+                  <span class="tech-pill broad">Recommender Systems</span>
+                  <span class="tech-pill broad">Data Engineering</span>
+                  <span class="tech-pill broad">MLOps</span>
+                  <span class="tech-pill broad">Distributed Systems</span>
+                  <span class="tech-pill broad">Software Engineering</span>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="exp-item reveal d2">
-            <div>
-              <div class="exp-date">ONGOING</div>
-              <div class="exp-org">LeetCode · Codeforces</div>
-              <div class="exp-badge badge-blue">Java / C++</div>
-            </div>
-            <div>
-              <div class="exp-title">Competitive Programming</div>
-              <div class="exp-bullets">
-                <div class="exp-bullet">Actively solving algorithmic problems in Java and C++ on LeetCode and Codeforces
+
+              <!-- Tier 2: Applied & Systems -->
+              <div style="margin-bottom: 20px; border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+                <h4 style="font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">2. Applied ML, Modeling &amp; Infrastructure</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span class="tech-pill">LLM Fine-Tuning</span>
+                  <span class="tech-pill">QLoRA / LoRA</span>
+                  <span class="tech-pill">Retrieval-Augmented Generation (RAG)</span>
+                  <span class="tech-pill">Reinforcement Learning</span>
+                  <span class="tech-pill">Object Detection</span>
+                  <span class="tech-pill">SVD Matrix Factorization</span>
+                  <span class="tech-pill">PCA Feature Reduction</span>
+                  <span class="tech-pill">TF-IDF Vectorization</span>
+                  <span class="tech-pill">ETL Pipelines</span>
+                  <span class="tech-pill">REST APIs</span>
+                  <span class="tech-pill">Microservices</span>
+                  <span class="tech-pill">CI/CD</span>
+                  <span class="tech-pill">Docker Containerization</span>
                 </div>
-                <div class="exp-bullet">Focus: data structures, dynamic programming, graph algorithms, combinatorics,
-                  optimization</div>
-                <div class="exp-bullet">Algorithmic rigor directly informs better ML system design and debugging</div>
               </div>
-            </div>
-          </div>
-          <div class="exp-item reveal d1">
-            <div>
-              <div class="exp-date">ONGOING</div>
-              <div class="exp-org">YouTube @manjarly</div>
-              <div class="exp-badge badge-yellow">Creator</div>
-            </div>
-            <div>
-              <div class="exp-title">Technical Content Creator</div>
-              <div class="exp-bullets">
-                <div class="exp-bullet">Creates educational content on ML, LLM fine-tuning, and competitive programming
+
+              <!-- Tier 3: Specialized Architectures -->
+              <div style="margin-bottom: 20px; border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+                <h4 style="font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">3. Advanced &amp; Specialized Architectures</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span class="tech-pill accent">Robinson Double Machine Learning (DML)</span>
+                  <span class="tech-pill accent">Conservative Q-Learning (CQL)</span>
+                  <span class="tech-pill accent">Doubly Robust OPE (DR-OPE)</span>
+                  <span class="tech-pill accent">Mechanistic Interpretability</span>
+                  <span class="tech-pill accent">Top-K Sparse Autoencoders (SAEs)</span>
+                  <span class="tech-pill accent">Causal Activation Steering</span>
+                  <span class="tech-pill accent">Geospatial Digital Twins</span>
+                  <span class="tech-pill accent">Continual Learning (EWC)</span>
+                  <span class="tech-pill accent">Open-Set Recognition (OSR)</span>
+                  <span class="tech-pill accent">STaR Rationale Bootstrapping</span>
+                  <span class="tech-pill accent">Presto Foundation Models</span>
+                  <span class="tech-pill accent">CBAM Attention</span>
                 </div>
-                <div class="exp-bullet">Teaches Java and C++ for algorithmic problem-solving</div>
-                <div class="exp-bullet">Documents the AI learning journey, making complex topics accessible</div>
               </div>
-            </div>
-          </div>
-          <div class="exp-item reveal d2">
-            <div>
-              <div class="exp-date">EDUCATION</div>
-              <div class="exp-org">Arizona, USA</div>
-              <div class="exp-badge badge-blue">CS / AI</div>
-            </div>
-            <div>
-              <div class="exp-title">CS & AI Studies</div>
-              <div class="exp-bullets">
-                <div class="exp-bullet">Coursework in Machine Learning, NLP, deep learning systems, and algorithm design
+
+              <!-- Tier 4: Languages & Tools -->
+              <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+                <h4 style="font-size: 0.95rem; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">4. Languages, Frameworks &amp; Tooling</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  <span class="tech-pill">Python (Expert)</span>
+                  <span class="tech-pill">PyTorch</span>
+                  <span class="tech-pill">Hugging Face Transformers</span>
+                  <span class="tech-pill">Scikit-learn</span>
+                  <span class="tech-pill">Ray Distributed</span>
+                  <span class="tech-pill">Polars</span>
+                  <span class="tech-pill">FastAPI</span>
+                  <span class="tech-pill">Docker</span>
+                  <span class="tech-pill">MLflow</span>
+                  <span class="tech-pill">DVC</span>
+                  <span class="tech-pill">Redis</span>
+                  <span class="tech-pill">Apache Hive</span>
+                  <span class="tech-pill">Apache Impala</span>
+                  <span class="tech-pill">Oracle DB</span>
+                  <span class="tech-pill">Java</span>
+                  <span class="tech-pill">C++</span>
+                  <span class="tech-pill">SQL (Expert)</span>
+                  <span class="tech-pill">Bash</span>
+                  <span class="tech-pill">ChromaDB</span>
                 </div>
-                <div class="exp-bullet">Hands-on with HuggingFace Transformers, PyTorch, and the modern ML ecosystem
-                </div>
-                <div class="exp-bullet">Applied learning through complete ML pipelines from raw data to evaluation</div>
               </div>
             </div>
           </div>
@@ -1990,324 +2142,229 @@
       </div>
     </section>
 
-    <!-- CHATBOT -->
-    <section id="chatbot" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># ai assistant</div>
-          <div class="sec-title">Ask Anything About Me</div>
-          <div class="sec-sub">Powered by Claude — no key needed, just ask</div>
+    <!-- SECTION 04: AI ASSISTANT CHATBOT (Kept at the end) -->
+    <section id="assistant" class="section-block" style="border-bottom: none;">
+      <div class="section-heading-wrapper">
+        <div class="section-tag">// INTERACTIVE AGENT</div>
+        <h2 class="section-title">Chat with Amit's Portfolio AI</h2>
+        <p class="section-desc">
+          Ask questions about technical implementations, project benchmarks, methodology, or background. Powered by Claude.
+        </p>
+      </div>
+
+      <div class="chatbot-card">
+        <div class="chatbot-card-header">
+          <div class="chatbot-title">Portfolio AI Assistant (Claude Sonnet 3.7)</div>
+          <div class="chatbot-status">
+            <span class="status-dot"></span>
+            Online &bull; Context Loaded
+          </div>
         </div>
-        <div class="chat-layout">
-          <div class="chat-box reveal">
-            <div class="chat-header">
-              <div class="chat-header-av">A</div>
-              <div>
-                <div class="chat-header-name">Amit's Portfolio AI</div>
-                <div class="chat-header-sub">● ONLINE · full context loaded</div>
-              </div>
-              <div class="chat-model-badge">claude-sonnet</div>
-            </div>
-            <div id="chatError" class="chat-error">⚠ Could not reach the AI. Make sure you've deployed to Vercel and
-              added your ANTHROPIC_API_KEY environment variable.</div>
-            <div class="chat-messages" id="chatMessages">
-              <div class="msg bot">
-                <div class="msg-av">A</div>
-                <div class="msg-bub">Hi! I'm Amit's AI assistant. I know everything about his projects, skills, and background.<br><br>Ask me anything — project results, technical details, how to collaborate, or his experience.</div>
-              </div>
-            </div>
-            <div class="chat-input-area">
-              <textarea class="chat-ta" id="chatInput" placeholder="Ask about projects, skills, experience…"
-                rows="1"></textarea>
-              <button class="chat-send" id="chatSend" onclick="sendMessage()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
-              </button>
-            </div>
+
+        <div id="chatMessages" class="chat-window">
+          <div class="chat-bubble assistant">
+            <div class="bubble-author">Portfolio Assistant</div>
+            Hi! I am Amit's Portfolio AI. I have full knowledge of his projects, his Machine Learning Engineer internship at Resilient, his Counterflow dynamic pricing engine, his Interp Circuit Engine for Sparse Autoencoders, and his background at Accenture and ASU. Ask me anything or select a prompt below!
           </div>
-          <div class="chat-sidebar reveal d2">
-            <div class="sidebar-panel">
-              <div class="sidebar-panel-title">// quick prompts</div>
-              <button class="qbtn" onclick="sendPrompt('What ML projects has Amit built?')">What ML projects has Amit
-                built?</button>
-              <button class="qbtn" onclick="sendPrompt('Explain the STaR fine-tuning project')">Explain the STaR
-                fine-tuning project</button>
-              <button class="qbtn"
-                onclick="sendPrompt('Tell me about the Open World Continual Learning capstone project')">Open-World
-                Continual Learning project?</button>
-              <button class="qbtn" onclick="sendPrompt('Tell me about Nexus, the Mistral AI Hackathon project')">Mistral
-                AI Hackathon — Nexus agent?</button>
-              <button class="qbtn" onclick="sendPrompt('What are Amit\\'s core technical skills?')">Core technical
-                skills?</button>
-              <button class="qbtn" onclick="sendPrompt('How can I contact or collaborate with Amit?')">How to contact
-                Amit?</button>
-            </div>
-          </div>
+        </div>
+
+        <div class="chat-suggestions">
+          <span class="suggestion-label">Quick Prompts:</span>
+          <button class="suggestion-btn" onclick="sendPrompt('Explain Amit's work as Machine Learning Engineer Intern at Resilient across Arabica, Choco, and Fray.')">Resilient Internship</button>
+          <button class="suggestion-btn" onclick="sendPrompt('How does Counterflow solve omitted variable bias in dynamic pricing?')">Causal Dynamic Pricing</button>
+          <button class="suggestion-btn" onclick="sendPrompt('Explain the Top-K Sparse Autoencoder and Causal Steering implementation in Interp Circuit Engine.')">Interp Circuit Engine</button>
+          <button class="suggestion-btn" onclick="sendPrompt('What was the methodology and result of Amit's STaR math reasoning project on GSM8K?')">STaR Reasoning Loop</button>
+          <button class="suggestion-btn" onclick="sendPrompt('Summarize Amit's academic background at ASU and enterprise experience at Accenture.')">Background &amp; Credentials</button>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question about Amit's projects or experience..." autocomplete="off" />
+          <button id="chatSend" class="chat-send-btn" onclick="sendMessage()">Send &rarr;</button>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="inner">
-        <div class="reveal">
-          <div class="sec-label"># contact</div>
-          <div class="sec-title">Get In Touch</div>
+  </div><!-- /layout-wrapper -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="layout-wrapper">
+      <div class="footer-grid">
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Amit Manjarly</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 500px; line-height: 1.6;">
+            Machine Learning Engineer Intern at Resilient and Graduate Researcher at Arizona State University (M.S. Data Science, Analytics and Engineering). Open to Machine Learning Engineering, Causal Inference, and Applied AI roles.
+          </p>
         </div>
-        <div class="contact-grid">
-          <div class="contact-copy reveal d1">
-            <p>I'm open to ML engineering roles, research collaborations, and interesting projects at the intersection
-              of AI and engineering.</p>
-            <p>Best way to reach me is LinkedIn. All my code is on GitHub and educational content on YouTube.</p>
-          </div>
-          <div class="contact-links reveal d2">
-            <a href="https://www.linkedin.com/in/manjarly/" target="_blank" class="clink">
-              <div class="clink-left">
-                <div class="clink-icon">💼</div>
-                <div>
-                  <div class="clink-name">LinkedIn</div>
-                  <div class="clink-val">in/manjarly</div>
-                </div>
-              </div>
-              <div class="clink-arrow">→</div>
-            </a>
-            <a href="https://github.com/Manjarly" target="_blank" class="clink">
-              <div class="clink-left">
-                <div class="clink-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                  </svg></div>
-                <div>
-                  <div class="clink-name">GitHub</div>
-                  <div class="clink-val">github.com/Manjarly</div>
-                </div>
-              </div>
-              <div class="clink-arrow">→</div>
-            </a>
-            <a href="https://www.youtube.com/@manjarly" target="_blank" class="clink">
-              <div class="clink-left">
-                <div class="clink-icon">▶️</div>
-                <div>
-                  <div class="clink-name">YouTube</div>
-                  <div class="clink-val">@manjarly</div>
-                </div>
-              </div>
-              <div class="clink-arrow">→</div>
-            </a>
-            <a href="https://leetcode.com/Manjarly/" target="_blank" class="clink">
-              <div class="clink-left">
-                <div class="clink-icon">⚡</div>
-                <div>
-                  <div class="clink-name">LeetCode</div>
-                  <div class="clink-val">leetcode.com/Manjarly</div>
-                </div>
-              </div>
-              <div class="clink-arrow">→</div>
-            </a>
-            <a href="https://twitter.com/manjarly" target="_blank" class="clink">
-              <div class="clink-left">
-                <div class="clink-icon">𝕏</div>
-                <div>
-                  <div class="clink-name">Twitter / X</div>
-                  <div class="clink-val">@manjarly</div>
-                </div>
-              </div>
-              <div class="clink-arrow">→</div>
-            </a>
-          </div>
+
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="Amit_Manjarly_Resume_ML.pdf" target="_blank" download>Download ML Resume (PDF)</a></li>
+            <li><a href="https://github.com/Manjarly/counterfactual-policy-engine" target="_blank" rel="noopener noreferrer">Counterflow Engine</a></li>
+            <li><a href="https://github.com/Manjarly/interp-circuit-engine" target="_blank" rel="noopener noreferrer">Interp Circuit Engine</a></li>
+            <li><a href="https://github.com/Manjarly/open-world-continual-learning" target="_blank" rel="noopener noreferrer">Continual Learning</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <ul class="footer-links">
+            <li><a href="https://www.linkedin.com/in/manjarly/" target="_blank" rel="noopener noreferrer">LinkedIn (in/manjarly)</a></li>
+            <li><a href="https://github.com/Manjarly" target="_blank" rel="noopener noreferrer">GitHub (Manjarly)</a></li>
+            <li><a href="https://www.youtube.com/@manjarly" target="_blank" rel="noopener noreferrer">YouTube (@manjarly)</a></li>
+            <li><a href="https://leetcode.com/Manjarly/" target="_blank" rel="noopener noreferrer">LeetCode (Manjarly)</a></li>
+            <li><a href="mailto:amitmanjarly99@gmail.com">amitmanjarly99@gmail.com</a></li>
+          </ul>
         </div>
       </div>
-    </section>
 
-  </div>
-
-  <footer>
-    <div class="ft-left"><span>&lt;</span> built by <span>Amit Manjarly</span> · © 2026 <span>/&gt;</span></div>
-    <div class="ft-right">Arizona, USA · ML Engineer · Open to work</div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Amit Manjarly. All rights reserved.</div>
+        <div>Tempe, Arizona, United States</div>
+      </div>
+    </div>
   </footer>
 
+  <!-- SCRIPT -->
   <script>
-    /* ── THEME ── */
-    function toggleTheme() {
-      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
-      localStorage.setItem('theme', next);
-    }
-    (function () {
-      const t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-      const b = document.getElementById('themeBtn');
-      if (b) b.textContent = t === 'dark' ? '☀️' : '🌙';
-    })();
+    // Ensure theme button text and icon are initialized after DOM load
+    document.addEventListener('DOMContentLoaded', function() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(current);
+    });
 
-    /* ── TYPEWRITER ── */
-    const roles = ['ML Engineer', 'AI Researcher', 'LLM Fine-Tuner', 'Competitive Programmer', 'Python / Java / C++'];
-    let ri = 0, ci = 0, deleting = false;
-    function type() {
-      const el = document.getElementById('typedRole'); if (!el) return;
-      const cur = roles[ri];
-      if (!deleting) { el.textContent = cur.slice(0, ++ci); if (ci === cur.length) { deleting = true; setTimeout(type, 1800); return; } }
-      else { el.textContent = cur.slice(0, --ci); if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; } }
-      setTimeout(type, deleting ? 45 : 75);
-    }
-    type();
+    /* CONSOLE CHATBOT */
+    var SYS_PROMPT = "You are the personal portfolio assistant for Amit Manjarly. Provide concise, helpful, technically precise responses in plain text (no LaTeX formatting, no emojis, no em dashes).\n\nKey Verified Context:\n- Current Affiliation: Graduate student completing M.S. in Data Science, Analytics and Engineering (DSAE) at Arizona State University (ASU), graduating May 2026.\n- Current Professional Role: Machine Learning Engineer Intern at Resilient (July 2026 - Present), Tempe, AZ.\n  * Resilient Arabica (Coffee digital twin): CBAM spatial and channel attention, Presto foundation model fine-tuning, strict-typed TTA accumulators, watershed boundary simplification (Object-F1 metric), ERA5-Land climate forecasting.\n  * Resilient Choco (Cocoa digital twin, West Africa): FTW PRUE subfield segmentation with distance-field boundary separation, Bayesian HPO checkpoint pruning, Cox survival (CSSVD), causal policy targeting (PSM, DML).\n  * Resilient Fray (Cotton avoided-loss): USDA NASS yield ingestion, ERA5 and NOAA storm hazards, spatial-block 3-way holdouts (0.5-degree cells) and chronological unseen-year holdouts (2021-2025) backed by SHA-256 cryptographic ledgers, PSM, DiD, R-Learner, FastAPI serving.\n- Enterprise Experience: Software Engineer - Data & Backend at Accenture PLC (March 2021 - July 2024, 3.5 years). Automated testing frameworks (40% QA reduction), optimized Apache Hive/Impala pipelines (33% latency cut), Oracle, ETL refactoring.\n- Key Projects:\n  1. Counterflow (counterfactual-policy-engine): Distributed dynamic pricing & causal dispatch. Solves omitted variable bias where naive ML predicts positive elasticity. Uses Robinson Double Machine Learning (DML), Conservative Q-Learning (CQL) offline RL, Doubly Robust Off-Policy Evaluation (DR-OPE) with 95% bootstrap confidence bounds, Uber H3 hexagonal spatial grid, Ray distributed workers, Redis cache, FastAPI (<2ms dispatch). Benchmark: +103.5% revenue vs naive, +27.6% vs ML, unbiased elasticity.\n  2. Interp Circuit Engine (interp-circuit-engine): Mechanistic interpretability on frontier LLMs (Qwen 2.5, Kimi K2.6, Gemma 2, SmolLM2, LLaMA-3). Top-K Sparse Autoencoders (SAEs) decomposing 896-dim polysemantic residual streams into 3,584 monosemantic latent features. Direct Logit Attribution (DLA), active dead latent resampler, streaming token-shuffling ring buffer, and real-time causal activation steering.\n  3. Open-World Continual Learning: YOLOv11m on Waymo Open Dataset adapted to nuScenes via Elastic Weight Consolidation (EWC) with Fisher Information regularization. Entropy-based open-set recognition flags unknown objects at runtime. MLflow, DVC, <120ms CPU latency.\n  4. STaR Math Reasoning: Fine-tuning Llama-3.2-3B on GSM8K using Self-Taught Reasoner (STaR) rationale bootstrapping. Outperformed Vanilla SFT (44.00%) and Zero-Shot CoT (47.56%). 4-bit QLoRA via bitsandbytes.\n  5. Nexus Continual Knowledge Agent: Mistral AI Hackathon 2026. Two-stage RAG with isolated ChromaDB vector stores, automated Tavily web search fallback cache, JWT + PBKDF2-SHA256 (260k rounds).\n  6. Hybrid Recommendation Engine: MovieLens 100k combining SVD collaborative filtering and TF-IDF content filtering (Precision@10: 0.26 vs 0.15 popularity baseline).\n  7. Computer Vision: Custom PyTorch CNN on CIFAR-10 (85% accuracy, AUC 0.734) with PCA dimensionality reduction; SVM with RBF kernel on MNIST (~100% accuracy, AUC 1.00).\n- Competitive Programming & Education: Active in Java and C++ on LeetCode (leetcode.com/Manjarly) and Codeforces (codeforces.com/profile/Manjarly). YouTube educator (@manjarly). B.E. in Computer Engineering from Gujarat Technological University (2015-2019).\n- Contact: Tempe, AZ | amitmanjarly99@gmail.com | LinkedIn: linkedin.com/in/manjarly | GitHub: github.com/Manjarly";
 
-    /* ── REVEAL ── */
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.07 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    var chatHistory = [];
+    var chatBusy = false;
 
-    /* ── CHATBOT ── */
-    const SYS = `You are an AI assistant on Amit Manjarly's portfolio website. Answer questions about his background, projects, skills, and experience precisely and professionally.
-
-## About Amit Manjarly
-- Location: Arizona, USA
-- GitHub: https://github.com/Manjarly
-- LinkedIn: https://www.linkedin.com/in/manjarly/
-- YouTube: @manjarly (Java/C++ competitive programming and AI/ML tutorials)
-- LeetCode: https://leetcode.com/Manjarly/ | Codeforces: https://codeforces.com/profile/Manjarly
-- Interests: Machine Learning, LLMs, Competitive Programming (Java/C++), Chess, Books, Running
-
-## Projects
-### 1. LLM Fine-Tuning for Mathematical Reasoning (STaR)
-- Model: meta-llama/Llama-3.2-3B-Instruct | Dataset: openai/gsm8k
-- Zero-Shot CoT: 47.56% | Vanilla SFT: 44.00% (overfitting) | STaR: improved
-- STaR: bootstrap rationale → verify → re-prompt with correct answer → train on cleaner set
-- 4-bit quantization via bitsandbytes for single-GPU training
-- Tech: HuggingFace Transformers, accelerate, PyTorch
-
-### 2. End-to-End Hybrid Movie Recommendation Engine
-- Dataset: MovieLens 100k | SVD CF + TF-IDF CBF + cold-start handling
-- Precision@10 ~0.26, Recall@10 ~0.12 vs Popularity ~0.15/~0.06 vs Random ~0.01/~0.01
-- Tech: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
-
-### 3. Image Classification CNN & SVM
-- CIFAR-10: CNN (PyTorch) + PCA. Accuracy ~85%, AUC 0.7338
-- MNIST: LR + SVM RBF. ~100% accuracy, AUC 1.00
-- Tech: PyTorch, Torchvision, Scikit-learn
-
-### 4. MNIST Digit Generation using GAN
-- GAN (Generator + Discriminator) for digit synthesis, mode collapse prevention
-- Tech: PyTorch
-
-### 5. Open-World Continual Learning for Autonomous Agents (Capstone Project)
-- Team project (Amit: MLOps & Backend)
-- Integrates Open-Set Recognition + Continual Learning for autonomous vehicle perception
-- Detects unknown objects and adapts to new environments without catastrophic forgetting
-- Source domain: Waymo Open Dataset (San Francisco, Phoenix, Mountain View)
-- Target domain: nuScenes (Boston, Singapore)
-- Base detector: YOLOv8m | Continual learning: Elastic Weight Consolidation (EWC)
-- Open-set recognition: Entropy-based uncertainty thresholding
-- MLOps: MLflow experiment tracking + DVC data versioning
-- Tech: PyTorch, Ultralytics YOLOv8, Waymo SDK, nuscenes-devkit, MLflow, DVC, Google Cloud
-
-### 6. Nexus — Continual Mistral Knowledge Agent (Mistral AI Hackathon 2026)
-- Built for Mistral AI Hackathon 2026
-- Personal AI agent that learns from documents (PDF, URL, text) and remembers across sessions
-- Stores knowledge in per-user ChromaDB vector database; falls back to Tavily web search when memory is insufficient
-- Every web search result is automatically stored — agent gets smarter with each question
-- Per-user isolation: each user gets their own ChromaDB collection
-- LLM: mistral-large-2512 | Embeddings: mistral-embed | Vector DB: ChromaDB
-- Auth: JWT (HMAC-SHA256) + PBKDF2-SHA256 password hashing (260k iterations)
-- Backend: Flask + SQLite | Frontend: Single-file Vanilla HTML/CSS/JS
-- Tech: Python, Flask, ChromaDB, SQLite, Mistral API, Tavily API, JWT
-
-## Resume
-Amit's resume can be downloaded at: https://github.com/Manjarly/Manjarly.github.io/blob/main/Amit_Manjarly_Resume_ML.pdf
-
-## Skills
-Deep Learning: PyTorch, CNN, GAN | NLP/LLMs: HuggingFace, Fine-Tuning, STaR, Llama
-ML: SVD, SVM, TF-IDF, CF, PCA | Languages: Python, Java, C++
-Tools: Pandas, NumPy, Scikit-learn, Matplotlib, Git, Jupyter, bitsandbytes
-
-Best reached via LinkedIn: https://www.linkedin.com/in/manjarly/
-Be concise, conversational, and direct. Format responses cleanly without excessive markdown bolding or raw asterisks.`;
-
-    let hist = [], busy = false;
-    const ta = document.getElementById('chatInput');
-    ta.addEventListener('input', function () { this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 100) + 'px'; });
-    ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-
-    function formatMarkdown(text) {
+    function formatChatResponse(text) {
       if (!text) return '';
-      let html = text
+      var formatted = text
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
-      // Inline code: `code`
-      html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+      // Replace any stray em dashes with hyphens
+      formatted = formatted.replace(/\u2014/g, ' - ').replace(/\u2013/g, ' - ');
 
-      // Markdown links: [text](url)
-      html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>');
-
-      // Bold: **text**
-      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-
-      // Italic: *text* (not adjacent to other asterisks)
-      html = html.replace(/(^|[^\*])\*([^\*\n]+)\*([^\*]|$)/g, '$1<em>$2</em>$3');
-
-      // Convert bullet lists: lines starting with "- " or "* " to clean "• "
-      html = html.replace(/^[•\-\*]\s+/gm, '• ');
-
-      return html;
-    }
-
-    function addMsg(role, text) {
-      const w = document.getElementById('chatMessages');
-      const d = document.createElement('div'); d.className = `msg ${role}`;
-      const av = document.createElement('div'); av.className = 'msg-av'; av.textContent = role === 'bot' ? 'A' : 'U';
-      const b = document.createElement('div'); b.className = 'msg-bub';
-      if (role === 'bot') {
-        b.innerHTML = formatMarkdown(text);
-      } else {
-        b.textContent = text;
+      // Split code blocks safely without regex newlines
+      var parts = formatted.split('```');
+      if (parts.length > 1) {
+        var result = '';
+        for (var i = 0; i < parts.length; i++) {
+          if (i % 2 === 1) {
+            var nl = parts[i].indexOf('\n');
+            var code = nl !== -1 ? parts[i].substring(nl + 1) : parts[i];
+            result += '<pre style="background:var(--bg); border:1px solid var(--border); padding:10px; margin:8px 0; overflow-x:auto;"><code>' + code + '</code></pre>';
+          } else {
+            result += parts[i];
+          }
+        }
+        formatted = result;
       }
-      d.appendChild(av); d.appendChild(b); w.appendChild(d); w.scrollTop = w.scrollHeight;
-    }
-    function showTyping() {
-      const w = document.getElementById('chatMessages');
-      const d = document.createElement('div'); d.className = 'msg bot'; d.id = 'typing';
-      const av = document.createElement('div'); av.className = 'msg-av'; av.textContent = 'A';
-      const b = document.createElement('div'); b.className = 'msg-bub';
-      b.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-      d.appendChild(av); d.appendChild(b); w.appendChild(d); w.scrollTop = w.scrollHeight;
-    }
-    function rmTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
-    function showError() { document.getElementById('chatError').style.display = 'block'; }
 
-    const API_ENDPOINT = (window.location.hostname.includes('github.io') || window.location.protocol === 'file:')
-      ? 'https://manjarly.vercel.app/api/chat'
-      : '/api/chat';
+      // Inline code
+      formatted = formatted.replace(/`([^`]+)`/g, '<code style="background:var(--bg-card); padding:2px 5px; border:1px solid var(--border); font-family:var(--font-mono);">$1</code>');
+
+      // Bold
+      formatted = formatted.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+
+      // Links
+      formatted = formatted.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:underline;">$1 &rarr;</a>');
+
+      return formatted;
+    }
 
     async function sendMessage() {
-      if (busy) return;
-      const text = ta.value.trim(); if (!text) return;
-      ta.value = ''; ta.style.height = 'auto';
-      const errEl = document.getElementById('chatError');
-      if (errEl) errEl.style.display = 'none';
-      addMsg('user', text); hist.push({ role: 'user', content: text });
-      busy = true; document.getElementById('chatSend').disabled = true; showTyping();
+      if (chatBusy) return;
+      var inputEl = document.getElementById('chatInput');
+      var query = inputEl.value.trim();
+      if (!query) return;
+
+      appendMessage('user', query);
+      inputEl.value = '';
+      chatBusy = true;
+
+      var sendBtn = document.getElementById('chatSend');
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending...';
+
+      var tempId = 'temp-' + Date.now();
+      appendMessage('assistant', 'Thinking...', tempId);
+
+      var API_URL = window.location.hostname.includes('github.io')
+        ? 'https://manjarly.vercel.app/api/chat'
+        : '/api/chat';
+
       try {
-        const r = await fetch(API_ENDPOINT, {
+        chatHistory.push({ role: 'user', content: query });
+        var res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'claude-sonnet-5', max_tokens: 1000, system: SYS, messages: hist })
+          body: JSON.stringify({
+            model: 'claude-3-7-sonnet-20250219',
+            max_tokens: 1000,
+            system: SYS_PROMPT,
+            messages: chatHistory
+          })
         });
-        const data = await r.json(); rmTyping();
-        if (data.error) { addMsg('bot', 'Error: ' + (data.error.message || 'Something went wrong.')); showError(); }
-        else {
-          const textBlock = (data.content || []).find(b => b.type === 'text');
-          const rep = textBlock ? textBlock.text : (data.content && data.content[0] ? (data.content[0].text || JSON.stringify(data.content[0])) : 'No response received.');
-          addMsg('bot', rep); hist.push({ role: 'assistant', content: rep });
+
+        if (!res.ok) {
+          throw new Error('Endpoint returned HTTP ' + res.status);
         }
-      } catch (e) { rmTyping(); addMsg('bot', 'Could not reach the server: ' + (e.message || 'Please check network connection.')); showError(); }
-      busy = false; document.getElementById('chatSend').disabled = false;
+
+        var data = await res.json();
+        var reply = data.content?.[0]?.text || data.error?.message || 'No response returned from model.';
+        chatHistory.push({ role: 'assistant', content: reply });
+
+        var tempEl = document.getElementById(tempId);
+        if (tempEl) {
+          tempEl.innerHTML = '<div class="bubble-author">Portfolio Assistant</div>' + formatChatResponse(reply);
+        }
+      } catch (err) {
+        var tempEl = document.getElementById(tempId);
+        if (tempEl) {
+          tempEl.innerHTML = '<div class="bubble-author">Notice</div>Could not connect to the live AI proxy (' + err.message + '). Ensure your Vercel deployment has ANTHROPIC_API_KEY configured.';
+        }
+      } finally {
+        chatBusy = false;
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send \u2192';
+        var box = document.getElementById('chatMessages');
+        box.scrollTop = box.scrollHeight;
+      }
     }
-    function sendPrompt(t) { ta.value = t; sendMessage(); }
+
+    function appendMessage(role, text, id) {
+      var box = document.getElementById('chatMessages');
+      var bubble = document.createElement('div');
+      bubble.className = 'chat-bubble ' + role;
+      if (id) bubble.id = id;
+
+      var author = role === 'user' ? 'You' : 'Portfolio Assistant';
+      bubble.innerHTML = '<div class="bubble-author">' + author + '</div>' + formatChatResponse(text);
+      box.appendChild(bubble);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function sendPrompt(promptText) {
+      var inputEl = document.getElementById('chatInput');
+      inputEl.value = promptText;
+      sendMessage();
+    }
+
+    var chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+      chatInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+    }
   </script>
 </body>
-
 </html>
