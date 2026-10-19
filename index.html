@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amit Manjarly | AI/ML Software Engineer &amp; Systems Researcher</title>
   <meta name="description"
-    content="Portfolio of Amit Manjarly. AI/ML Software Engineer specializing in Causal Inference, Mechanistic Interpretability, and Continual Perception. M.S. Data Science & Engineering @ ASU." />
+    content="Portfolio of Amit Manjarly. AI/ML Software Engineer & Open-Source Contributor (Apple coremltools, NVIDIA NeMo) specializing in Causal ML, Mechanistic Interpretability, and Continual Perception. M.S. Data Science & Engineering @ ASU." />
   <meta name="author" content="Amit Manjarly" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://manjarly.github.io/" />
-  <meta property="og:title" content="Amit Manjarly | AI/ML Software Engineer" />
+  <meta property="og:title" content="Amit Manjarly | AI/ML Software Engineer & Open-Source Contributor" />
   <meta property="og:description"
-    content="AI/ML Software Engineer Intern at Resilient &amp; ASU Graduate Researcher specializing in Causal ML, Mechanistic Interpretability, and Continual Perception." />
+    content="AI/ML Software Engineer Intern at Resilient & Open-Source Contributor to Apple coremltools and NVIDIA NeMo. Specializing in Causal ML, Mechanistic Interpretability, and Foundation Models." />
   <meta property="og:image" content="https://manjarly.github.io/amit_formal.jpg" />
 
   <!-- Favicon -->
@@ -30,8 +30,8 @@
 
   <style>
     /* ==========================================================================
-       MINIMALIST DESIGN SYSTEM (Light / Dark Modes)
-       Clean White & Soothing Blue Palette
+       MINIMALIST DESIGN SYSTEM
+       Clean White & Soothing Blue Palette (Permanent Light Theme)
        ========================================================================== */
     :root {
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -75,36 +75,6 @@
       --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.09);
 
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-theme="dark"] {
-      --bg: #090d16;
-      --bg-surface: #0f172a;
-      --bg-surface-elevated: #1e293b;
-      --bg-subtle: #131d31;
-      --bg-secondary: #1e293b;
-      --border: rgba(255, 255, 255, 0.09);
-      --border-strong: rgba(255, 255, 255, 0.18);
-
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-subtle: #64748b;
-
-      --primary: #3b82f6;
-      --primary-hover: #60a5fa;
-      --primary-light: rgba(59, 130, 246, 0.15);
-      --primary-glow: rgba(59, 130, 246, 0.3);
-
-      --accent-blue: #60a5fa;
-      --accent-blue-light: rgba(96, 165, 250, 0.15);
-      --accent-emerald: #10b981;
-      --accent-emerald-light: rgba(16, 185, 129, 0.15);
-      --accent-purple: #8b5cf6;
-      --accent-purple-light: rgba(139, 92, 246, 0.15);
-
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
     }
 
     /* Reset & Base */
@@ -170,10 +140,6 @@
       background-color: rgba(255, 255, 255, 0.92);
       border-bottom: 1px solid var(--border);
       transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    [data-theme="dark"] .header {
-      background-color: rgba(9, 13, 22, 0.92);
     }
 
     .header-inner {
@@ -267,25 +233,6 @@
       border-color: var(--primary);
       color: var(--primary);
       transform: translateY(-1px);
-    }
-
-    .theme-toggle-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
-      background-color: var(--bg-surface);
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .theme-toggle-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: rotate(15deg);
     }
 
     .mobile-menu-btn {
@@ -715,14 +662,14 @@
       gap: 6px;
       margin-bottom: 30px;
       border: 1px solid var(--border);
-      max-width: 600px;
+      max-width: 720px;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: var(--radius-full);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-muted);
       text-align: center;
@@ -840,10 +787,63 @@
     .timeline-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
+      align-items: center;
+      margin-bottom: 12px;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 12px;
+    }
+
+    .timeline-title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .company-logo-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      padding: 6px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .company-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .project-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .project-logo-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 4px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .project-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .timeline-role {
@@ -1009,12 +1009,6 @@
       letter-spacing: 0.5px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    [data-theme="dark"] .project-category-tag {
-      background-color: rgba(17, 24, 39, 0.9);
-      color: var(--primary);
-      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .project-body {
@@ -1327,7 +1321,7 @@
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .container {
         padding: 0 18px;
       }
@@ -1408,25 +1402,6 @@
           </svg>
           Resume
         </a>
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-          <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            style="display: none;">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-          <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
         <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation">
           <svg id="menuOpenIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1528,17 +1503,13 @@
         <div class="hero-content">
           <div class="hero-pill">
             <span class="hero-pill-dot"></span>
-            AI/ML Software Engineer &bull; Researcher
+            AI/ML Software Engineer &bull; Open-Source Contributor
           </div>
           <h1 class="hero-title">
             Hi, I'm <span>Amit Manjarly</span>
           </h1>
           <p class="hero-subtitle">
-            An <strong>AI/ML Software Engineer</strong> dedicated to advancing production machine learning beyond
-            surface correlations into <strong>unconfounded causal reasoning</strong> and <strong>mechanistic
-              interpretability</strong>. M.S. Data Science &amp; Engineering candidate at <strong>Arizona State
-              University</strong> with 3.5 years of engineering service at <strong>Accenture PLC</strong>, and currently
-            engineering Earth observation digital twins at <strong>Resilient</strong>.
+            An <strong>AI/ML Software Engineer</strong> and active <strong>Open-Source Contributor</strong> (Apple <code style="font-family: var(--font-mono); font-size: 13.5px; background: var(--bg-secondary); padding: 1px 6px; border-radius: 4px;">coremltools</code>, NVIDIA <code style="font-family: var(--font-mono); font-size: 13.5px; background: var(--bg-secondary); padding: 1px 6px; border-radius: 4px;">NeMo</code>) dedicated to advancing production machine learning beyond surface correlations into <strong>unconfounded causal reasoning</strong> and <strong>mechanistic interpretability</strong>. M.S. in Data Science &amp; Engineering from <strong>Arizona State University</strong> with 3.5 years of engineering service at <strong>Accenture PLC</strong>, and currently engineering Earth observation digital twins at <strong>Resilient</strong>.
           </p>
 
           <div class="hero-ctas">
@@ -1609,7 +1580,9 @@
 
           <!-- Floating Badges -->
           <div class="floating-badge badge-top">
-            <div class="badge-icon">🛰️</div>
+            <div class="badge-icon" style="background: #ffffff; padding: 3px; display: flex; align-items: center; justify-content: center;">
+              <img src="resilient_logo.jpg" alt="Resilient Logo" style="width: 22px; height: 22px; object-fit: contain; border-radius: 4px;" />
+            </div>
             <div class="badge-text">
               <strong>AI/ML SWE Intern</strong>
               <span>Resilient &bull; Earth Obs</span>
@@ -1617,10 +1590,12 @@
           </div>
 
           <div class="floating-badge badge-bottom">
-            <div class="badge-icon">🎓</div>
+            <div class="badge-icon" style="background: #ffffff; padding: 3px; display: flex; align-items: center; justify-content: center;">
+              <img src="asu_sun_devils.svg" alt="ASU Logo" style="width: 22px; height: 22px; object-fit: contain;" />
+            </div>
             <div class="badge-text">
               <strong>M.S. Data Science &amp; Eng</strong>
-              <span>Arizona State Univ ('26)</span>
+              <span>Arizona State Univ</span>
             </div>
           </div>
         </div>
@@ -1651,22 +1626,22 @@
         <!-- About Tabs -->
         <div class="about-content">
           <div class="tab-nav">
-            <button class="tab-btn active" data-tab="personal" onclick="switchTab(event, 'personal')">Personal
-              Info</button>
+            <button class="tab-btn active" data-tab="personal" onclick="switchTab(event, 'personal')">Personal Info</button>
             <button class="tab-btn" data-tab="experience" onclick="switchTab(event, 'experience')">Experience</button>
-            <button class="tab-btn" data-tab="qualifications"
-              onclick="switchTab(event, 'qualifications')">Qualifications</button>
+            <button class="tab-btn" data-tab="opensource" onclick="switchTab(event, 'opensource')">Open Source</button>
+            <button class="tab-btn" data-tab="qualifications" onclick="switchTab(event, 'qualifications')">Qualifications</button>
             <button class="tab-btn" data-tab="skills" onclick="switchTab(event, 'skills')">Skills &amp; Toolkit</button>
           </div>
 
           <!-- Tab 1: Personal Info -->
           <div id="tab-personal" class="tab-pane active">
-            <h3 class="about-heading">AI/ML Software Engineer &amp; Graduate Researcher</h3>
+            <h3 class="about-heading">AI/ML Software Engineer &bull; Open-Source Contributor</h3>
             <p class="about-lead">
               I believe production artificial intelligence must transcend brittle surface-level correlations into
               unconfounded causal reasoning and mechanistic transparency. Following 3.5 years engineering
-              mission-critical database platforms at Accenture PLC, I am advancing multi-spectral foundation models at
-              Resilient and conducting research in Sparse Autoencoders and Continual Perception at ASU.
+              mission-critical database platforms at Accenture PLC, I currently engineer Earth observation digital twins
+              and causal avoided-loss estimators at Resilient, actively contribute to open-source systems at Apple and NVIDIA,
+              and pursue independent research in mechanistic interpretability and foundation models out of personal passion.
             </p>
 
             <div class="info-grid">
@@ -1678,7 +1653,9 @@
                 </div>
               </div>
               <div class="info-item">
-                <div class="info-icon">🎓</div>
+                <div class="info-icon" style="padding: 4px; display: flex; align-items: center; justify-content: center; background: #ffffff;">
+                  <img src="asu_sun_devils.svg" alt="ASU" style="width: 20px; height: 20px; object-fit: contain;" />
+                </div>
                 <div class="info-meta">
                   <span>Degree &amp; School</span>
                   <strong>M.S. DSAE &bull; ASU</strong>
@@ -1692,16 +1669,18 @@
                 </div>
               </div>
               <div class="info-item">
-                <div class="info-icon">💼</div>
+                <div class="info-icon" style="padding: 4px; display: flex; align-items: center; justify-content: center; background: #ffffff;">
+                  <img src="resilient_logo.jpg" alt="Resilient" style="width: 20px; height: 20px; object-fit: contain; border-radius: 4px;" />
+                </div>
                 <div class="info-meta">
                   <span>Current Role</span>
                   <strong>AI/ML SWE Intern @ Resilient</strong>
                 </div>
               </div>
               <div class="info-item">
-                <div class="info-icon">📅</div>
+                <div class="info-icon">🎓</div>
                 <div class="info-meta">
-                  <span>Graduation Target</span>
+                  <span>Graduated</span>
                   <strong>May 2026</strong>
                 </div>
               </div>
@@ -1734,9 +1713,14 @@
             <div class="timeline">
               <div class="timeline-card">
                 <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">AI/ML Software Engineer Intern</div>
-                    <div class="timeline-company">Resilient</div>
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="resilient_logo.jpg" alt="Resilient Logo" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">AI/ML Software Engineer Intern</div>
+                      <div class="timeline-company">Resilient</div>
+                    </div>
                   </div>
                   <span class="timeline-time">July 2026 - Present</span>
                 </div>
@@ -1750,9 +1734,14 @@
 
               <div class="timeline-card">
                 <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">Software Engineer &bull; Senior Analyst</div>
-                    <div class="timeline-company">Accenture PLC</div>
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="accenture_logo.svg" alt="Accenture Logo" style="transform: scale(0.9);" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">Software Engineer &bull; Senior Analyst</div>
+                      <div class="timeline-company">Accenture PLC</div>
+                    </div>
                   </div>
                   <span class="timeline-time">March 2021 - July 2024 (3.5 Yrs)</span>
                 </div>
@@ -1766,36 +1755,164 @@
             </div>
           </div>
 
-          <!-- Tab 3: Qualifications (Academics & Education) -->
+          <!-- Tab 3: Open-Source Contributions -->
+          <div id="tab-opensource" class="tab-pane">
+            <div class="timeline">
+              <!-- Apple coremltools -->
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="apple_logo.svg" alt="Apple Logo" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">Open-Source Contributor &bull; Apple Silicon ML</div>
+                      <div class="timeline-company">apple/coremltools</div>
+                    </div>
+                  </div>
+                  <span class="timeline-time">PyTorch Converter &bull; MIL Ops</span>
+                </div>
+                <p class="timeline-desc">
+                  Core contributor to Apple's official machine learning model converter, enabling seamless translation of PyTorch models into Core ML format optimized for Apple Silicon Neural Engine (ANE) and GPU.
+                </p>
+                <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+                  <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                      <a href="https://github.com/apple/coremltools/pull/2896" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                        <span>PR #2896: Add torch.hypot to PyTorch Converter</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                    </div>
+                    <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
+                      Converted Euclidean hypotenuse &radic;(x&sup2; + y&sup2;) into Core ML Model Intermediate Language (MIL) operations (<code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">mb.square</code>, <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">mb.add</code>, <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">mb.sqrt</code>) with dynamic PyTorch dtype promotion, multi-dimensional tensor broadcasting across TorchScript &amp; TorchExport, and 28 automated pytest test suites.
+                    </p>
+                  </div>
+
+                  <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                      <a href="https://github.com/apple/coremltools/pull/2895" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                        <span>PR #2895: Add torch.deg2rad and torch.rad2deg Converter</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                    </div>
+                    <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
+                      Implemented degree-to-radian and radian-to-degree transformations directly in Core ML MIL, enabling geometric angle processing in spatial vision and robotics models on the Apple Neural Engine with 40 automated test suites.
+                    </p>
+                  </div>
+
+                  <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                      <span style="color: var(--text); font-weight: 700;">RangeDim Bounds Validation &amp; Docs:</span>
+                    </div>
+                    <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
+                      Authored defensive bounds validation for flexible tensor dimension ranges in <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">coremltools/converters/mil/input_types.py</code> rejecting negative lower limits, and resolved broken developer guideline references (<a href="https://github.com/apple/coremltools/pull/2893" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">PR #2893</a>).
+                    </p>
+                  </div>
+                </div>
+
+                <div class="project-tags" style="margin-top: 14px;">
+                  <span class="project-tag">Apple Silicon</span>
+                  <span class="project-tag">Core ML MIL</span>
+                  <span class="project-tag">PyTorch Converter</span>
+                  <span class="project-tag">Neural Engine (ANE)</span>
+                  <span class="project-tag">TorchScript</span>
+                  <span class="project-tag">Pytest (68 Tests)</span>
+                </div>
+              </div>
+
+              <!-- NVIDIA NeMo -->
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="nvidia_logo.svg" alt="NVIDIA Logo" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">Open-Source Contributor &bull; Generative Audio &amp; Speech</div>
+                      <div class="timeline-company">NVIDIA-NeMo/Speech</div>
+                    </div>
+                  </div>
+                  <span class="timeline-time">Score-Based Diffusion &bull; Tooling</span>
+                </div>
+                <p class="timeline-desc">
+                  Contributor to NVIDIA's conversational AI toolkit built on PyTorch and CUDA for state-of-the-art generative speech and audio models.
+                </p>
+                <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+                  <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                      <a href="https://github.com/NVIDIA-NeMo/Speech/pull/16408" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                        <span>PR #16408: NCSN++ Diffusion Error Handling, Typing &amp; Test Coverage</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                    </div>
+                    <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
+                      Hardened score-based generative diffusion model backbones (<code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">NCSN++</code> in NeMo Audio collections for speech enhancement). Replaced bare asserts with descriptive exceptions per NeMo guidelines, added defensive conditioning checks in <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">ResnetBlockBigGANPlusPlus</code>, and created 4 unit test suites (17 passing tests).
+                    </p>
+                  </div>
+
+                  <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                      <a href="https://github.com/NVIDIA-NeMo/Speech/pull/16407" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                        <span>PR #16407: Fix Quiet Flag Parsing in ASR Manifest Tooling</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                    </div>
+                    <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
+                      Fixed CLI boolean flag parsing in <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">estimate_duration_bins.py</code>, ensuring correct quiet flag handling during ASR manifest duration estimation with regression unit tests.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="project-tags" style="margin-top: 14px;">
+                  <span class="project-tag">NVIDIA NeMo</span>
+                  <span class="project-tag">Score-Based Diffusion</span>
+                  <span class="project-tag">NCSN++ Backbone</span>
+                  <span class="project-tag">Audio Generative AI</span>
+                  <span class="project-tag">PyTorch</span>
+                  <span class="project-tag">CUDA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Qualifications (Academics & Education) -->
           <div id="tab-qualifications" class="tab-pane">
             <div class="timeline">
               <div class="timeline-card">
                 <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">M.S. in Data Science, Analytics &amp; Engineering</div>
-                    <div class="timeline-company">Arizona State University (ASU)</div>
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="asu_sun_devils.svg" alt="Arizona State University Logo" style="transform: scale(1.15);" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">M.S. in Data Science, Analytics &amp; Engineering</div>
+                      <div class="timeline-company">Arizona State University (ASU)</div>
+                    </div>
                   </div>
                   <span class="timeline-time">Aug 2024 - May 2026</span>
                 </div>
                 <p class="timeline-desc">
-                  Specializing in Machine Learning Systems, Statistical Causal Inference, Mechanistic Interpretability,
-                  Deep Learning, and Algorithm Design. Researching Top-K Sparse Autoencoders on transformer residual
-                  streams and Elastic Weight Consolidation in autonomous perception.
+                  Academic coursework: Machine Learning, Deep Learning, Natural Language Processing, Statistical Inference, and Artificial Intelligence.
                 </p>
               </div>
 
               <div class="timeline-card">
                 <div class="timeline-header">
-                  <div>
-                    <div class="timeline-role">B.E. in Information Technology</div>
-                    <div class="timeline-company">Gujarat Technological University (GTU)</div>
+                  <div class="timeline-title-group">
+                    <div class="company-logo-badge">
+                      <img src="gtu_logo.png" alt="Gujarat Technological University Logo" />
+                    </div>
+                    <div>
+                      <div class="timeline-role">B.E. in Computer Engineering</div>
+                      <div class="timeline-company">Gujarat Technological University (GTU)</div>
+                    </div>
                   </div>
-                  <span class="timeline-time">2016 - 2020</span>
+                  <span class="timeline-time">Aug 2015 - June 2019</span>
                 </div>
                 <p class="timeline-desc">
-                  Graduated with First Class with Distinction. Core academic coursework in Data Structures &amp;
-                  Algorithms, Database Management Systems, Object-Oriented Software Engineering, Computer Networks, and
-                  Discrete Mathematics.
+                  Graduated with First Class with Distinction. Core academic coursework: Data Structures &amp;
+                  Algorithms, Object-Oriented Programming (C++/Java), Operating Systems, Database Management Systems,
+                  System Programming, and Computer Networks.
                 </p>
               </div>
             </div>
@@ -1816,9 +1933,11 @@
             </div>
 
             <div class="skills-group">
-              <div class="skills-title"><span>🧠</span> AI, Deep Learning &amp; Causal ML</div>
+              <div class="skills-title"><span>🧠</span> AI, Deep Learning &amp; Open-Source ML</div>
               <div class="skills-badges">
                 <span class="skill-badge">PyTorch</span>
+                <span class="skill-badge">Apple CoreML (coremltools)</span>
+                <span class="skill-badge">NVIDIA NeMo</span>
                 <span class="skill-badge">Hugging Face Transformers</span>
                 <span class="skill-badge">YOLOv11m</span>
                 <span class="skill-badge">Sparse Autoencoders (SAEs)</span>
@@ -1865,16 +1984,88 @@
 
       <!-- Filter Controls -->
       <div class="projects-filter">
-        <button class="filter-btn active" data-category="all" onclick="filterProjects(event, 'all')">All
-          Projects</button>
-        <button class="filter-btn" data-category="causal" onclick="filterProjects(event, 'causal')">Causal &amp;
-          Systems</button>
-        <button class="filter-btn" data-category="vision" onclick="filterProjects(event, 'vision')">Perception &amp;
-          LLMs</button>
+        <button class="filter-btn active" data-category="all" onclick="filterProjects(event, 'all')">All Projects</button>
+        <button class="filter-btn" data-category="opensource" onclick="filterProjects(event, 'opensource')">Open Source</button>
+        <button class="filter-btn" data-category="causal" onclick="filterProjects(event, 'causal')">Causal &amp; Systems</button>
+        <button class="filter-btn" data-category="vision" onclick="filterProjects(event, 'vision')">Perception &amp; LLMs</button>
       </div>
 
       <!-- Projects Grid -->
       <div class="projects-grid" id="projectsGrid">
+
+        <!-- Project: Apple coremltools -->
+        <div class="project-card" data-category="opensource">
+          <div class="project-thumb">
+            <span class="project-category-tag">Open Source &bull; Apple Silicon</span>
+            <img src="apple_coreml_converter.jpg" alt="Apple coremltools PyTorch Converter" />
+          </div>
+          <div class="project-body">
+            <div class="project-header-row">
+              <div class="project-title-group">
+                <div class="project-logo-badge">
+                  <img src="apple_logo.svg" alt="Apple" />
+                </div>
+                <h3 class="project-title">Apple coremltools: PyTorch MIL Converter &amp; Ops</h3>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Manjarly/coremltools_manjarly" target="_blank"
+                  rel="noopener noreferrer" class="project-link-icon" aria-label="GitHub Repository" title="GitHub: coremltools_manjarly">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">
+              Engineered PyTorch-to-CoreML conversion ops (<code style="font-family: var(--font-mono); font-size: 12px; background: var(--bg-secondary); padding: 1px 4px; border-radius: 3px;">torch.hypot</code>, <code style="font-family: var(--font-mono); font-size: 12px; background: var(--bg-secondary); padding: 1px 4px; border-radius: 3px;">torch.deg2rad</code>, <code style="font-family: var(--font-mono); font-size: 12px; background: var(--bg-secondary); padding: 1px 4px; border-radius: 3px;">torch.rad2deg</code>) translating Euclidean distance and angular math into Model Intermediate Language (MIL) graph representations for Apple Neural Engine with 68+ unit tests.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Apple coremltools</span>
+              <span class="project-tag">PyTorch Converter</span>
+              <span class="project-tag">Core ML MIL</span>
+              <span class="project-tag">Neural Engine (ANE)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: NVIDIA NeMo -->
+        <div class="project-card" data-category="opensource">
+          <div class="project-thumb">
+            <span class="project-category-tag">Open Source &bull; Generative Audio</span>
+            <img src="nvidia_nemo_diffusion.jpg" alt="NVIDIA NeMo Diffusion Architecture" />
+          </div>
+          <div class="project-body">
+            <div class="project-header-row">
+              <div class="project-title-group">
+                <div class="project-logo-badge">
+                  <img src="nvidia_logo.svg" alt="NVIDIA" />
+                </div>
+                <h3 class="project-title">NVIDIA NeMo: NCSN++ Diffusion &amp; Speech Tooling</h3>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Manjarly/nvidia_nemo_manjarly" target="_blank"
+                  rel="noopener noreferrer" class="project-link-icon" aria-label="GitHub Repository" title="GitHub: nvidia_nemo_manjarly">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">
+              Hardened score-based generative diffusion backbones (<code style="font-family: var(--font-mono); font-size: 12px; background: var(--bg-secondary); padding: 1px 4px; border-radius: 3px;">NCSN++</code> in NeMo Audio collections for speech enhancement). Introduced defensive conditioning checks in BigGAN ResNet blocks, upgraded error handling per guidelines, and developed 4 automated test suites (17 passing tests).
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">NVIDIA NeMo</span>
+              <span class="project-tag">Score-Based Diffusion</span>
+              <span class="project-tag">NCSN++</span>
+              <span class="project-tag">Audio Generative AI</span>
+            </div>
+          </div>
+        </div>
 
         <!-- Project 2: Counterflow -->
         <div class="project-card" data-category="causal">
@@ -2141,19 +2332,18 @@
 
         <div class="terminal-body">
           <div class="terminal-chips">
+            <button class="prompt-chip" onclick="quickAsk('Open Source Contributions')">Open Source (Apple &amp; NVIDIA)</button>
             <button class="prompt-chip" onclick="quickAsk('Resilient Digital Twins')">Resilient Work</button>
             <button class="prompt-chip" onclick="quickAsk('Counterflow Dynamic Pricing')">Counterflow Causal ML</button>
-            <button class="prompt-chip" onclick="quickAsk('Interp Circuit Sparse Autoencoders')">Mechanistic
-              SAEs</button>
-            <button class="prompt-chip" onclick="quickAsk('Continual Perception YOLOv11m')">Continual
-              Perception</button>
+            <button class="prompt-chip" onclick="quickAsk('Interp Circuit Sparse Autoencoders')">Mechanistic SAEs</button>
+            <button class="prompt-chip" onclick="quickAsk('Continual Perception YOLOv11m')">Continual Perception</button>
             <button class="prompt-chip" onclick="quickAsk('Accenture Background')">Accenture Background</button>
           </div>
 
           <div class="terminal-log" id="terminalLog">
             <div class="terminal-msg bot">
               Welcome to Amit Manjarly's interactive terminal console. Click any suggestion chip above or type your
-              question below regarding his engineering background, research in causal inference, or work at Resilient.
+              question below regarding his open-source work at Apple &amp; NVIDIA, engineering at Resilient, or research in causal ML.
             </div>
           </div>
 
@@ -2245,30 +2435,11 @@
        JAVASCRIPT LOGIC
        ========================================================================== -->
   <script>
-    // Theme Management
-    const themeToggle = document.getElementById('themeToggle');
-    const sunIcon = document.getElementById('sunIcon');
-    const moonIcon = document.getElementById('moonIcon');
-
-    function applyTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      if (theme === 'dark') {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      } else {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    applyTheme(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
+    // Pure Light Theme - cleanup any legacy theme key
+    try {
+      localStorage.removeItem('theme');
+      document.documentElement.removeAttribute('data-theme');
+    } catch (e) { }
 
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -2340,6 +2511,9 @@
     // Terminal Q&A System
     function getTerminalReply(q) {
       const t = q.toLowerCase();
+      if (t.includes('open source') || t.includes('opensource') || t.includes('apple') || t.includes('coreml') || t.includes('nemo') || t.includes('nvidia') || t.includes('pr') || t.includes('hypot') || t.includes('diffusion')) {
+        return "Amit is an active open-source contributor to premier AI & systems frameworks:\n\n1. Apple (apple/coremltools):\n• PR #2896: Added torch.hypot to PyTorch converter with MIL ops (mb.square, mb.add, mb.sqrt), dynamic dtype promotion, TorchScript/TorchExport broadcasting, and 28 unit tests.\n• PR #2895: Added torch.deg2rad & torch.rad2deg converter ops for Apple Neural Engine geometric vision models with 40 unit tests.\n• RangeDim flexible bounds validation & developer guideline documentation fixes.\n\n2. NVIDIA (NVIDIA-NeMo/Speech):\n• PR #16408: Hardened NCSN++ score-based diffusion model backbones in NeMo Audio collections with descriptive exceptions, BigGAN conditioning validation, and 4 test suites (17 tests passing).\n• PR #16407: Fixed boolean CLI flag parsing in ASR manifest duration estimation scripts with regression tests.";
+      }
       if (t.includes('resilient') || t.includes('earth') || t.includes('satellite') || t.includes('coffee') || t.includes('cocoa')) {
         return "At Resilient (July 2026 - Present), Amit serves as an AI/ML Software Engineer Intern engineering agricultural digital twins:\n• Presto Foundation Model fine-tuning with CBAM attention across 11 daily ERA5 climate channels\n• Causal avoided-loss estimators (PSM, DiD, R-Learners) across 17,123 observed agricultural panels\n• Sub-100ms FastAPI serving microservice with Redis caching.";
       }
@@ -2355,10 +2529,10 @@
       if (t.includes('accenture')) {
         return "At Accenture PLC (3.5 years: March 2021 - July 2024), Amit was a Software Engineer managing high-throughput distributed financial data lakes: automated QA validation harnesses (40% cycle reduction), Apache Hive/Impala query execution plan optimization (-33% latency), and nightly Oracle batch ETL pipelines.";
       }
-      if (t.includes('education') || t.includes('asu') || t.includes('gpa') || t.includes('gtu')) {
-        return "Amit is pursuing his M.S. in Data Science, Analytics & Engineering at Arizona State University in Tempe, AZ (graduating May 2026). He holds a B.E. in Information Technology with First Class with Distinction from Gujarat Technological University (2020).";
+      if (t.includes('education') || t.includes('asu') || t.includes('gpa') || t.includes('gtu') || t.includes('degree') || t.includes('graduate')) {
+        return "Amit holds an M.S. in Data Science, Analytics & Engineering from Arizona State University in Tempe, AZ (May 2026) and a B.E. in Computer Engineering with First Class with Distinction from Gujarat Technological University (2019).";
       }
-      return "Amit Manjarly is an AI/ML Software Engineer Intern at Resilient and an M.S. Data Science & Engineering candidate at Arizona State University (May 2026). His specializations include Causal Machine Learning, Mechanistic Interpretability, Continual Perception, and Scalable Distributed Systems.";
+      return "Amit Manjarly is an AI/ML Software Engineer Intern at Resilient and Open-Source Contributor to Apple and NVIDIA. His engineering specializations and independent research interests include Causal Machine Learning, Mechanistic Interpretability, and High-Performance ML Systems.";
     }
 
     function appendTerminal(role, text) {
