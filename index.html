@@ -158,18 +158,16 @@
       letter-spacing: -0.02em;
     }
 
-    .logo-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), #1d4ed8);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      font-weight: 800;
-      box-shadow: 0 4px 12px var(--primary-glow);
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .logo:hover .logo-icon {
+      transform: scale(1.08);
     }
 
     .nav-links {
@@ -1378,7 +1376,7 @@
   <header class="header">
     <div class="container header-inner">
       <a href="#" class="logo">
-        <div class="logo-badge">AM</div>
+        <img src="favicon.svg" alt="Amit Manjarly" class="logo-icon" />
         <span>Amit Manjarly</span>
       </a>
 
@@ -1802,10 +1800,13 @@
 
                   <div style="font-size: 13.5px; line-height: 1.5; color: var(--text);">
                     <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
-                      <span style="color: var(--text); font-weight: 700;">RangeDim Bounds Validation &amp; Docs:</span>
+                      <a href="https://github.com/apple/coremltools/pull/2893" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+                        <span>PR #2893: RangeDim Bounds Validation &amp; Docs</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
                     </div>
                     <p style="margin-top: 3px; font-size: 13px; color: var(--text-muted);">
-                      Authored defensive bounds validation for flexible tensor dimension ranges in <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">coremltools/converters/mil/input_types.py</code> rejecting negative lower limits, and resolved broken developer guideline references (<a href="https://github.com/apple/coremltools/pull/2893" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">PR #2893</a>).
+                      Authored defensive bounds validation for flexible tensor dimension ranges in <code style="font-family: var(--font-mono); font-size: 11.5px; background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px;">coremltools/converters/mil/input_types.py</code> rejecting negative lower limits, and resolved broken developer guideline references.
                     </p>
                   </div>
                 </div>
