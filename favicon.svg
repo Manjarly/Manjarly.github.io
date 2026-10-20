@@ -1,22 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#06120e"/>
-  <rect width="62" height="62" x="1" y="1" rx="13" fill="none" stroke="#0e2c22" stroke-width="1.5"/>
-  <!-- Binary Data Bits forming 'A' -->
-  <rect x="28" y="20" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="32" y="20" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="26" y="26" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="34" y="26" width="4" height="4" rx="1" fill="#34d399"/>
-  <!-- Crossbar bits -->
-  <rect x="23" y="32" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="27" y="32" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="33" y="32" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="37" y="32" width="4" height="4" rx="1" fill="#34d399"/>
-  <!-- Lower legs -->
-  <rect x="20" y="38" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="40" y="38" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="16" y="46" width="4" height="4" rx="1" fill="#34d399"/>
-  <rect x="44" y="46" width="4" height="4" rx="1" fill="#34d399"/>
-  <!-- Glowing Apex Node -->
-  <circle cx="32" cy="16" r="5" fill="#34d399" opacity="0.3"/>
-  <circle cx="32" cy="16" r="3" fill="#ffffff"/>
+  <g transform="translate(32, 32) scale(0.09747, -0.09747) translate(-230.5, -148.0)">
+    <path d="M56 -47Q23 -47 -1.5 -25.0Q-26 -3 -26 41Q-26 76 -10.0 117.0Q6 158 34.0 198.0Q62 238 98.0 270.5Q134 303 175.0 323.0Q216 343 257 343Q300 343 330.0 321.0Q360 299 360 263Q360 236 341.0 224.0Q322 212 296 217Q298 226 299.5 235.0Q301 244 301 254Q301 274 293.0 290.0Q285 306 259 306Q231 306 202.0 287.0Q173 268 146.5 237.5Q120 207 99.0 170.5Q78 134 66.0 99.0Q54 64 54 36Q54 4 77 4Q100 4 128.0 26.5Q156 49 184.5 83.0Q213 117 239.0 152.5Q265 188 284 213Q287 218 292 218Q296 217 307.5 213.5Q319 210 329.0 203.0Q339 196 339 185Q339 175 330.5 159.5Q322 144 310.5 125.5Q299 107 290.5 88.5Q282 70 282 53Q282 40 289.0 28.5Q296 17 312 17Q336 17 379.5 52.5Q423 88 468 173L487 154Q463 100 429.5 58.5Q396 17 359.0 -6.5Q322 -30 284 -30Q243 -30 223.0 -4.0Q203 22 201 52Q201 54 201.0 55.0Q201 56 201 57Q161 9 127.5 -19.0Q94 -47 56 -47Z" fill="#2563eb"/>
+  </g>
 </svg>
