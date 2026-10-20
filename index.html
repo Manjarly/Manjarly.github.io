@@ -235,19 +235,60 @@
 
     .mobile-menu-btn {
       display: none;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--border);
       background-color: var(--bg-surface);
       color: var(--text);
+      cursor: pointer;
+      position: relative;
+      touch-action: manipulation;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: var(--shadow-sm);
     }
 
-    /* Mobile Drawer (Full Viewport Coverage) */
+    .mobile-menu-btn:hover {
+      background-color: var(--bg-secondary);
+      border-color: var(--border-strong);
+    }
+
+    .mobile-menu-btn:active {
+      transform: scale(0.92);
+    }
+
+    .mobile-menu-btn svg {
+      position: absolute;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease;
+    }
+
+    .mobile-menu-btn #menuOpenIcon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    .mobile-menu-btn #menuCloseIcon {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.6);
+      pointer-events: none;
+    }
+
+    .mobile-menu-btn.active #menuOpenIcon {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.6);
+      pointer-events: none;
+    }
+
+    .mobile-menu-btn.active #menuCloseIcon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Mobile Drawer (Instant Response & Fluid Staggered Expansion) */
     .mobile-drawer {
-      display: none;
       position: fixed;
       top: 72px;
       left: 0;
@@ -258,23 +299,66 @@
       height: calc(100dvh - 72px);
       background-color: var(--bg);
       z-index: 9999;
-      padding: 24px 20px 40px;
+      padding: 20px 20px 40px;
+      display: flex;
       flex-direction: column;
       gap: 12px;
       border-top: 1px solid var(--border);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+      /* Rapid, non-blocking hardware-accelerated entrance */
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-6px);
+      will-change: transform, opacity;
+      transition: opacity 0.15s ease,
+                  transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.15s ease;
     }
 
     .mobile-drawer.open {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
+    /* Options Animation & Staggered Cascade */
+    .mobile-drawer .mobile-nav-link,
+    .mobile-drawer .mobile-drawer-footer {
+      opacity: 0;
+      transform: translateY(-10px);
+      will-change: transform, opacity;
+      transition: opacity 0.12s ease,
+                  transform 0.15s ease;
+    }
+
+    .mobile-drawer.open .mobile-nav-link,
+    .mobile-drawer.open .mobile-drawer-footer {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.15s ease,
+                  border-color 0.15s ease,
+                  color 0.15s ease;
+    }
+
+    /* Immediate 0ms first-item start with tight, responsive 25ms cascades */
+    .mobile-drawer.open .mobile-nav-link:nth-child(1) { transition-delay: 0s; }
+    .mobile-drawer.open .mobile-nav-link:nth-child(2) { transition-delay: 0.025s; }
+    .mobile-drawer.open .mobile-nav-link:nth-child(3) { transition-delay: 0.050s; }
+    .mobile-drawer.open .mobile-nav-link:nth-child(4) { transition-delay: 0.075s; }
+    .mobile-drawer.open .mobile-nav-link:nth-child(5) { transition-delay: 0.100s; }
+    .mobile-drawer.open .mobile-drawer-footer        { transition-delay: 0.125s; }
+
     .mobile-drawer .nav-link {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 600;
-      padding: 14px 18px;
+      padding: 15px 18px;
       border-radius: var(--radius-md);
       background-color: var(--bg-subtle);
       border: 1px solid var(--border);
@@ -282,14 +366,39 @@
       align-items: center;
       justify-content: space-between;
       color: var(--text);
-      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobile-drawer .nav-link svg {
+      color: var(--text-subtle);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
     }
 
     .mobile-drawer .nav-link:hover,
+    .mobile-drawer .nav-link:active {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      border-color: rgba(37, 99, 235, 0.3);
+      transform: translateX(4px);
+    }
+
+    .mobile-drawer .nav-link:hover svg,
+    .mobile-drawer .nav-link:active svg {
+      transform: translateX(3px);
+      color: var(--primary);
+    }
+
     .mobile-drawer .nav-link.active {
       background-color: var(--primary-light);
       color: var(--primary);
       border-color: var(--primary);
+      font-weight: 700;
+    }
+
+    .mobile-drawer .nav-link.active svg {
+      color: var(--primary);
     }
 
     .mobile-drawer .nav-link::after {
@@ -1408,10 +1517,9 @@
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
           <svg id="menuCloseIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            style="display: none;">
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="18" x2="18" y2="6"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
       </div>
@@ -1456,7 +1564,7 @@
       </svg>
     </a>
 
-    <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 14px;">
+    <div class="mobile-drawer-footer" style="margin-top: 10px; display: flex; flex-direction: column; gap: 14px;">
       <a href="Amit_Manjarly_Resume_ML.pdf" download class="btn-primary" style="justify-content: center; width: 100%;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2453,13 +2561,11 @@
       const willOpen = forceClose ? false : !mobileDrawer.classList.contains('open');
       if (willOpen) {
         mobileDrawer.classList.add('open');
-        if (menuOpenIcon) menuOpenIcon.style.display = 'none';
-        if (menuCloseIcon) menuCloseIcon.style.display = 'block';
+        mobileMenuBtn?.classList.add('active');
         document.body.style.overflow = 'hidden';
       } else {
         mobileDrawer.classList.remove('open');
-        if (menuOpenIcon) menuOpenIcon.style.display = 'block';
-        if (menuCloseIcon) menuCloseIcon.style.display = 'none';
+        mobileMenuBtn?.classList.remove('active');
         document.body.style.overflow = '';
       }
     }
